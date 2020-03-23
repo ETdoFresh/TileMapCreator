@@ -688,6 +688,7 @@ GameObject:
   - component: {fileID: 566916477}
   - component: {fileID: 566916476}
   - component: {fileID: 566916475}
+  - component: {fileID: 566916478}
   m_Layer: 0
   m_Name: SelctionSquare
   m_TagString: Untagged
@@ -711,6 +712,7 @@ MonoBehaviour:
   isMouseOnGrid: 0
   spriteRenderer: {fileID: 566916476}
   position: {x: 0, y: 0}
+  currentCell: {fileID: 0}
 --- !u!212 &566916476
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -748,7 +750,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3071f717eb6e8b2418589331ebe71a22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73437f327d4c2874292056660e6a3673, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -773,6 +775,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566916478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566916474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62ed5e9ee67c0e4d82bb89d8fe8c9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 519420031}
+  position: {x: 0, y: 0, z: 0}
 --- !u!1 &587857169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1081,7 @@ GameObject:
   - component: {fileID: 1128778212}
   - component: {fileID: 1128778211}
   - component: {fileID: 1128778213}
+  - component: {fileID: 1128778214}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1108,6 +1125,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac8681a5fd9049f09fb07f306ce0ac74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1128778214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128778210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02e351ee0eece54293e67e90e8c33d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1215609818
