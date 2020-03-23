@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UpdateTileGrid : ECSSystem
 {
+    private List<GameObject> entities = new List<GameObject>();
+    
     private void Update()
     {
         foreach (var entity in GetEntities<TileGrid>())
@@ -44,8 +48,6 @@ public class UpdateTileGrid : ECSSystem
                     cell.position = position;
                 }
             }
-            
-            continue;
         }
     }
 }
