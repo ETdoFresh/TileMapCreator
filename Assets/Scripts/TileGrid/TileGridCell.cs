@@ -1,0 +1,1 @@
+﻿public class TileGridCell : ECSComponent { }

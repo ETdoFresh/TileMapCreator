@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 200293541970283652}
   - component: {fileID: 5272318892251417544}
   - component: {fileID: 586079132373019106}
+  - component: {fileID: -5294414477774292734}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -119,4 +120,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
   clickPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &-5294414477774292734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299524858362853056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b53c39462a4af39e2a8f927527af94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

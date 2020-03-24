@@ -10,6 +10,7 @@ public class DebugMouseClickEvent : ECSSystem
         foreach (var entity in GetEntities<MouseClickEvent>())
         {
             Debug.Log(entity.Item1.mouseWorldPosition);
+            Debug.Log(entity.Item1.clickedGameObject.name);
         }
     }
 }
