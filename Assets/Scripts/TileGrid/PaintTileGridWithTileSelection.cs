@@ -10,20 +10,22 @@ public class PaintTileGridWithTileSelection : ECSSystem
     {
         foreach (var entity in GetEntities<MouseDownEvent, TileGridCell>())
         {
-            var cell = entity.Item2.gameObject;
+            var cellGameObject = entity.Item2.gameObject;
+            var cell = entity.Item2.cell;
 
-            var tileSelection = GetEntities<TileSelection>().Select(e => e.Item1).FirstOrDefault();
+            var tileSelection = GetEntityItem1<TileSelection>();
             if (tileSelection)
             {
-                // TODO: Set sprite of Layer Cell to Selected Tile
+                // TODO: Set sprite of Active Layer Cell to Selected Tile
                 // foreach (var entity2 in GetEntities<LayerList>())
                 // {
                 //     var activeLayer = entity2.Item1.active;
                 //     var cells = activeLayer.GetComponent<GridData>().cells;
                 // }
                 
-                var cellSpriteRenderer = cell.GetComponent<SpriteRenderer>(); 
+                var cellSpriteRenderer = cellGameObject.GetComponent<SpriteRenderer>(); 
                 cellSpriteRenderer.sprite = tileSelection.spriteRenderer.sprite;
+                cell.sprite = tileSelection.spriteRenderer.sprite;
             }
         }
         

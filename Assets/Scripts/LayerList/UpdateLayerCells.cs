@@ -72,7 +72,7 @@ public class UpdateLayerCells : ECSSystem
                 || cell.position.y >= size.y
                 || cell.layer == null)
             {
-                Destroy(cell.gameObject);
+                cell.Destroy();
                 cells.RemoveAt(i);
             }
         }

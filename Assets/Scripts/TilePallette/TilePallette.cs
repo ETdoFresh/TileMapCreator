@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class TilePallette : ECSComponent
 {
-    public List<GameObject> cells = new List<GameObject>();
+    public List<Cell> cells = new List<Cell>();
 }

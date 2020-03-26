@@ -14,25 +14,35 @@ public class MoveSelectionSquareToCursor : ECSSystem
 
             if (selectionSquare.currentCell)
             {
-                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-                var boundingBox = selectionSquare.currentCell.GetComponent<Collider2D>();
-                if (boundingBox.bounds.Contains(mousePosition))
-                    continue;
-                else
-                    selectionSquare.currentCell = null;
+                var cellGameObject = selectionSquare.currentCell.instances
+                    .FirstOrDefault(i => i.GetComponent<TileGridCell>());
+
+                if (cellGameObject)
+                {
+                    var boundingBox = cellGameObject.GetComponent<Collider2D>();
+                    if (boundingBox.bounds.Contains(mousePosition))
+                        continue;
+                    else
+                        selectionSquare.currentCell = null;
+                }
             }
 
-            var tileGrid = GetEntities<TileGrid>().Select(t => t.Item1).FirstOrDefault();
+            var tileGrid = GetEntities<TileGrid, GridData>().Select(t => t.Item2).FirstOrDefault();
             // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
             if (tileGrid != null)
                 foreach (var cell in tileGrid.cells)
                 {
+                    var cellGameObject = cell.instances
+                        .FirstOrDefault(i => i.GetComponent<TileGridCell>());
+                    
+                    if (!cellGameObject) continue;
+
                     // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-                    var boundingBox = cell.GetComponent<Collider2D>();
+                    var boundingBox = cellGameObject.GetComponent<Collider2D>();
                     if (boundingBox.bounds.Contains(mousePosition))
                     {
                         selectionSquare.spriteRenderer.enabled = true;
-                        selectionSquare.transform.position = cell.transform.position;
+                        selectionSquare.transform.position = cellGameObject.transform.position;
                         selectionSquare.currentCell = cell;
                         break;
                     }

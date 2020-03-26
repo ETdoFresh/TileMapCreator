@@ -20,7 +20,7 @@ public class UpdateTilePalletteSelectionSquare : ECSSystem
                     selectionSquare.currentCell = null;
             }
 
-            var tilePallette = GetEntities<TilePallette>().Select(t => t.Item1).FirstOrDefault();
+            var tilePallette = GetEntityItem1<TilePallette>();
             // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
             if (tilePallette != null)
                 foreach (var cell in tilePallette.cells)

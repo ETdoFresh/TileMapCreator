@@ -57,4 +57,49 @@ public abstract class ECSSystem : MonoBehaviour
                     .Select(e2 => new Tuple<T0, T1, T2>(e0, e1, e2)))));
         return entities;
     }
+
+    protected Tuple<T> GetEntity<T>() where T : ECSComponent
+        => GetEntities<T>().FirstOrDefault();
+    
+    protected T GetEntityItem1<T>() where T : ECSComponent
+        => GetEntities<T>().Select(e => e.Item1).FirstOrDefault();
+    
+    protected Tuple<T0, T1> GetEntity<T0, T1>() 
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        => GetEntities<T0, T1>().FirstOrDefault();
+    
+    protected T0 GetEntityItem1<T0, T1>() 
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        => GetEntities<T0, T1>().Select(e => e.Item1).FirstOrDefault();
+    
+    protected T1 GetEntityItem2<T0, T1>()
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        => GetEntities<T0, T1>().Select(e => e.Item2).FirstOrDefault();
+    
+    protected Tuple<T0, T1, T2> GetEntity<T0, T1, T2>() 
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().FirstOrDefault();
+    
+    protected T0 GetEntityItem1<T0, T1, T2>() 
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().Select(e => e.Item1).FirstOrDefault();
+    
+    protected T1 GetEntityItem2<T0, T1, T2>() 
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().Select(e => e.Item2).FirstOrDefault();
+    
+    protected T2 GetEntityItem3<T0, T1, T2>() 
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().Select(e => e.Item3).FirstOrDefault();
 }
