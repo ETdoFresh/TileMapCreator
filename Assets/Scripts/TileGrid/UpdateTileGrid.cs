@@ -19,6 +19,7 @@ public class UpdateTileGrid : ECSSystem
             var cellCount = size.x * size.y;
             cellCount = Math.Max(0, cellCount);
             
+            // TODO: Retain X, Y position of cells during resize
             var hasChanged = false;
             while (cellCount > cells.Count)
             {
