@@ -13,7 +13,10 @@ public class SetDefaultActiveLayer : ECSSystem
          
             var layers = layerList.layers;
             if (layers.Count > 0)
+            {
                 layerList.active = layers[0];
+                layerList.active.isActive = true;
+            }
         }
     }
 }
