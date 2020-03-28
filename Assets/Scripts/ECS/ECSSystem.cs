@@ -102,4 +102,35 @@ public abstract class ECSSystem : MonoBehaviour
         where T1 : ECSComponent
         where T2 : ECSComponent
         => GetEntities<T0, T1, T2>().Select(e => e.Item3).FirstOrDefault();
+
+    protected IEnumerable<T> GetEntitiesItem1<T>() where T : ECSComponent
+        => GetEntities<T>().Select(e => e.Item1);
+    
+    protected IEnumerable<T0> GetEntitiesItem1<T0, T1>()
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        => GetEntities<T0, T1>().Select(e => e.Item1);
+    
+    protected IEnumerable<T1> GetEntitiesItem2<T0, T1>()
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        => GetEntities<T0, T1>().Select(e => e.Item2);
+    
+    protected IEnumerable<T0> GetEntitiesItem1<T0, T1, T2>()
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().Select(e => e.Item1);
+    
+    protected IEnumerable<T1> GetEntitiesItem2<T0, T1, T2>()
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().Select(e => e.Item2);
+    
+    protected IEnumerable<T2> GetEntitiesItem3<T0, T1, T2>()
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
+        => GetEntities<T0, T1, T2>().Select(e => e.Item3);
 }

@@ -20,8 +20,11 @@ public class UpdateTileGrid : ECSSystem
             var cellCount = size.x * size.y;
             cellCount = Math.Max(0, cellCount);
 
-            RemoveOutOfRangeCells(cells, size);
-            AddMissingCells(size, cells, tilePrefab, grid);
+            if (cellCount * 2 != cells.Count)
+            {
+                RemoveOutOfRangeCells(cells, size);
+                AddMissingCells(size, cells, tilePrefab, grid);
+            }
         }
     }
 

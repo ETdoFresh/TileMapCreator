@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// TODO: Consider adding fill function
+// TODO: Consider adding selection box/drag to move
+
 public class PaintTileGridWithTileSelection : ECSSystem
 {
     private void Update()
