@@ -2,7 +2,7 @@
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<Layer, MouseClickEvent>())
+        foreach (var entity in GetEntities<Layer, MouseDownEvent>())
         {
             var layer = entity.Item1;
 

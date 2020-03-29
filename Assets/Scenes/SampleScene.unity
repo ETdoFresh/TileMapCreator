@@ -132,10 +132,12 @@ GameObject:
   - component: {fileID: 139188780}
   - component: {fileID: 139188774}
   - component: {fileID: 139188775}
-  - component: {fileID: 139188776}
   - component: {fileID: 139188777}
   - component: {fileID: 139188778}
   - component: {fileID: 139188779}
+  - component: {fileID: 139188776}
+  - component: {fileID: 139188781}
+  - component: {fileID: 139188782}
   m_Layer: 0
   m_Name: IceTile
   m_TagString: Untagged
@@ -246,11 +248,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 139188772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c8e8032b20924d4aa8c4b1f91ff4390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &139188777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +317,32 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &139188781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139188772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4b64f3508e47dc831040dcc97bd490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
+--- !u!114 &139188782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139188772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8191fbdaa83e4dbb9df383cc128e4d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
 --- !u!1 &153873883
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +514,6 @@ GameObject:
   - component: {fileID: 161175225}
   - component: {fileID: 161175224}
   - component: {fileID: 161175228}
-  - component: {fileID: 161175227}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -581,20 +606,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161175222}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &161175227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161175222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &161175228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,10 +994,12 @@ GameObject:
   - component: {fileID: 304958192}
   - component: {fileID: 304958186}
   - component: {fileID: 304958187}
-  - component: {fileID: 304958188}
   - component: {fileID: 304958189}
   - component: {fileID: 304958190}
   - component: {fileID: 304958191}
+  - component: {fileID: 304958188}
+  - component: {fileID: 304958193}
+  - component: {fileID: 304958194}
   m_Layer: 0
   m_Name: GrassTile
   m_TagString: Untagged
@@ -1097,11 +1110,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 304958184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c8e8032b20924d4aa8c4b1f91ff4390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &304958189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,6 +1179,32 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &304958193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304958184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4b64f3508e47dc831040dcc97bd490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
+--- !u!114 &304958194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304958184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8191fbdaa83e4dbb9df383cc128e4d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
 --- !u!1 &498130409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,8 +1298,8 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420036}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1376,11 +1413,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bbaff5ad0020c54ba79316d3d381b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,6 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 566916476}
+  image: {fileID: 0}
   currentCell: {fileID: 0}
 --- !u!212 &566916476
 SpriteRenderer:
@@ -1560,7 +1597,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceZZero: 1
   camera: {fileID: 519420031}
-  position: {x: 0, y: 0, z: 0}
+  screenPosition: {x: 0, y: 0, z: 0}
+  worldPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &566916479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2091,10 +2129,12 @@ GameObject:
   - component: {fileID: 807900933}
   - component: {fileID: 807900927}
   - component: {fileID: 807900928}
-  - component: {fileID: 807900929}
   - component: {fileID: 807900930}
   - component: {fileID: 807900931}
   - component: {fileID: 807900932}
+  - component: {fileID: 807900929}
+  - component: {fileID: 807900934}
+  - component: {fileID: 807900935}
   m_Layer: 0
   m_Name: CementTile
   m_TagString: Untagged
@@ -2205,11 +2245,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 807900925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c8e8032b20924d4aa8c4b1f91ff4390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &807900930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,6 +2314,32 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &807900934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807900925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4b64f3508e47dc831040dcc97bd490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
+--- !u!114 &807900935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807900925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8191fbdaa83e4dbb9df383cc128e4d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
 --- !u!1 &810471806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,10 +2431,12 @@ GameObject:
   - component: {fileID: 865502014}
   - component: {fileID: 865502008}
   - component: {fileID: 865502009}
-  - component: {fileID: 865502010}
   - component: {fileID: 865502011}
   - component: {fileID: 865502012}
   - component: {fileID: 865502013}
+  - component: {fileID: 865502010}
+  - component: {fileID: 865502015}
+  - component: {fileID: 865502016}
   m_Layer: 0
   m_Name: SandTile
   m_TagString: Untagged
@@ -2481,11 +2547,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 865502006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c8e8032b20924d4aa8c4b1f91ff4390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &865502011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2552,6 +2616,32 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &865502015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865502006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4b64f3508e47dc831040dcc97bd490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
+--- !u!114 &865502016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865502006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8191fbdaa83e4dbb9df383cc128e4d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previouslyInObject: 0
 --- !u!1 &889311387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,6 +2908,7 @@ GameObject:
   - component: {fileID: 1128778227}
   - component: {fileID: 1128778228}
   - component: {fileID: 1128778229}
+  - component: {fileID: 1128778230}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -3053,6 +3144,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d16e60bb9a66f8409a8323d2f11229f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1128778230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128778210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb924ee32c7dfd4fa6d60f9faceee7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1215609818
@@ -3348,11 +3451,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1249003222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c8e8032b20924d4aa8c4b1f91ff4390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1400320671
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,11 +4145,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1783633475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169be6a2f0ded484abc3938c3a2c28a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c8e8032b20924d4aa8c4b1f91ff4390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  clickPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1805019733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4085,7 +4184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceZZero: 1
   camera: {fileID: 519420031}
-  position: {x: 0, y: 0, z: 0}
+  screenPosition: {x: 0, y: 0, z: 0}
+  worldPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1805019735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4099,6 +4199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1805019737}
+  image: {fileID: 1805019740}
   currentCell: {fileID: 0}
 --- !u!114 &1805019736
 MonoBehaviour:
@@ -4176,8 +4277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -459.7398, y: -254.63345}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -102.54, y: -36}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1805019739
 CanvasRenderer:
@@ -4194,7 +4295,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805019733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 

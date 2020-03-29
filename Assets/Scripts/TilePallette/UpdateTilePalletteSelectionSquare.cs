@@ -5,40 +5,15 @@ public class UpdateTilePalletteSelectionSquare : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<SelectionSquare, MousePosition, TilePalletteSelection>())
+        foreach (var cell in GetEntitiesItem2<MouseExitEvent, TilePalletteCell>())
+        foreach (var selectionSquare in GetEntitiesItem1<SelectionSquare, TilePalletteSelection>())
+            selectionSquare.image.enabled = false;
+
+        foreach (var cell in GetEntitiesItem2<MouseEnterEvent, TilePalletteCell>())
+        foreach (var selectionSquare in GetEntitiesItem1<SelectionSquare, TilePalletteSelection>())
         {
-            var selectionSquare = entity.Item1;
-            var mousePosition = entity.Item2.position;
-
-            if (selectionSquare.currentCell)
-            {
-                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-                var boundingBox = selectionSquare.currentCell.GetComponent<Collider2D>();
-                if (boundingBox.bounds.Contains(mousePosition))
-                    continue;
-                else
-                    selectionSquare.currentCell = null;
-            }
-
-            var tilePallette = GetEntityItem1<TilePallette>();
-            // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
-            if (tilePallette != null)
-                foreach (var cell in tilePallette.cells)
-                {
-                    // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-                    var boundingBox = cell.GetComponent<Collider2D>();
-                    if (boundingBox.bounds.Contains(mousePosition))
-                    {
-                        selectionSquare.spriteRenderer.enabled = true;
-                        selectionSquare.transform.position = cell.transform.position;
-                        selectionSquare.currentCell = cell;
-                        break;
-                    }
-                }
-
-            // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
-            if (selectionSquare.currentCell == null)
-                selectionSquare.spriteRenderer.enabled = false;
+            selectionSquare.image.enabled = true;
+            selectionSquare.transform.position = cell.transform.position;
         }
     }
 }

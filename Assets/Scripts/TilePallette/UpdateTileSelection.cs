@@ -9,7 +9,7 @@ public class UpdateTileSelection : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<MouseClickEvent, TilePalletteCell>())
+        foreach (var entity in GetEntities<MouseDownEvent, TilePalletteCell>())
         {
             var mouseClickEvent = entity.Item1;
             var cell = entity.Item2.gameObject;

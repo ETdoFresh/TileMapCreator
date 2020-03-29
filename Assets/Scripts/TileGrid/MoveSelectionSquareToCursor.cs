@@ -10,7 +10,7 @@ public class MoveSelectionSquareToCursor : ECSSystem
         foreach (var entity in GetEntities<SelectionSquare, MousePosition, TileGridSelection>())
         {
             var selectionSquare = entity.Item1;
-            var mousePosition = entity.Item2.position;
+            var mousePosition = entity.Item2.worldPosition;
 
             if (selectionSquare.currentCell)
             {

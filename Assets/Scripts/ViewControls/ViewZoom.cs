@@ -5,7 +5,7 @@
 [RequireComponent(typeof(Camera))]
 public class ViewZoom : ECSComponent
 {
-    public Camera camera;
+    public new Camera camera;
     public float zoom = 1;
     public float zoomRate = 0.01f;
 

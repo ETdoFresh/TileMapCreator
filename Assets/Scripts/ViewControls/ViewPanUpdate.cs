@@ -31,7 +31,7 @@ public class ViewPanUpdate : ECSSystem
             {
                 var mousePosition = GetEntityItem1<MousePosition>();
                 var delta = mousePosition.camera.ScreenToWorldPoint(viewPan.startMousePosition);
-                delta -= mousePosition.position;
+                delta -= mousePosition.worldPosition;
                 delta.z = 0;
                 viewPan.position = viewPan.startCameraPosition + delta;
                 viewPan.transform.position = viewPan.position;

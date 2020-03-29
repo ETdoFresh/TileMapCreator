@@ -20,11 +20,8 @@ public class UpdateTileGrid : ECSSystem
             var cellCount = size.x * size.y;
             cellCount = Math.Max(0, cellCount);
 
-            if (cellCount * 2 != cells.Count)
-            {
-                RemoveOutOfRangeCells(cells, size);
-                AddMissingCells(size, cells, tilePrefab, grid);
-            }
+            RemoveOutOfRangeCells(cells, size);
+            AddMissingCells(size, cells, tilePrefab, grid);
         }
     }
 
@@ -41,7 +38,6 @@ public class UpdateTileGrid : ECSSystem
                 || cell.position.y >= size.y
                 || !layers.Contains(cell.layer))
             {
-
                 for (var j = cell.instances.Count - 1; j >= 0; j--)
                 {
                     var tileGridCell = cell.instances[j].GetComponent<TileGridCell>();
@@ -51,6 +47,7 @@ public class UpdateTileGrid : ECSSystem
                         cell.instances.RemoveAt(j);
                     }
                 }
+
                 cells.RemoveAt(i);
             }
         }
@@ -98,7 +95,7 @@ public class UpdateTileGrid : ECSSystem
                     spriteRenderer.sortingOrder = layer.depth;
                     tileGridCell = tile.GetComponent<TileGridCell>();
                     tileGridCell.cell = cell;
-                    
+
                     if (cell.sprite)
                         spriteRenderer.sprite = cell.sprite;
                     else

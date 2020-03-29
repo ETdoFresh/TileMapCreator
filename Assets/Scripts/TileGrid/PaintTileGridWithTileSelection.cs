@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 // TODO: Consider adding fill function
 // TODO: Consider adding selection box/drag to move
