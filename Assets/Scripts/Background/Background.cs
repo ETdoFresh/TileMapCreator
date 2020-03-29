@@ -1,3 +1,12 @@
-﻿// TODO: Increase background as zoom out occurs [fill the screen]
+﻿using UnityEngine;
 
-public class Background : ECSComponent { }
+public class Background : ECSComponent
+{
+    public float viewWorldLeftBorder;
+    public float viewWorldRightBorder;
+    public float viewWorldTopBorder;
+    public float viewWorldBottomBorder;
+    
+    public Vector2 screenSize;
+    public Vector2 worldSize;
+}
