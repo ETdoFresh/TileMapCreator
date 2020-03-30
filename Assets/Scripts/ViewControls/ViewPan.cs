@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+// TODO: Change to middle click/two finger pan
+
 public class ViewPan : ECSComponent
 {
     public bool isDragging;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// TODO: Fix zoom, not working anymore
 // TODO: Zoom in to pointer, not center of screen
 
 [RequireComponent(typeof(Camera))]

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Show layer list from top to bottom instead of bottom to top
 // TODO: Export layers to CSV
 
 public class LayerList : ECSComponent
