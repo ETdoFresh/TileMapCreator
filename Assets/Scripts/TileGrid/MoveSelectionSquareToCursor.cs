@@ -20,14 +20,14 @@ public class MoveSelectionSquareToCursor : ECSSystem
                 if (cellGameObject)
                 {
                     var boundingBox = cellGameObject.GetComponent<Collider2D>();
-                    if (boundingBox.bounds.Contains(mousePosition))
+                    if (boundingBox && boundingBox.bounds.Contains(mousePosition))
                         continue;
                     else
                         selectionSquare.currentCell = null;
                 }
             }
 
-            var tileGrid = GetEntities<TileGrid, GridData>().Select(t => t.Item2).FirstOrDefault();
+            var tileGrid = GetEntityItem2<TileGridBackground, GridData>();
             // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
             if (tileGrid != null)
                 foreach (var cell in tileGrid.cells)
@@ -39,7 +39,7 @@ public class MoveSelectionSquareToCursor : ECSSystem
 
                     // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                     var boundingBox = cellGameObject.GetComponent<Collider2D>();
-                    if (boundingBox.bounds.Contains(mousePosition))
+                    if (boundingBox && boundingBox.bounds.Contains(mousePosition))
                     {
                         selectionSquare.spriteRenderer.enabled = true;
                         selectionSquare.transform.position = cellGameObject.transform.position;

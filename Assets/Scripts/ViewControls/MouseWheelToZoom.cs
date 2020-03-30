@@ -7,7 +7,7 @@ public class MouseWheelToZoom : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<MouseScrollEvent, ViewZoom>())
+        foreach (var entity in GetEntities<GlobalMouseScrollEvent, ViewZoom>())
         {
             var mouseScrollEvent = entity.Item1;
             var viewZoom = entity.Item2;

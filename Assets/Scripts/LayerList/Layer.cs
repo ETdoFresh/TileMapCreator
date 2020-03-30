@@ -1,8 +1,4 @@
-﻿// TODO: Remove Tilegrid place holder on layers > min Layer
-// so placeholder doesn't render over tiles
-// or put placeholders on inaccesible layer below.
-
-// TODO: Add Layer Option
+﻿// TODO: Add Layer Option
 // TODO: Reorganize Layers
 // TODO: Delete Layer
 

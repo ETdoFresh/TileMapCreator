@@ -4,14 +4,13 @@ public class SyncTileGridAndLayerGridSize : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity1 in GetEntities<TileGrid, GridData>())
+        foreach (var layerGrid in GetEntitiesItem2<Layer, GridData>())
         {
-            var tileGrid = entity1.Item2;
-            foreach (var entity2 in GetEntities<Layer, GridData>())
-            {
-                var layerGrid = entity2.Item2;
+            foreach (var tileGrid in GetEntitiesItem2<TileGrid, GridData>())
                 tileGrid.size = layerGrid.size;
-            }
+
+            foreach (var tileGridBackground in GetEntitiesItem2<TileGridBackground, GridData>())
+                tileGridBackground.size = layerGrid.size;
         }
     }
 }

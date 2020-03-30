@@ -19,9 +19,14 @@ public class PaintTileGridWithTileSelection : ECSSystem
             var tileSelection = GetEntityItem1<TileSelection>();
             if (tileSelection)
             {
-                foreach (var entity2 in GetEntities<LayerList>())
+                if (tileSelection.spriteRenderer.sprite.name == "GridSquare")
+                    continue;
+
+                foreach (var layerList in GetEntitiesItem1<LayerList>())
                 {
-                    var activeLayer = entity2.Item1.active;
+                    var activeLayer = layerList.active;
+                    if (!activeLayer.enabled) continue;
+                    
                     var cells = activeLayer.GetComponent<GridData>().cells;
                     var cell = cells.FirstOrDefault(c => c.position == clickedCell.position && c.layer == activeLayer);
                     if (cell) cell.sprite = tileSelection.spriteRenderer.sprite;

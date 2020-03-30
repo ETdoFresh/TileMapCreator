@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MouseScrollEvent : MouseEvent
+public class GlobalMouseScrollEvent : MouseEvent
 {
     public Vector2 scrollDelta;
 }
