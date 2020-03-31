@@ -10,6 +10,7 @@ public class HandleButtons : ECSSystem
         HandleNewDocumentButton();
         HandleOpenDocumentButton();
         HandleSaveDocumentButton();
+        HandlePaintSelection();
     }
 
     private void HandleNewDocumentButton()
@@ -47,7 +48,7 @@ public class HandleButtons : ECSSystem
 
                     GetEntityItem1<GridSizeX>().GetComponent<InputField>().text = grid.size.x.ToString();
                     GetEntityItem1<GridSizeY>().GetComponent<InputField>().text = grid.size.x.ToString();
-                    
+
                     for (var j = i + 3; j < grid.size.x * grid.size.y * 3 + i + 3; j += 3)
                         foreach (var cell in grid.cells)
                         {
@@ -86,9 +87,17 @@ public class HandleButtons : ECSSystem
                         ? $",{AllSprites.Sprites.TakeWhile(x => x.name != cell.sprite.name).Count()}"
                         : ",";
                 }
-
-                Debug.Log(output);
             }
+            Debug.Log(output);
         }
+    }
+
+    private void HandlePaintSelection()
+    {
+        foreach (var pencil in GetEntitiesItem1<PencilButton>())
+            pencil.isSelected = pencil.GetComponent<Toggle>().isOn;
+
+        foreach (var eraserButton in GetEntitiesItem1<EraserButton>())
+            eraserButton.isSelected = eraserButton.GetComponent<Toggle>().isOn;
     }
 }

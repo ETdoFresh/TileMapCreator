@@ -10,10 +10,22 @@ public class GlobalMouseListener : MonoBehaviour
         if (!camera) camera = Camera.main;
         
         if (Input.GetMouseButtonDown(0))
-            LaunchEvent<GlobalMouseDownEvent>();
+            LaunchEvent<GlobalMouseLeftDownEvent>();
 
         if (Input.GetMouseButtonUp(0))
-            LaunchEvent<GlobalMouseUpEvent>();
+            LaunchEvent<GlobalMouseLeftUpEvent>();
+        
+        if (Input.GetMouseButtonDown(1))
+            LaunchEvent<GlobalMouseRightDownEvent>();
+
+        if (Input.GetMouseButtonUp(1))
+            LaunchEvent<GlobalMouseRightUpEvent>();
+        
+        if (Input.GetMouseButtonDown(2))
+            LaunchEvent<GlobalMouseMiddleDownEvent>();
+
+        if (Input.GetMouseButtonUp(2))
+            LaunchEvent<GlobalMouseMiddleUpEvent>();
 
         if (Input.mouseScrollDelta != Vector2.zero)
         {

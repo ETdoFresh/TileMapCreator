@@ -5,12 +5,12 @@ public class LaunchMouseEventSystem : ECSSystem
     private void Update()
     {
         var mousePosition = GetEntityItem1<MousePosition>();
-        foreach (var globalMouseDownEvent in GetEntitiesItem1<GlobalMouseDownEvent>())
+        foreach (var globalMouseDownEvent in GetEntitiesItem1<GlobalMouseLeftDownEvent>())
         foreach (var mouseDownListener in GetEntitiesItem1<MouseDownListener>())
             if (Contains(mouseDownListener.gameObject, mousePosition))
                 LaunchEvent<MouseDownEvent>(mouseDownListener.gameObject, mousePosition);
 
-        foreach (var globalMouseUpEvent in GetEntitiesItem1<GlobalMouseUpEvent>())
+        foreach (var globalMouseUpEvent in GetEntitiesItem1<GlobalMouseLeftUpEvent>())
         foreach (var mouseUpListener in GetEntitiesItem1<MouseUpListener>())
             if (Contains(mouseUpListener.gameObject, mousePosition))
                 LaunchEvent<MouseUpEvent>(mouseUpListener.gameObject, mousePosition);

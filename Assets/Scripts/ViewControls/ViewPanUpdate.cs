@@ -13,7 +13,7 @@ public class ViewPanUpdate : ECSSystem
             continue;
         }
         
-        foreach (var entity in GetEntities<ViewPan, GlobalMouseDownEvent>())
+        foreach (var entity in GetEntities<ViewPan, GlobalMouseMiddleDownEvent>())
         {
             var viewPan = entity.Item1;
             var mouseDownEvent = entity.Item2;
@@ -22,7 +22,7 @@ public class ViewPanUpdate : ECSSystem
             viewPan.startCameraPosition = viewPan.transform.position;
         }
 
-        foreach (var viewPan in GetEntitiesItem1<ViewPan, GlobalMouseUpEvent>())
+        foreach (var viewPan in GetEntitiesItem1<ViewPan, GlobalMouseMiddleUpEvent>())
             viewPan.isDragging = false;
 
         foreach (var viewPan in GetEntitiesItem1<ViewPan>())
