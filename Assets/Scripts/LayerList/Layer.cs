@@ -1,5 +1,4 @@
 ﻿// TODO: Add Layer Option
-// TODO: Reorganize Layers
 // TODO: Delete Layer
 
 // TODO: Add type to Layer
@@ -8,6 +7,5 @@
 
 public class Layer : ECSComponent
 {
-    public bool isActive;
     public int depth;
 }

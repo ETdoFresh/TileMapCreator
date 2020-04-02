@@ -2,19 +2,10 @@
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<Layer, MouseDownEvent>())
+        foreach (var layer in GetEntitiesItem1<Layer, MouseDownEvent>())
         {
-            var layer = entity.Item1;
-
-            var layerList = GetEntityItem1<LayerList>();
-            if (layerList)
-            {
-                if (layerList.active) 
-                    layerList.active.isActive = false;
-                
-                layerList.active = layer;
-                layerList.active.isActive = true;
-            }
+            var activeLayer = GetEntityItem1<ActiveLayer>();
+            activeLayer.active = layer;
         }
     }
 }

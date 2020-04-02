@@ -5,11 +5,21 @@ public abstract class ECSComponent : MonoBehaviour
 {
     protected  virtual void OnEnable()
     {
-        ECSSystem.Register(this);
+        ECSSystem.RegisterEnabled(this);
     }
     
     protected  virtual void OnDisable()
     {
-        ECSSystem.Deregister(this);
+        ECSSystem.DeregisterEnabled(this);
+    }
+
+    protected void Awake()
+    {
+        ECSSystem.RegisterExisting(this);
+    }
+    
+    protected void OnDestroy()
+    {
+        ECSSystem.DeregisterExisting(this);
     }
 }

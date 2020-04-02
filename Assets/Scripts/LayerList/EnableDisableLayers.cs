@@ -8,14 +8,14 @@ public class EnableDisableLayers : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<LayerList>())
+        foreach (var layer in GetEntitiesItem1<Layer>(true))
         {
-            var layerList = entity.Item1;
-            foreach (var layer in layerList.layers)
-            {
-                var toggle = layer.GetComponentInChildren<Toggle>();
-                layer.enabled = toggle && toggle.isOn;
-            }
+            var wasEnabled = layer.enabled;
+            var toggle = layer.GetComponentInChildren<Toggle>();
+            layer.enabled = toggle && toggle.isOn;
+
+            if (!wasEnabled && layer.enabled)
+                GetEntityItem1<ActiveLayer>().active = layer;
         }
     }
 }

@@ -57,7 +57,7 @@ public class UpdateTileGrid : ECSSystem
 
     private void AddMissingCells(Vector2Int size, List<Cell> cells, GameObject tilePrefab, GridData grid)
     {
-        var layerList = GetEntityItem1<LayerList>();
+        var layerList = GetEntityItem1<ActiveLayer>();
         if (!layerList) return;
 
         foreach (var entity in GetEntities<Layer, GridData>())

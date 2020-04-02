@@ -9,7 +9,7 @@ public class ChangeLayerOrder : ECSSystem
     {
         foreach (var mouseEvent in GetEntitiesItem1<MouseDownEvent, MoveActiveLayerUpButton>())
         {
-            var layerList = GetEntityItem1<LayerList>();
+            var layerList = GetEntityItem1<ActiveLayer>();
             var activeLayer = layerList.active;
 
             var siblingIndex = activeLayer.transform.GetSiblingIndex();
@@ -19,11 +19,11 @@ public class ChangeLayerOrder : ECSSystem
         
         foreach (var mouseEvent in GetEntitiesItem1<MouseDownEvent, MoveActiveLayerDownButton>())
         {
-            var layerList = GetEntityItem1<LayerList>();
+            var layerList = GetEntityItem1<ActiveLayer>();
             var activeLayer = layerList.active;
 
             var siblingIndex = activeLayer.transform.GetSiblingIndex();
-            if (activeLayer &&  siblingIndex < activeLayer.transform.childCount - 1)
+            if (activeLayer &&  siblingIndex < activeLayer.transform.childCount)
                 activeLayer.transform.SetSiblingIndex(siblingIndex + 1);
         }
     }

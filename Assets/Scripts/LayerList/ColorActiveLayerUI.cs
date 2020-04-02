@@ -4,16 +4,13 @@ public class ColorActiveLayerUI : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<LayerList>())
+        foreach(var activeLayer in GetEntitiesItem1<ActiveLayer>())
+        foreach (var layer in GetEntitiesItem1<Layer>(true))
         {
-            var layerList = entity.Item1;
-            foreach (var layer in layerList.layers)
-            {
-                if (layer.isActive)
-                    layer.GetComponent<Image>().color = layerList.activeColor;
-                else
-                    layer.GetComponent<Image>().color = layerList.inactiveColor;
-            }
+            if (layer == activeLayer.active)
+                layer.GetComponent<Image>().color = activeLayer.activeColor;
+            else
+                layer.GetComponent<Image>().color = activeLayer.inactiveColor;
         }
     }
 }

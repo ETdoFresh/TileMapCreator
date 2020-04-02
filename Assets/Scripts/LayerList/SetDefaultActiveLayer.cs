@@ -6,16 +6,15 @@ public class SetDefaultActiveLayer : ECSSystem
 {
     void Update()
     {
-        foreach (var entity in GetEntities<LayerList>())
+        foreach (var activeLayer in GetEntitiesItem1<ActiveLayer>())
         {
-            var layerList = entity.Item1;
-            if (layerList.active) continue;
-         
-            var layers = layerList.layers;
-            if (layers.Count > 0)
+            if (activeLayer.active && activeLayer.active.enabled) continue;
+
+            activeLayer.active = null;
+            foreach (var layer in GetEntitiesItem1<Layer>())
             {
-                layerList.active = layers[0];
-                layerList.active.isActive = true;
+                activeLayer.active = layer;
+                break;
             }
         }
     }

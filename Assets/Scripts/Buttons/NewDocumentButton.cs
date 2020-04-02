@@ -1,1 +1,3 @@
-﻿public class NewDocumentButton : ECSComponent { }
+﻿// TODO: Clicking new only clears visible cells
+
+public class NewDocumentButton : ECSComponent { }

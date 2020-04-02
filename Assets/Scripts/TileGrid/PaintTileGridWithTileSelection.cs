@@ -60,7 +60,7 @@ public class PaintTileGridWithTileSelection : ECSSystem
             if (tileSelection.spriteRenderer.sprite.name == "GridSquare")
                 return;
 
-            foreach (var layerList in GetEntitiesItem1<LayerList>())
+            foreach (var layerList in GetEntitiesItem1<ActiveLayer>())
             {
                 var activeLayer = layerList.active;
                 if (!activeLayer.enabled) continue;
