@@ -9,13 +9,7 @@ public class Cell : UnityData
     public Sprite sprite;
     public List<GameObject> instances = new List<GameObject>();
 
-    public void Destroy()
-    {
-        OnDestroy();
-        Destroy(gameObject);
-    }
-    
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         foreach(var instance in instances)
             Destroy(instance);

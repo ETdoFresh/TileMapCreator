@@ -7,10 +7,22 @@ public class UpdateLayerDepths : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<Layer>())
+        foreach (var entity in GetEntities<Layer, GridData>())
         {
             var layer = entity.Item1;
-            layer.depth = layer.transform.GetSiblingIndex();
+            var grid = entity.Item2;
+
+            var expectedDepth = layer.transform.childCount - 1 - layer.transform.GetSiblingIndex();
+            if (expectedDepth != layer.depth)
+            {
+                layer.depth = expectedDepth;
+                foreach (var cell in grid.cells)
+                {
+                    foreach(var instance in cell.instances)
+                    foreach (var spriteRenderer in instance.GetComponents<SpriteRenderer>())
+                        spriteRenderer.sortingOrder = layer.depth;
+                }
+            }
         }
     }
 }
