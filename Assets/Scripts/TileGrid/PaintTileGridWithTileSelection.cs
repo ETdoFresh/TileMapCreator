@@ -63,7 +63,7 @@ public class PaintTileGridWithTileSelection : ECSSystem
             foreach (var layerList in GetEntitiesItem1<ActiveLayer>())
             {
                 var activeLayer = layerList.active;
-                if (!activeLayer.enabled) continue;
+                if (!activeLayer || !activeLayer.enabled) continue;
 
                 var cells = activeLayer.GetComponent<GridData>().cells;
                 var cell = cells.FirstOrDefault(c =>
