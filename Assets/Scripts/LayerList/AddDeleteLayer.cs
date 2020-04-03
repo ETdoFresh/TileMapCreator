@@ -29,6 +29,8 @@ public class AddDeleteLayer : ECSSystem
                     prefabs.Get("Layer"), 
                     activeLayer.transform);
 
+                activeLayer.active = newLayer.GetComponent<Layer>();
+
                 var layers = GetEntitiesItem1<Layer>();
                 var count = layers.Count();
                 for (int i = 1; i <= count; i++)
