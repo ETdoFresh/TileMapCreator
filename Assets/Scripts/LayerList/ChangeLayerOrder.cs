@@ -23,7 +23,7 @@ public class ChangeLayerOrder : ECSSystem
             var activeLayer = layerList.active;
 
             var siblingIndex = activeLayer.transform.GetSiblingIndex();
-            if (activeLayer &&  siblingIndex < activeLayer.transform.childCount)
+            if (activeLayer &&  siblingIndex < layerList.transform.childCount)
                 activeLayer.transform.SetSiblingIndex(siblingIndex + 1);
         }
     }

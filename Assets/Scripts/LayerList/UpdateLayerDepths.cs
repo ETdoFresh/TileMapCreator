@@ -7,12 +7,13 @@ public class UpdateLayerDepths : ECSSystem
 {
     private void Update()
     {
+        var layerList = GetEntityItem1<ActiveLayer>();
         foreach (var entity in GetEntities<Layer, GridData>())
         {
             var layer = entity.Item1;
             var grid = entity.Item2;
 
-            var expectedDepth = layer.transform.childCount - 1 - layer.transform.GetSiblingIndex();
+            var expectedDepth = layerList.transform.childCount - 1 - layer.transform.GetSiblingIndex();
             if (expectedDepth != layer.depth)
             {
                 layer.depth = expectedDepth;
