@@ -69,16 +69,11 @@ public class PaintTileGridWithTileSelection : ECSSystem
                 var cell = cells.FirstOrDefault(c =>
                     c.position == clickedCell.position && c.layer == activeLayer);
 
+                var actionHistory = GetEntityItem1<ActionHistory>();
                 if (isErasing)
-                    cell.sprite = null;
+                    actionHistory.Perform<PaintTileAction>(cell, null);
                 else
-                    cell.sprite = tileSelection.spriteRenderer.sprite;
-
-                foreach (var instance in cell.instances)
-                {
-                    var spriteRenderer = instance.GetComponent<SpriteRenderer>();
-                    if (spriteRenderer) spriteRenderer.sprite = cell.sprite;
-                }
+                    actionHistory.Perform<PaintTileAction>(cell, tileSelection.spriteRenderer.sprite);
             }
         }
     }
