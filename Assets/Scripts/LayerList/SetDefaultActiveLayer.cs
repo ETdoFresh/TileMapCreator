@@ -14,6 +14,7 @@ public class SetDefaultActiveLayer : ECSSystem
             foreach (var layer in GetEntitiesItem1<Layer>())
             {
                 activeLayer.active = layer;
+                SelectionChangeListener.CreateEvent(layer);
                 break;
             }
         }

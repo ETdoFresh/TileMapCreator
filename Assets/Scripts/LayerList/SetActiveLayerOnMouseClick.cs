@@ -6,6 +6,8 @@
         {
             var activeLayer = GetEntityItem1<ActiveLayer>();
             activeLayer.active = layer;
+
+            SelectionChangeListener.CreateEvent(layer);
         }
     }
 }
