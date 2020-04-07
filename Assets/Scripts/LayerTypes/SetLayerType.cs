@@ -10,10 +10,18 @@ public class SetLayerType : ECSSystem
         foreach (var layer in GetEntitiesItem1<Layer>())
         {
             if (!layer.paintLayer)
+            {
                 layer.paintLayer = UnityData.Create<PaintLayer>();
+                layer.paintLayer.layer = layer;
+                layer.paintLayer.grid = layer.grid;
+            }
 
             if (!layer.randomNoiseLayer)
+            {
                 layer.randomNoiseLayer = UnityData.Create<RandomNoiseLayer>();
+                layer.randomNoiseLayer.layer = layer;
+                layer.randomNoiseLayer.grid = layer.grid;
+            }
 
             if (!layer.active)
                 layer.active = layer.paintLayer;
@@ -69,8 +77,7 @@ public class SetLayerType : ECSSystem
         UnityEngine.Random.InitState(layer.seed);
         var tilePalletteCells = GetEntityItem1<TilePallette>().cells;
         var count = tilePalletteCells.Count;
-        var activeLayerGrid = GetEntityItem1<ActiveLayer>().active.GetComponent<GridData>();
-        foreach (var cell in activeLayerGrid.cells)
+        foreach (var cell in layer.grid.cells)
         {
             var randomIndex = UnityEngine.Random.Range(0, count);
             actionHistory.Perform<PaintTileAction>(cell, tilePalletteCells[randomIndex].sprite);

@@ -3,22 +3,22 @@ using UnityEngine;
 
 public abstract class ECSComponent : MonoBehaviour
 {
-    protected  virtual void OnEnable()
+    protected virtual void OnEnable()
     {
         ECSSystem.RegisterEnabled(this);
     }
     
-    protected  virtual void OnDisable()
+    protected virtual void OnDisable()
     {
         ECSSystem.DeregisterEnabled(this);
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         ECSSystem.RegisterExisting(this);
     }
     
-    protected void OnDestroy()
+    protected virtual void OnDestroy()
     {
         ECSSystem.DeregisterExisting(this);
     }

@@ -251,7 +251,6 @@ GameObject:
   - component: {fileID: 6676145776788689634}
   - component: {fileID: 6676145776788689635}
   - component: {fileID: 6676145776788689644}
-  - component: {fileID: 6676145776788689645}
   - component: {fileID: 6676145776788689646}
   m_Layer: 5
   m_Name: Layer
@@ -331,20 +330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 0
---- !u!114 &6676145776788689645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6676145776788689640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d183a5448cc43709ab4db88923099bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
-  cells: []
+  active: {fileID: 0}
+  paintLayer: {fileID: 0}
+  randomNoiseLayer: {fileID: 0}
 --- !u!114 &6676145776788689646
 MonoBehaviour:
   m_ObjectHideFlags: 0

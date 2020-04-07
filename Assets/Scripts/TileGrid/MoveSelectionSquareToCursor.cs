@@ -27,17 +27,15 @@ public class MoveSelectionSquareToCursor : ECSSystem
                 }
             }
 
-            var tileGrid = GetEntityItem2<TileGridBackground, GridData>();
-            // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
-            if (tileGrid != null)
-                foreach (var cell in tileGrid.cells)
+            var tileGridBackground = GetEntityItem1<TileGridBackground>();
+            if (tileGridBackground != null)
+                foreach (var cell in tileGridBackground.grid.cells)
                 {
                     var cellGameObject = cell.instances
                         .FirstOrDefault(i => i.GetComponent<TileGridCell>());
                     
                     if (!cellGameObject) continue;
 
-                    // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                     var boundingBox = cellGameObject.GetComponent<Collider2D>();
                     if (boundingBox && boundingBox.bounds.Contains(mousePosition))
                     {
@@ -47,8 +45,7 @@ public class MoveSelectionSquareToCursor : ECSSystem
                         break;
                     }
                 }
-
-            // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
+            
             if (selectionSquare.currentCell == null)
                 selectionSquare.spriteRenderer.enabled = false;
         }

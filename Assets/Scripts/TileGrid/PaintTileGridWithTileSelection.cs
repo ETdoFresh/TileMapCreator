@@ -65,7 +65,7 @@ public class PaintTileGridWithTileSelection : ECSSystem
                 var activeLayer = layerList.active;
                 if (!activeLayer || !activeLayer.enabled) continue;
 
-                var cells = activeLayer.GetComponent<GridData>().cells;
+                var cells = activeLayer.grid.cells;
                 var cell = cells.FirstOrDefault(c =>
                     c.position == clickedCell.position && c.layer == activeLayer);
 

@@ -6,12 +6,10 @@ public class UpdateLayerCells : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<Layer, GridData>())
+        foreach (var layer in GetEntitiesItem1<Layer>())
         {
-            var layer = entity.Item1;
-            var layerGrid = entity.Item2;
-            var cells = layerGrid.cells;
-            var size = layerGrid.size;
+            var cells = layer.grid.cells;
+            var size = layer.grid.size;
             if (size.x > 0 && size.y > 0)
             {
                 if (HaveChanged(size, cells))

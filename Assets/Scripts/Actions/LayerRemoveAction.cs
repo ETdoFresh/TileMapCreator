@@ -2,12 +2,10 @@
 {
     public ActiveLayer activeLayer;
     public Layer layer;
-    public GridData grid;
 
     public override void Perform()
     {
         if (layer == null) layer = activeLayer.active;
-        grid = layer.GetComponent<GridData>();
         layer.gameObject.SetActive(false);
     }
 
@@ -19,7 +17,7 @@
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        foreach (var cell in grid.cells)
+        foreach (var cell in layer.grid.cells)
             cell.Destroy();
         Destroy(layer.gameObject);
     }

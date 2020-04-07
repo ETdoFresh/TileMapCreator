@@ -10,18 +10,17 @@ public class UpdateTileGrid : ECSSystem
 
     private void Update()
     {
-        foreach (var entity in GetEntities<TileGridBackground, GridData>())
+        foreach (var tileGridBackground in GetEntitiesItem1<TileGridBackground>())
         {
-            var cellPrefab = entity.Item1.cellPrefab;
-            var grid = entity.Item2;
+            var cellPrefab = tileGridBackground.cellPrefab;
+            var grid = tileGridBackground.grid;
             RemoveOutOfRangeBackgroundCells(grid.cells, grid.size);
             AddMissingBackgroundCells(grid.size, grid.cells, cellPrefab, grid);
         }
 
-        foreach (var entity in GetEntities<TileGrid, GridData>())
+        foreach (var tileGrid in GetEntitiesItem1<TileGrid>())
         {
-            var tilePrefab = entity.Item1.tilePrefab;
-            var grid = entity.Item2;
+            var grid = tileGrid.grid;
             RemoveOutOfRangeCells(grid.cells, grid.size);
             AddMissingCells(grid.size, grid.cells, tilePrefab, grid);
         }
@@ -60,10 +59,9 @@ public class UpdateTileGrid : ECSSystem
         var layerList = GetEntityItem1<ActiveLayer>();
         if (!layerList) return;
 
-        foreach (var entity in GetEntities<Layer, GridData>())
+        foreach (var layer in GetEntitiesItem1<Layer>())
         {
-            var layer = entity.Item1;
-            var layerGrid = entity.Item2;
+            var layerGrid = layer.grid;
             for (var y = 0; y < size.y; y++)
             for (var x = 0; x < size.x; x++)
             {

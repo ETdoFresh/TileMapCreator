@@ -5,7 +5,14 @@
 public class Layer : ECSComponent
 {
     public int depth;
+    public GridData grid;
     public LayerType active;
     public PaintLayer paintLayer;
     public RandomNoiseLayer randomNoiseLayer;
+
+    protected override void Awake()
+    {
+        grid = UnityData.Create<GridData>();
+        base.Awake();
+    }
 }

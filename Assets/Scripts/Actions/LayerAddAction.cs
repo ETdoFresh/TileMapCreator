@@ -9,7 +9,7 @@ public class LayerAddAction : Action
     {
         var prefabs = FindObjectOfType<Prefabs>();
         var newGameObject = Instantiate(
-            prefabs.Get("Layer"), 
+            prefabs.Get("Layer"),
             activeLayer.transform);
 
         layer = newGameObject.GetComponent<Layer>();
@@ -30,12 +30,11 @@ public class LayerAddAction : Action
 
     public override void Revert()
     {
-        var grid = layer.GetComponent<GridData>();
-        foreach (var cell in grid.cells)
-            cell.Destroy();
+        foreach (var cell in layer.grid.cells)
+                cell.Destroy();
         Destroy(layer.gameObject);
     }
-    
+
     private bool NameNotTake(string newName, IEnumerable<Layer> layers)
     {
         foreach (var layer in layers)

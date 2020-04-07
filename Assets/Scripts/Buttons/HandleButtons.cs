@@ -17,8 +17,8 @@ public class HandleButtons : ECSSystem
     {
         foreach (var mouseDownEvent in GetEntities<MouseDownEvent, NewDocumentButton>())
         {
-            foreach (var grid in GetEntitiesItem2<Layer, GridData>())
-            foreach (var cell in grid.cells)
+            foreach (var layer in GetEntitiesItem1<Layer>())
+            foreach (var cell in layer.grid.cells)
             {
                 cell.sprite = null;
                 for (var i = cell.instances.Count - 1; i >= 0; i--)
@@ -37,8 +37,9 @@ public class HandleButtons : ECSSystem
             var input =
                 "SaveData,Layer1,3,3,0,0,,1,0,,2,0,,0,1,0,1,1,0,2,1,0,0,2,,1,2,,2,2,,Layer2,3,3,0,0,,1,0,,2,0,,0,1,,1,1,,2,1,,0,2,,1,2,,2,2,";
             var inputs = input.Split(',');
-            foreach (var grid in GetEntitiesItem2<Layer, GridData>())
+            foreach (var layer in GetEntitiesItem1<Layer>())
             {
+                var grid = layer.grid;
                 for (var i = 0; i < inputs.Length; i++)
                 {
                     if (inputs[i] != grid.name) continue;
@@ -74,8 +75,9 @@ public class HandleButtons : ECSSystem
         foreach (var mouseDownEvent in GetEntities<MouseDownEvent, SaveDocumentButton>())
         {
             var output = "SaveData";
-            foreach (var grid in GetEntitiesItem2<Layer, GridData>())
+            foreach (var layer in GetEntitiesItem1<Layer>())
             {
+                var grid = layer.grid;
                 output += $",{grid.name}";
                 output += $",{grid.size.x}";
                 output += $",{grid.size.y}";

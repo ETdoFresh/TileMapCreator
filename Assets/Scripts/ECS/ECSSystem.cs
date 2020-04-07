@@ -14,7 +14,8 @@ public abstract class ECSSystem : MonoBehaviour
     public static void RegisterExisting(Behaviour component) => allExisting.Add(component);
     public static void DeregisterExisting(Behaviour component) => allExisting.Remove(component);
 
-    protected IEnumerable<Tuple<T>> GetEntities<T>(bool includeInactive = false) where T : Behaviour
+    protected IEnumerable<Tuple<T>> GetEntities<T>(bool includeInactive = false) 
+        where T : ECSComponent
     {
         var entities = new List<Tuple<T>>();
         var collection = includeInactive ? allExisting : allEnabled;
@@ -25,8 +26,8 @@ public abstract class ECSSystem : MonoBehaviour
     }
 
     protected IEnumerable<Tuple<T0, T1>> GetEntities<T0, T1>(bool includeInactive = false)
-        where T0 : Behaviour
-        where T1 : Behaviour
+        where T0 : ECSComponent
+        where T1 : ECSComponent
     {
         var entities = new List<Tuple<T0, T1>>();
         var collection = includeInactive ? allExisting : allEnabled;
@@ -40,9 +41,9 @@ public abstract class ECSSystem : MonoBehaviour
     }
 
     protected IEnumerable<Tuple<T0, T1, T2>> GetEntities<T0, T1, T2>(bool includeInactive = false)
-        where T0 : Behaviour
-        where T1 : Behaviour
-        where T2 : Behaviour
+        where T0 : ECSComponent
+        where T1 : ECSComponent
+        where T2 : ECSComponent
     {
         var entities = new List<Tuple<T0, T1, T2>>();
         var collection = includeInactive ? allExisting : allEnabled;
@@ -58,10 +59,12 @@ public abstract class ECSSystem : MonoBehaviour
         return entities;
     }
 
-    protected Tuple<T> GetEntity<T>(bool includeInactive = false) where T : ECSComponent
+    protected Tuple<T> GetEntity<T>(bool includeInactive = false) 
+        where T : ECSComponent
         => GetEntities<T>(includeInactive).FirstOrDefault();
 
-    protected T GetEntityItem1<T>(bool includeInactive = false) where T : ECSComponent
+    protected T GetEntityItem1<T>(bool includeInactive = false) 
+        where T : ECSComponent
         => GetEntities<T>(includeInactive).Select(e => e.Item1).FirstOrDefault();
 
     protected Tuple<T0, T1> GetEntity<T0, T1>(bool includeInactive = false)

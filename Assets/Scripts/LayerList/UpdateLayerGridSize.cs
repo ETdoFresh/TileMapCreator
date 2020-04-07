@@ -4,21 +4,20 @@ public class UpdateLayerGridSize : ECSSystem
 {
     private void Update()
     {
-        foreach (var entity1 in GetEntities<Layer, GridData>())
+        foreach (var layer in GetEntitiesItem1<Layer>())
         {
-            var layerGrid = entity1.Item2;
-            foreach (var entity2 in GetEntities<GridSizeX>())
+            foreach (var gridSizeX in GetEntitiesItem1<GridSizeX>())
             {
-                var inputField = entity2.Item1.inputField;
-                if (int.TryParse(inputField.text, out var value))
-                    layerGrid.size.x = value;
+                var text = gridSizeX.inputField.text;
+                if (int.TryParse(text, out var value))
+                    layer.grid.size.x = value;
             }
             
-            foreach (var entity2 in GetEntities<GridSizeY>())
+            foreach (var gridSizeY in GetEntitiesItem1<GridSizeY>())
             {
-                var inputField = entity2.Item1.inputField;
-                if (int.TryParse(inputField.text, out var value))
-                    layerGrid.size.y = value;
+                var text = gridSizeY.inputField.text;
+                if (int.TryParse(text, out var value))
+                    layer.grid.size.y = value;
             }
         }
     }
