@@ -2949,7 +2949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f3ae2f5ff21424f8abec54272d0bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3299524858362853056, guid: 069b5fe9cd5bfc64184217280f98e9e2,
+  emptyTilePrefab: {fileID: 3299524858362853056, guid: 069b5fe9cd5bfc64184217280f98e9e2,
     type: 3}
 --- !u!4 &587857171
 Transform:
@@ -5067,6 +5067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 3299524858362853056, guid: a25eafe47e9acf745a1b64a91fce6f08,
     type: 3}
+  grid: {fileID: 0}
 --- !u!1 &1117547740
 GameObject:
   m_ObjectHideFlags: 0
@@ -7699,9 +7700,9 @@ RectTransform:
   m_Father: {fileID: 1425671564}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 92.43094, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 92.43094, y: 0}
   m_SizeDelta: {x: 174.86188, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533214186
