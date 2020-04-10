@@ -6,13 +6,13 @@ using UnityEngine;
 
 public abstract class ECSSystem : MonoBehaviour
 {
-    private static List<Behaviour> allExisting = new List<Behaviour>();
-    private static List<Behaviour> allEnabled = new List<Behaviour>();
+    private static HashSet<ECSComponent> allExisting = new HashSet<ECSComponent>();
+    private static HashSet<ECSComponent> allEnabled = new HashSet<ECSComponent>();
 
-    public static void RegisterEnabled(Behaviour component) => allEnabled.Add(component);
-    public static void DeregisterEnabled(Behaviour component) => allEnabled.Remove(component);
-    public static void RegisterExisting(Behaviour component) => allExisting.Add(component);
-    public static void DeregisterExisting(Behaviour component) => allExisting.Remove(component);
+    public static void RegisterEnabled(ECSComponent component) => allEnabled.Add(component);
+    public static void DeregisterEnabled(ECSComponent component) => allEnabled.Remove(component);
+    public static void RegisterExisting(ECSComponent component) => allExisting.Add(component);
+    public static void DeregisterExisting(ECSComponent component) => allExisting.Remove(component);
 
     protected IEnumerable<Tuple<T>> GetEntities<T>(bool includeInactive = false) 
         where T : ECSComponent
