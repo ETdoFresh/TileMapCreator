@@ -9,10 +9,12 @@ public class Layer : ECSComponent
     public LayerType active;
     public PaintLayer paintLayer;
     public RandomNoiseLayer randomNoiseLayer;
+    public TileGrid tileGrid;
 
     protected override void Awake()
     {
         grid = UnityData.Create<GridData>();
+        grid.name = $"Grid {name}";
         base.Awake();
     }
 }

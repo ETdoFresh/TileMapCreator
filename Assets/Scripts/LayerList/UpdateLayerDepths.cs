@@ -12,15 +12,7 @@ public class UpdateLayerDepths : ECSSystem
         {
             var expectedDepth = layerList.transform.childCount - 1 - layer.transform.GetSiblingIndex();
             if (expectedDepth != layer.depth)
-            {
                 layer.depth = expectedDepth;
-                foreach (var cell in layer.grid.cells)
-                {
-                    foreach(var instance in cell.instances)
-                    foreach (var spriteRenderer in instance.GetComponents<SpriteRenderer>())
-                        spriteRenderer.sortingOrder = layer.depth;
-                }
-            }
         }
     }
 }

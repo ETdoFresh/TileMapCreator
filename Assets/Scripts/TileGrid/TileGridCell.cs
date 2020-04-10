@@ -1,4 +1,7 @@
-﻿public class TileGridCell : ECSComponent
+﻿using UnityEngine;
+
+public class TileGridCell : ECSComponent
 {
+    public SpriteRenderer spriteRenderer;
     public Cell cell;
 }

@@ -14,12 +14,10 @@ public class MoveSelectionSquareToCursor : ECSSystem
 
             if (selectionSquare.currentCell)
             {
-                var cellGameObject = selectionSquare.currentCell.instances
-                    .FirstOrDefault(i => i.GetComponent<TileGridCell>());
-
-                if (cellGameObject)
+                var tileGridCell = selectionSquare.currentCell.tileGridCell;
+                if (tileGridCell)
                 {
-                    var boundingBox = cellGameObject.GetComponent<Collider2D>();
+                    var boundingBox = tileGridCell.GetComponent<Collider2D>();
                     if (boundingBox && boundingBox.bounds.Contains(mousePosition))
                         continue;
                     else
@@ -28,19 +26,16 @@ public class MoveSelectionSquareToCursor : ECSSystem
             }
 
             var tileGridBackground = GetEntityItem1<TileGridBackground>();
-            if (tileGridBackground != null)
+            if (tileGridBackground && tileGridBackground.grid)
                 foreach (var cell in tileGridBackground.grid.cells)
                 {
-                    var cellGameObject = cell.instances
-                        .FirstOrDefault(i => i.GetComponent<TileGridCell>());
-                    
-                    if (!cellGameObject) continue;
+                    if (!cell.tileGridCell) continue;
 
-                    var boundingBox = cellGameObject.GetComponent<Collider2D>();
+                    var boundingBox = cell.tileGridCell.GetComponent<Collider2D>();
                     if (boundingBox && boundingBox.bounds.Contains(mousePosition))
                     {
                         selectionSquare.spriteRenderer.enabled = true;
-                        selectionSquare.transform.position = cellGameObject.transform.position;
+                        selectionSquare.transform.position = cell.tileGridCell.transform.position;
                         selectionSquare.currentCell = cell;
                         break;
                     }

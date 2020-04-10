@@ -21,11 +21,6 @@ public class HandleButtons : ECSSystem
             foreach (var cell in layer.grid.cells)
             {
                 cell.sprite = null;
-                for (var i = cell.instances.Count - 1; i >= 0; i--)
-                {
-                    Destroy(cell.instances[i]);
-                    cell.instances.RemoveAt(i);
-                }
             }
         }
     }
@@ -57,13 +52,7 @@ public class HandleButtons : ECSSystem
                             var y = Convert.ToInt32(inputs[j + 1]);
                             var spriteIndex = inputs[j + 2] == "" ? -1 : Convert.ToInt32(inputs[j + 2]);
                             if (cell.position.x == x && cell.position.y == y)
-                            {
                                 cell.sprite = spriteIndex == -1 ? null : AllSprites.Sprites.ElementAt(spriteIndex);
-
-                                foreach (var instance in cell.instances)
-                                    if (instance.GetComponent<SpriteRenderer>())
-                                        instance.GetComponent<SpriteRenderer>().sprite = cell.sprite;
-                            }
                         }
                 }
             }
@@ -90,6 +79,7 @@ public class HandleButtons : ECSSystem
                         : ",";
                 }
             }
+
             Debug.Log(output);
         }
     }

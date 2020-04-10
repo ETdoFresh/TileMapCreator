@@ -14,6 +14,7 @@ public class SetLayerType : ECSSystem
                 layer.paintLayer = UnityData.Create<PaintLayer>();
                 layer.paintLayer.layer = layer;
                 layer.paintLayer.grid = layer.grid;
+                layer.paintLayer.name = $"PaintLayer {layer.name}";
             }
 
             if (!layer.randomNoiseLayer)
@@ -21,6 +22,7 @@ public class SetLayerType : ECSSystem
                 layer.randomNoiseLayer = UnityData.Create<RandomNoiseLayer>();
                 layer.randomNoiseLayer.layer = layer;
                 layer.randomNoiseLayer.grid = layer.grid;
+                layer.randomNoiseLayer.name = $"RandomNoiseLayer {layer.name}";
             }
 
             if (!layer.active)

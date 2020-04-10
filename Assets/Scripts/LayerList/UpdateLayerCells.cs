@@ -52,8 +52,10 @@ public class UpdateLayerCells : ECSSystem
             {
                 var cell = UnityData.Create<Cell>();
                 cell.layer = layer;
+                cell.grid = layer.grid;
                 cell.position.x = x;
                 cell.position.y = y;
+                cell.name = $"Cell {x}, {y} {layer.name}";
                 cells.Add(cell);
             }
         }

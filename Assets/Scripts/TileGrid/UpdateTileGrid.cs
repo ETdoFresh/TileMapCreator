@@ -15,7 +15,10 @@ public class UpdateTileGrid : ECSSystem
             var cellPrefab = tileGridBackground.cellPrefab;
 
             if (!tileGridBackground.grid)
+            {
                 tileGridBackground.grid = UnityData.Create<GridData>();
+                tileGridBackground.grid.name = "Grid (Background)";
+            }
 
             var grid = tileGridBackground.grid;
             RemoveOutOfRangeBackgroundCells(grid.cells, grid.size);
@@ -23,12 +26,13 @@ public class UpdateTileGrid : ECSSystem
         }
 
         foreach (var layer in GetEntitiesItem1<Layer>())
-        foreach (var tileGrid in GetEntitiesItem1<TileGrid>())
-        {
             RemoveOutOfRangeCells(layer);
+        
+        foreach (var tileGrid in GetEntitiesItem1<TileGrid>())
             RemoveOutOfRangeCells(tileGrid);
-            AddMissingCells(layer, tileGrid);
-        }
+        
+        foreach (var tileGrid in GetEntitiesItem1<TileGrid>())
+            AddMissingCells(tileGrid);
     }
 
     private void RemoveOutOfRangeCells(TileGrid tileGrid)
@@ -55,8 +59,9 @@ public class UpdateTileGrid : ECSSystem
             }
     }
 
-    private void AddMissingCells(Layer layer, TileGrid tileGrid)
+    private void AddMissingCells(TileGrid tileGrid)
     {
+        var layer = tileGrid.layer;
         var grid = layer.grid;
         for (var y = 0; y < grid.size.y; y++)
         for (var x = 0; x < grid.size.x; x++)
@@ -66,30 +71,21 @@ public class UpdateTileGrid : ECSSystem
             if (!cell)
                 continue;
 
-            var tileGridCell = cell.instances
-                .Where(c => c.GetComponent<TileGridCell>())
-                .Select(c => c.GetComponent<TileGridCell>())
-                .FirstOrDefault();
-
+            var tileGridCell = cell.tileGridCell;
             if (!tileGridCell)
             {
                 var tile = Instantiate(tileGrid.emptyTilePrefab, tileGrid.transform);
+                tileGridCell = cell.tileGridCell = tile.GetComponent<TileGridCell>();
                 tile.name = $"Cell ({x}, {y}) ({layer.name})";
                 var position = tile.transform.position;
                 position.x = x + 0.5f;
                 position.y = y + 0.5f;
                 tile.transform.position = position;
-                cell.instances.Add(tile);
 
-                var spriteRenderer = tile.GetComponent<SpriteRenderer>();
-                spriteRenderer.sortingOrder = layer.depth;
+                tileGridCell.spriteRenderer = tile.GetComponent<SpriteRenderer>();
+                tileGridCell.spriteRenderer.sortingOrder = layer.depth;
                 tileGridCell = tile.GetComponent<TileGridCell>();
                 tileGridCell.cell = cell;
-
-                if (cell.sprite)
-                    spriteRenderer.sprite = cell.sprite;
-                else
-                    cell.sprite = spriteRenderer.sprite;
             }
         }
     }
@@ -125,26 +121,23 @@ public class UpdateTileGrid : ECSSystem
                 cell = UnityData.Create<Cell>();
                 cell.position.x = x;
                 cell.position.y = y;
+                cell.name = $"Cell ({x}, {y}) (Background)";
+                cell.grid = tileGridBackground.grid;
                 cells.Add(cell);
             }
-
-            var tileGridCell = cell.instances
-                .Where(c => c.GetComponent<TileGridCell>())
-                .Select(c => c.GetComponent<TileGridCell>())
-                .FirstOrDefault();
-
-            if (!tileGridCell)
+            
+            if (!cell.tileGridCell)
             {
                 var tile = Instantiate(prefab, tileGridBackground.transform);
-                tile.name = $"Cell ({x}, {y})";
+                cell.tileGridCell = tile.GetComponent<TileGridCell>();
+                cell.tileGridCell.spriteRenderer = tile.GetComponent<SpriteRenderer>();
+                cell.tileGridCell.cell = cell;
+                cell.sprite = cell.tileGridCell.spriteRenderer.sprite;
+                tile.name = $"Cell ({x}, {y}) (Background)";
                 var position = tile.transform.position;
                 position.x = x + 0.5f;
                 position.y = y + 0.5f;
                 tile.transform.position = position;
-                cell.instances.Add(tile);
-
-                tileGridCell = tile.GetComponent<TileGridCell>();
-                tileGridCell.cell = cell;
             }
         }
     }

@@ -5,14 +5,14 @@ using UnityEngine;
 public class Cell : UnityData
 {
     public Layer layer;
+    public GridData grid;
     public Vector2Int position;
     public Sprite sprite;
-    public List<GameObject> instances = new List<GameObject>();
+    public TileGridCell tileGridCell;
 
     protected override void OnDestroy()
     {
-        foreach(var instance in instances)
-            Destroy(instance);
-        instances.Clear();
+        if (tileGridCell)
+            Destroy(tileGridCell.gameObject);
     }
 }
