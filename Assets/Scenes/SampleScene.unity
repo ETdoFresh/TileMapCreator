@@ -1994,6 +1994,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Random Noise Layer
       m_Image: {fileID: 0}
+    - m_Text: Perlin Noise Layer
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7654,8 +7656,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 92.33713, y: 0}
+  m_SizeDelta: {x: 174.67426, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533214186
 MonoBehaviour:

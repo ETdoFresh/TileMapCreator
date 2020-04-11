@@ -9,6 +9,7 @@ public class Layer : ECSComponent
     public LayerType active;
     public PaintLayer paintLayer;
     public RandomNoiseLayer randomNoiseLayer;
+    public PerlinNoiseLayer perlinNoiseLayer;
     public TileGrid tileGrid;
 
     protected override void Awake()

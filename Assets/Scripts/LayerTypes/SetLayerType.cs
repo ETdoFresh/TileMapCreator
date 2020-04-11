@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using TMPro;
+using UnityEngine;
 
 public class SetLayerType : ECSSystem
 {
@@ -25,6 +26,14 @@ public class SetLayerType : ECSSystem
                 layer.randomNoiseLayer.name = $"RandomNoiseLayer {layer.name}";
             }
 
+            if (!layer.perlinNoiseLayer)
+            {
+                layer.perlinNoiseLayer = UnityData.Create<PerlinNoiseLayer>();
+                layer.perlinNoiseLayer.layer = layer;
+                layer.perlinNoiseLayer.grid = layer.grid;
+                layer.perlinNoiseLayer.name = $"PerlinNoiseLayer {layer.name}";
+            }
+
             if (!layer.active)
                 layer.active = layer.paintLayer;
 
@@ -34,16 +43,22 @@ public class SetLayerType : ECSSystem
                 {
                     var paintLayerSelection = 0;
                     var randomNoiseLayerSelection = 1;
+                    var perlinNoiseLayerSelection = 2;
 
                     if (dropDownChanged.value == paintLayerSelection)
+                    {
                         layer.active = layer.paintLayer;
+                        SwitchToPaintLayerType();
+                    }
                     else if (dropDownChanged.value == randomNoiseLayerSelection)
                     {
                         layer.active = layer.randomNoiseLayer;
-                        if (layer.active is RandomNoiseLayer randomNoiseLayer)
-                            SwitchToRandomNoiseLayerType(randomNoiseLayer);
-                        else
-                            SwitchToPaintLayerType();
+                        SwitchToRandomNoiseLayerType(layer.randomNoiseLayer);
+                    }
+                    else if (dropDownChanged.value == perlinNoiseLayerSelection)
+                    {
+                        layer.active = layer.perlinNoiseLayer;
+                        SwitchToPerlinNoiseLayer(layer.perlinNoiseLayer);
                     }
                 }
 
@@ -63,11 +78,20 @@ public class SetLayerType : ECSSystem
                         {
                             var seedTextBox = GetEntityItem1<SeedTextBox>(true);
                             seedTextBox.gameObject.SetActive(true);
-                            seedTextBox.GetComponentInChildren<TMP_InputField>().text = randomNoiseLayer.seed.ToString();
+                            seedTextBox.GetComponentInChildren<TMP_InputField>().text =
+                                randomNoiseLayer.seed.ToString();
                         }
                 }
             }
         }
+    }
+
+    private void SwitchToPerlinNoiseLayer(PerlinNoiseLayer layer)
+    {
+        var seedTextBox = GetEntityItem1<SeedTextBox>(true);
+        seedTextBox.gameObject.SetActive(true);
+        seedTextBox.GetComponentInChildren<TMP_InputField>().text = layer.seed.ToString();
+        layer.value = Mathf.PerlinNoise(layer.seed * .00001f, layer.seed * .00001f);
     }
 
     private void SwitchToRandomNoiseLayerType(RandomNoiseLayer layer)
