@@ -34,6 +34,10 @@ public class PerlinTest : MonoBehaviour
     public Color[] pix;
     public Renderer rend;
 
+    public bool scrollOnUpdateX;
+    public float detail = 0.5f;
+    public int octaves = 1;
+
     void OnEnable()
     {
         rend = GetComponent<Renderer>();
@@ -59,7 +63,7 @@ public class PerlinTest : MonoBehaviour
             prevSeed = seed;
             Random.InitState(seed);
             for (var i = 0; i < randomListOfInts.Length; i++)
-                randomListOfInts[i] = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+                randomListOfInts[i] = Random.Range(0, int.MaxValue);
         }
 
         for (var i = 0; i < pix.Length; i++)
@@ -68,17 +72,8 @@ public class PerlinTest : MonoBehaviour
         for (var x = 0; x < pixWidth; x++)
         {
             var t = x / 100f * scale + xOffset;
-            var v = PerlinNoise(t);
-            
-            // More Octaves
-            // var t2 = t * 2;
-            // v += PerlinNoise(t2) / 2;
-            // var t3 = t2 * 2;
-            // v += PerlinNoise(t3) / 4;
-            // var t4 = t3 * 2;
-            // v += PerlinNoise(t4) / 8;
-            
-            var y = (int)Map(v, -1, 1, 0, pixHeight - 1);
+            var v = PerlinNoise(t, octaves, detail);
+            var y = (int) Map(v, -1, 1, 0, pixHeight - 1);
 
             if (t - Mathf.Floor(t) < 0.1f)
                 pix[x + y * pixWidth] = Color.red;
@@ -147,7 +142,7 @@ public class PerlinTest : MonoBehaviour
             prevSeed = seed;
             Random.InitState(seed);
             for (var i = 0; i < randomListOfInts.Length; i++)
-                randomListOfInts[i] = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+                randomListOfInts[i] = Random.Range(0, int.MaxValue);
         }
 
         for (var i = 0; i < pix.Length; i++)
@@ -180,16 +175,40 @@ public class PerlinTest : MonoBehaviour
         noiseTex.Apply();
     }
 
+    private float PerlinNoise(float t, int octaves, float detail)
+    {
+        var output = 0f;
+        var min = 0f;
+        var max = 0f;
+        var currentDetail = 1f;
+        for (var octave = 0; octave < octaves; octave++)
+        {
+            output += PerlinNoise(t / currentDetail) * currentDetail;
+            min -= currentDetail;
+            max += currentDetail;
+            currentDetail *= detail;
+        }
+
+        return Map(output, min, max, -1, 1);
+    }
+
     private float PerlinNoise(float t)
     {
         var intPart = Mathf.FloorToInt(t);
         t -= intPart;
-        var interpolantT = CubicInterpolant(t);
-        var randA = randomListOfInts[intPart % 256];
-        var randB = randomListOfInts[(intPart + 1) % 256];
-        var gradT  = GradientVector(randA, t);
-        var inverseGradT = GradientVector(randB, t - 1);
-        return Lerp(gradT, inverseGradT, interpolantT);
+        var interpolatedT = CubicInterpolant(t);
+        var randA = randomListOfInts[intPart & 0xFF];
+        var randB = randomListOfInts[(intPart + 1) & 0xFF];
+
+        // Using random offset values
+        var a = Map(randA, 0, int.MaxValue, -1, 1);
+        var b = Map(randB, 0, int.MaxValue, -1, 1);
+
+        // Using gradient vector values
+        //var a = GradientVector(randA, t) * 2;
+        //var b = GradientVector(randB, t - 1) * 2;
+
+        return Lerp(a, b, interpolatedT);
     }
 
     private float PerlinNoise(float t, float y)
@@ -203,9 +222,9 @@ public class PerlinTest : MonoBehaviour
         //var tX = Fade(floatPartX);
         //var tY = Fade(floatPartY);
         var randAX = randomListOfInts[intPartX];
-        var randBX = randomListOfInts[intPartX+1];
+        var randBX = randomListOfInts[intPartX + 1];
         var randAY = randomListOfInts[intPartY];
-        var randBY = randomListOfInts[intPartY+1];
+        var randBY = randomListOfInts[intPartY + 1];
         var lerpX = Mathf.Lerp(randAX, randBX, tX) / 2;
         var lerpY = Mathf.Lerp(randAY, randBY, tY) / 2;
         return Map(lerpX + lerpY, int.MinValue, int.MaxValue, 0, 1);
@@ -235,7 +254,7 @@ public class PerlinTest : MonoBehaviour
         if (hash < int.MinValue / 2) return -1;
         return Map(hash, int.MinValue / 2, int.MaxValue / 2, -1, 1);
     }
-    
+
     private float GradientVector(int hash, float x, float y)
     {
         return (hash % 2 == 0 ? x : -x) + (hash % 2 == 0 ? y : -y);
@@ -249,6 +268,7 @@ public class PerlinTest : MonoBehaviour
         if (choice == Choice.UnityPerlinNoise2D) RunUnityPerlinNoise2D();
         if (choice == Choice.OnlinePerlinNoise1D) RunOnlinePerlinNoise1D();
         if (choice == Choice.OnlinePerlinNoise2D) RunOnlinePerlinNoise2D();
+        if (scrollOnUpdateX) xOffset += 0.05f;
     }
 
     public static class Perlin
