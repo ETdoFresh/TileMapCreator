@@ -333,10 +333,14 @@ MonoBehaviour:
   pixHeight: 256
   xOffset: 0
   yOffset: 0
-  scale: 3
+  scale: 1
   noiseTex: {fileID: 0}
   pix: []
   rend: {fileID: 0}
+  scrollOnUpdateX: 0
+  amplitudeFalloff: 0.5
+  frequencyRampup: 2
+  octaves: 1
 --- !u!64 &1374324206
 MeshCollider:
   m_ObjectHideFlags: 0

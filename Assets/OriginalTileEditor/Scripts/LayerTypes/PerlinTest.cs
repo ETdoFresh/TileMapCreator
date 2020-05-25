@@ -35,7 +35,8 @@ public class PerlinTest : MonoBehaviour
     public Renderer rend;
 
     public bool scrollOnUpdateX;
-    public float detail = 0.5f;
+    public float amplitudeFalloff = 0.5f;
+    public float frequencyRampup = 2f;
     public int octaves = 1;
 
     void OnEnable()
@@ -44,7 +45,7 @@ public class PerlinTest : MonoBehaviour
 
         // Set up the texture and a Color array to hold pixels during processing.
         noiseTex = new Texture2D(pixWidth, pixHeight);
-        pix = new Color[noiseTex.width * noiseTex.height];
+        pix = new Color[pixWidth * pixHeight];
         rend.material.mainTexture = noiseTex;
     }
 
@@ -66,27 +67,147 @@ public class PerlinTest : MonoBehaviour
                 randomListOfInts[i] = Random.Range(0, int.MaxValue);
         }
 
-        for (var i = 0; i < pix.Length; i++)
-            pix[i] = Color.black;
-
+        var pathPoints = new PathPoint[pixWidth];
         for (var x = 0; x < pixWidth; x++)
         {
             var t = x / 100f * scale + xOffset;
-            var v = PerlinNoise(t, octaves, detail);
+            var v = PerlinNoise(t, octaves, amplitudeFalloff, frequencyRampup);
             var y = (int) Map(v, -1, 1, 0, pixHeight - 1);
+            pathPoints[x].point.x = x;
+            pathPoints[x].point.y = y;
 
             if (t - Mathf.Floor(t) < 0.1f)
-                pix[x + y * pixWidth] = Color.red;
+                pathPoints[x].color = Color.red;
             else if (GradientVector(randomListOfInts[Mathf.FloorToInt(t) % 256], t - Mathf.Floor(t)) > 0)
-                pix[x + y * pixWidth] = Color.green;
+                pathPoints[x].color = Color.green;
             else if (GradientVector(randomListOfInts[Mathf.FloorToInt(t) % 256], t - Mathf.Floor(t)) < 0)
-                pix[x + y * pixWidth] = Color.blue;
+                pathPoints[x].color = Color.blue;
             else
-                pix[x + y * pixWidth] = Color.white;
+                pathPoints[x].color = Color.white;
         }
+
+        for (var i = 0; i < pix.Length; i++)
+            pix[i] = Color.black;
+
+        DrawPath(pathPoints, pix);
+        DrawLine(Vector2.zero, new Vector2(pixWidth - 1, pixHeight - 1) / 2, pix, Color.white);
 
         noiseTex.SetPixels(pix);
         noiseTex.Apply();
+    }
+
+    private struct PathPoint
+    {
+        public Vector2 point;
+        public Color color;
+    }
+
+    void DrawPath(PathPoint[] points, Color[] colors)
+    {
+        for (int i = 1; i < points.Length; i++)
+            DrawLine(points[i - 1].point, points[i].point, colors, points[i - 1].color);
+    }
+
+    void DrawLine(int x1, int y1, int x2, int y2, Color[] colors, Color color)
+        => DrawLine(new Vector2(x1, y1), new Vector2(x2, y2), colors, color);
+
+
+    private static void Swap<T>(ref T lhs, ref T rhs)
+    {
+        T temp;
+        temp = lhs;
+        lhs = rhs;
+        rhs = temp;
+    }
+
+    // Bresenham's Line Algorithm
+    // void L(int x1, int y1, int x2, int y2, Color[] colors, Color color)
+    // {
+    //     var dx = x2 - x1;
+    //     var ix = dx > 0 ? 1 : -1;
+    //     dx = Mathf.Abs(dx) << 1;
+    //     
+    //     var dy = y2 - y1;
+    //     var iy = dy > 0 ? 1 : -1;
+    //     dy = Mathf.Abs(dy) << 1;
+    //     
+    //     colors[x1 + y1 * pixWidth] = color;
+    //     
+    //     if (dx >= dy)
+    //     {
+    //         var error = dy - (dx >> 1);
+    //         while (x1 != x2)
+    //         {
+    //             // reduce error, while taking into account the corner case of error == 0
+    //             if ((error > 0) || (error == 0 && (ix > 0)))
+    //             {
+    //                 error -= dx;
+    //                 y1 += iy;
+    //             }
+    //             // else do nothing
+    //
+    //             error += dy;
+    //             x1 += ix;
+    //
+    //             colors[x1 + y1 * pixWidth] = color;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         // error may go below zero
+    //         var error = dy - (dx >> 1);
+    //
+    //         while (y1 != y2)
+    //         {
+    //             // reduce error, while taking into account the corner case of error == 0
+    //             if ((error > 0) || (!error && (iy > 0)))
+    //             {
+    //                 error -= dy;
+    //                 x1 += ix;
+    //             }
+    //             // else do nothing
+    //
+    //             error += dx;
+    //             y1 += iy;
+    //
+    //             plot(x1, y1);
+    //         }
+    //     }
+    // }
+
+    void DrawLine(Vector2 start, Vector2 end, Color[] colors, Color color)
+    {
+        var x = start.x;
+        var y = start.y;
+        var i = (int)(x + y * pixWidth);
+        colors[i] = color;
+        
+         x = end.x;
+         y = end.y;
+         i = (int)(x + y * pixWidth);
+        colors[i] = color;
+            
+        // var delta = end - start;
+        // var slope = delta.y / delta.x;
+        // var inc = new Vector2(1, -1);
+        // if (delta.x < 0) inc.x = -1;
+        // if (delta.y < 0) inc.y = 1;
+        // if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x))
+        // {
+        //     for (var y = end.y; y < start.y; y += inc.y)
+        //     {
+        //         var x = (int) (start.x + (y - start.y) * slope);
+        //         colors[(int) (x + (int) y * pixWidth)] = color;
+        //     }
+        // }
+        // else
+        // {
+        //     for (var x = start.x; x < end.x; x += inc.x)
+        //     {
+        //         var y = (int) (slope * (x - start.x) + start.y);
+        //         colors[(int) (x + y * pixWidth)] = color;
+        //     }
+        // }
     }
 
     void RunUnityPerlinNoise1D()
@@ -175,21 +296,21 @@ public class PerlinTest : MonoBehaviour
         noiseTex.Apply();
     }
 
-    private float PerlinNoise(float t, int octaves, float detail)
+    private float PerlinNoise(float t, int octaves, float falloff, float rampup)
     {
-        var output = 0f;
-        var min = 0f;
-        var max = 0f;
-        var currentDetail = 1f;
+        var amplitude = 0.75f;
+        var frequency = 1f;
+        var noiseHeight = 0f;
         for (var octave = 0; octave < octaves; octave++)
         {
-            output += PerlinNoise(t / currentDetail) * currentDetail;
-            min -= currentDetail;
-            max += currentDetail;
-            currentDetail *= detail;
+            t *= frequency;
+            var perlinValue = PerlinNoise(t);
+            noiseHeight += perlinValue * amplitude;
+            amplitude *= falloff;
+            frequency *= rampup;
         }
 
-        return Map(output, min, max, -1, 1);
+        return Mathf.Clamp(noiseHeight, -1, 1);
     }
 
     private float PerlinNoise(float t)
@@ -201,12 +322,12 @@ public class PerlinTest : MonoBehaviour
         var randB = randomListOfInts[(intPart + 1) & 0xFF];
 
         // Using random offset values
-        var a = Map(randA, 0, int.MaxValue, -1, 1);
-        var b = Map(randB, 0, int.MaxValue, -1, 1);
+        // var a = Map(randA, 0, int.MaxValue, -1, 1);
+        // var b = Map(randB, 0, int.MaxValue, -1, 1);
 
         // Using gradient vector values
-        //var a = GradientVector(randA, t) * 2;
-        //var b = GradientVector(randB, t - 1) * 2;
+        var a = GradientVector(randA, t) * 2;
+        var b = GradientVector(randB, t - 1) * 2;
 
         return Lerp(a, b, interpolatedT);
     }
