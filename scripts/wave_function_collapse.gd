@@ -7,6 +7,7 @@ func _ready():
 func solve():
     var slot = select_lowest_entropy()
     slot.collapse()
+    #slot.collapse_neighbors()
 
 func select_lowest_entropy():
     var selection = null

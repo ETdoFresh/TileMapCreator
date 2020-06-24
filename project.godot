@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Rules",
+"language": "GDScript",
+"path": "res://scripts/rules.gd"
+}, {
+"base": "GridContainer",
+"class": "Slot",
+"language": "GDScript",
+"path": "res://scripts/slot.gd"
+} ]
 _global_script_class_icons={
-
+"Rules": "",
+"Slot": ""
 }
 
 [application]

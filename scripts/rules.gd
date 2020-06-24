@@ -1,3 +1,4 @@
+class_name Rules
 extends Node2D
 
 var rules_right = [] # [0] has a right neighbor of [1]
@@ -29,3 +30,6 @@ func _ready():
             for x in range (100):
                 if $RulesBottom.get_cell(x, y) != -1:
                     rules_bottom.append([$RulesBottom.get_cell(x, y), $RulesBottom.get_cell(x, y + 1)])
+
+func can_be_neighbor(slot:Slot, direction, neighbor:Slot):
+    pass

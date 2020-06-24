@@ -1,4 +1,5 @@
 tool
+class_name Slot
 extends GridContainer
 
 var entropy
@@ -35,3 +36,16 @@ func collapse():
         for i in range(get_child_count() - 1, -1, -1):
             if get_child(i) != random_child:
                 get_child(i).queue_free()
+
+func collapse_neighbors(rules:Rules):
+    var counts = \
+    {
+        "top": neighbor.top.get_child_count() if neighbor.top else null,
+        "right": neighbor.right.get_child_count() if neighbor.right else null,
+        "bottom": neighbor.bottom.get_child_count() if neighbor.bottom else null,
+        "left": neighbor.left.get_child_count() if neighbor.left else null,
+    }
+    
+    for direction in counts:
+        if counts[direction]:
+            rules.
