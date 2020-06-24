@@ -1,9 +1,25 @@
-#tool
-extends Node2D
+extends GridContainer
 
-#func _ready():
-#    for i in range(64):
-#        var x = i % 8
-#        var y = i / 8
-#        var child = get_child(i)
-#        child.position = Vector2(x,y) * 64
+func _ready():
+    assign_neighbors()
+
+func assign_neighbors():
+    for i in range(get_child_count()):
+        var slot = get_child(i)
+        var x = i % columns
+        var y = i / columns
+        var left_x = x - 1
+        var right_x = x + 1
+        var top_y = y - 1
+        var bottom_y = y + 1
+        if left_x >= 0: 
+            slot.neighbor.left = get_slot(left_x, y)
+        if right_x < columns: 
+            slot.neighbor.right = get_slot(right_x, y)
+        if top_y >= 0: 
+            slot.neighbor.top = get_slot(x, top_y)
+        if bottom_y < get_child_count() / columns: 
+            slot.neighbor.bottom = get_slot(x, bottom_y)
+
+func get_slot(x ,y):
+    return get_child(x + y * columns)
