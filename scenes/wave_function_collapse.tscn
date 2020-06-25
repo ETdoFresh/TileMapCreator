@@ -834,3 +834,13 @@ text = "Solve"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Step" type="Button" parent="UI"]
+margin_left = 669.122
+margin_top = 631.0
+margin_right = 784.122
+margin_bottom = 669.0
+text = "Step"
+__meta__ = {
+"_edit_use_anchors_": false
+}

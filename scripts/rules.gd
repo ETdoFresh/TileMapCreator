@@ -1,35 +1,42 @@
 class_name Rules
 extends Node2D
 
-var rules_right = [] # [0] has a right neighbor of [1]
-var rules_left = [] # [0] has a left neighbor of [1]
-var rules_top = [] # [0] has a top neighbor of [1]
-var rules_bottom = [] # [0] has a bottom neighbor of [1]
+var rules = \
+{
+    "top": [],
+    "right": [],
+    "bottom": [],
+    "left": [],
+}
 
 func _ready():
     for x in range(0, 100, 3):
         if $RulesRight.get_cell(x, 0) != -1:
             for y in range (100):
                 if $RulesRight.get_cell(x, y) != -1:
-                    rules_right.append([$RulesRight.get_cell(x, y), $RulesRight.get_cell(x + 1, y)])
+                    rules.right.append([$RulesRight.get_cell(x, y), $RulesRight.get_cell(x + 1, y)])
     
     for x in range(0, 100, 3):
         if $RulesLeft.get_cell(x, 0) != -1:
             for y in range (100):
                 if $RulesLeft.get_cell(x, y) != -1:
-                    rules_left.append([$RulesLeft.get_cell(x + 1, y), $RulesLeft.get_cell(x, y)])
+                    rules.left.append([$RulesLeft.get_cell(x + 1, y), $RulesLeft.get_cell(x, y)])
     
     for y in range(0, 100, 3):
         if $RulesTop.get_cell(0, y) != -1:
             for x in range (100):
                 if $RulesTop.get_cell(x, y) != -1:
-                    rules_top.append([$RulesTop.get_cell(x, y + 1), $RulesTop.get_cell(x, y)])
+                    rules.top.append([$RulesTop.get_cell(x, y + 1), $RulesTop.get_cell(x, y)])
     
     for y in range(0, 100, 3):
         if $RulesBottom.get_cell(0, y) != -1:
             for x in range (100):
                 if $RulesBottom.get_cell(x, y) != -1:
-                    rules_bottom.append([$RulesBottom.get_cell(x, y), $RulesBottom.get_cell(x, y + 1)])
+                    rules.bottom.append([$RulesBottom.get_cell(x, y), $RulesBottom.get_cell(x, y + 1)])
 
-func can_be_neighbor(slot:Slot, direction, neighbor:Slot):
-    pass
+func can_be_neighbor(slot, direction, neighbor):
+    for rule in rules[direction]:
+        if rule[0] == slot:
+            if rule[1] == neighbor:
+                return true
+    return false
