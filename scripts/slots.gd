@@ -31,3 +31,9 @@ func is_complete():
         if child.sprites.size() != 1:
             return false
     return true
+
+func is_invalid():
+    for child in get_children():
+        if child.sprites.size() == 0:
+            return true
+    return false

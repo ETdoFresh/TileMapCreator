@@ -66,14 +66,3 @@ func can_be_neighbors(rules:Rules, direction, neighbor_index):
         if rules.can_be_neighbor(sprite_index, direction, neighbor_index):
             return true
     return false
-
-func is_invalid():
-    if sprites.size() == 0:
-        return true
-        
-    for direction in neighbors:
-        var neighbor = neighbors[direction]
-        if neighbor != null && neighbor.sprites.size() == 0:
-            return true
-    
-    return false

@@ -26,7 +26,7 @@ func solve():
     while slot != null:
         slot.collapse()
         slot.collapse_neighbors($Rules)
-        if slot.is_invalid():
+        if slots.is_invalid():
             slots.queue_free()
             slots = Slots.instance()
             add_child(slots)
@@ -55,7 +55,7 @@ func step():
         yield(self, "next_step")
         slot.collapse_neighbors($Rules)
         
-        if slot.is_invalid():
+        if slots.is_invalid():
             fading_square = FadingSquare.instance()
             fading_square.modulate.r = 1
             fading_square.modulate.g = 0

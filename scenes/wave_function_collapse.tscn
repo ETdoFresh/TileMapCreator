@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/rules.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/slots.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/menu_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/arial_01.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scripts/wave_function_collapse.gd" type="Script" id=5]
 [ext_resource path="res://sprites/oskar/texture_atlas/13.tres" type="Texture" id=6]
 [ext_resource path="res://sprites/oskar/texture_atlas/08.tres" type="Texture" id=7]
@@ -205,6 +207,7 @@ margin_left = 669.122
 margin_top = 612.0
 margin_right = 784.122
 margin_bottom = 712.0
+custom_fonts/font = ExtResource( 4 )
 text = "Step"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -215,6 +218,7 @@ margin_left = 797.385
 margin_top = 612.0
 margin_right = 1009.39
 margin_bottom = 712.0
+custom_fonts/font = ExtResource( 4 )
 text = "Solve"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -225,25 +229,33 @@ margin_left = 1022.0
 margin_top = 612.0
 margin_right = 1182.0
 margin_bottom = 712.0
+custom_fonts/font = ExtResource( 4 )
 text = "Reset"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TilesetLabel" type="Label" parent="UI"]
+anchor_top = -0.00161993
+anchor_bottom = -0.00161993
 margin_left = 96.0
-margin_top = 64.0
+margin_top = 26.1664
 margin_right = 608.0
-margin_bottom = 84.0
+margin_bottom = 81.1664
+custom_fonts/font = ExtResource( 4 )
 text = "Tileset"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SlotsLabel" type="Label" parent="UI"]
 margin_left = 672.0
-margin_top = 64.0
+margin_top = 25.0
 margin_right = 1184.0
-margin_bottom = 84.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 4 )
 text = "Slots"
 align = 1
 valign = 1
@@ -251,13 +263,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WFCDemoLabel" type="Label" parent="UI"]
-margin_top = 24.0
-margin_right = 1280.0
-margin_bottom = 44.0
-text = "Wave Function Collapse Demo"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MenuButton" parent="." instance=ExtResource( 3 )]
+margin_left = 1.0
+margin_right = 134.0
+margin_bottom = 93.0

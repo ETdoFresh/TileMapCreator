@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/arial_01.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/menu_button.gd" type="Script" id=2]
+
+[node name="MenuButton" type="Button"]
+margin_right = 133.0
+margin_bottom = 133.0
+custom_fonts/font = ExtResource( 1 )
+text = "Menu"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

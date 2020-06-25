@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/fading_square.gd" type="Script" id=1]
-[ext_resource path="res://sprites/white_box.svg" type="Texture" id=2]
+[ext_resource path="res://sprites/et/white_box.svg" type="Texture" id=2]
+
 
 [node name="FadingSquare" type="Sprite"]
 modulate = Color( 0.921569, 1, 0, 0.501961 )

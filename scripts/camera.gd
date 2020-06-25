@@ -13,7 +13,10 @@ var zoom_event_position
 var camera_start_position
 var camera_end_position
 
-func _input(event):
+func _unhandled_input(event):
+    handle_event(event)
+
+func handle_event(event):
     if event is InputEventScreenTouch:
         if not was_pressed:
             if event.pressed:
