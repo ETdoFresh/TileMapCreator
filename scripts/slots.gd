@@ -6,7 +6,9 @@ func _ready():
 func assign_neighbors():
     for i in range(get_child_count()):
         var slot = get_child(i)
+        #warning-ignore:integer_division
         var x = i % columns
+        #warning-ignore:integer_division
         var y = i / columns
         var left_x = x - 1
         var right_x = x + 1
@@ -23,3 +25,9 @@ func assign_neighbors():
 
 func get_slot(x ,y):
     return get_child(x + y * columns)
+
+func is_complete():
+    for child in get_children():
+        if child.sprites.size() != 1:
+            return false
+    return true

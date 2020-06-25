@@ -23,8 +23,8 @@ margin_right = 512.0
 margin_bottom = 512.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/vseparation = 0
-custom_constants/hseparation = 0
+custom_constants/vseparation = 1
+custom_constants/hseparation = 1
 columns = 4
 script = ExtResource( 2 )
 __meta__ = {
@@ -32,8 +32,8 @@ __meta__ = {
 }
 
 [node name="Sprite0" type="TextureRect" parent="."]
-margin_right = 128.0
-margin_bottom = 128.0
+margin_right = 127.0
+margin_bottom = 127.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 17 )
@@ -41,8 +41,8 @@ expand = true
 
 [node name="Sprite1" type="TextureRect" parent="."]
 margin_left = 128.0
-margin_right = 256.0
-margin_bottom = 128.0
+margin_right = 255.0
+margin_bottom = 127.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
@@ -50,8 +50,8 @@ expand = true
 
 [node name="Sprite2" type="TextureRect" parent="."]
 margin_left = 256.0
-margin_right = 384.0
-margin_bottom = 128.0
+margin_right = 383.0
+margin_bottom = 127.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 5 )
@@ -59,8 +59,8 @@ expand = true
 
 [node name="Sprite3" type="TextureRect" parent="."]
 margin_left = 384.0
-margin_right = 512.0
-margin_bottom = 128.0
+margin_right = 511.0
+margin_bottom = 127.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 6 )
@@ -68,8 +68,8 @@ expand = true
 
 [node name="Sprite4" type="TextureRect" parent="."]
 margin_top = 128.0
-margin_right = 128.0
-margin_bottom = 256.0
+margin_right = 127.0
+margin_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 14 )
@@ -78,8 +78,8 @@ expand = true
 [node name="Sprite5" type="TextureRect" parent="."]
 margin_left = 128.0
 margin_top = 128.0
-margin_right = 256.0
-margin_bottom = 256.0
+margin_right = 255.0
+margin_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 7 )
@@ -88,8 +88,8 @@ expand = true
 [node name="Sprite6" type="TextureRect" parent="."]
 margin_left = 256.0
 margin_top = 128.0
-margin_right = 384.0
-margin_bottom = 256.0
+margin_right = 383.0
+margin_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 8 )
@@ -98,8 +98,8 @@ expand = true
 [node name="Sprite7" type="TextureRect" parent="."]
 margin_left = 384.0
 margin_top = 128.0
-margin_right = 512.0
-margin_bottom = 256.0
+margin_right = 511.0
+margin_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 10 )
@@ -107,8 +107,8 @@ expand = true
 
 [node name="Sprite8" type="TextureRect" parent="."]
 margin_top = 256.0
-margin_right = 128.0
-margin_bottom = 384.0
+margin_right = 127.0
+margin_bottom = 383.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -117,8 +117,8 @@ expand = true
 [node name="Sprite9" type="TextureRect" parent="."]
 margin_left = 128.0
 margin_top = 256.0
-margin_right = 256.0
-margin_bottom = 384.0
+margin_right = 255.0
+margin_bottom = 383.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 11 )
@@ -127,8 +127,8 @@ expand = true
 [node name="Sprite10" type="TextureRect" parent="."]
 margin_left = 256.0
 margin_top = 256.0
-margin_right = 384.0
-margin_bottom = 384.0
+margin_right = 383.0
+margin_bottom = 383.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 9 )
@@ -137,8 +137,8 @@ expand = true
 [node name="Sprite11" type="TextureRect" parent="."]
 margin_left = 384.0
 margin_top = 256.0
-margin_right = 512.0
-margin_bottom = 384.0
+margin_right = 511.0
+margin_bottom = 383.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 12 )
@@ -146,8 +146,8 @@ expand = true
 
 [node name="Sprite12" type="TextureRect" parent="."]
 margin_top = 384.0
-margin_right = 128.0
-margin_bottom = 512.0
+margin_right = 127.0
+margin_bottom = 511.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 13 )
@@ -156,8 +156,8 @@ expand = true
 [node name="Sprite13" type="TextureRect" parent="."]
 margin_left = 128.0
 margin_top = 384.0
-margin_right = 256.0
-margin_bottom = 512.0
+margin_right = 255.0
+margin_bottom = 511.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
@@ -166,8 +166,8 @@ expand = true
 [node name="Sprite14" type="TextureRect" parent="."]
 margin_left = 256.0
 margin_top = 384.0
-margin_right = 384.0
-margin_bottom = 512.0
+margin_right = 383.0
+margin_bottom = 511.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 15 )
@@ -176,8 +176,8 @@ expand = true
 [node name="Sprite15" type="TextureRect" parent="."]
 margin_left = 384.0
 margin_top = 384.0
-margin_right = 512.0
-margin_bottom = 512.0
+margin_right = 511.0
+margin_bottom = 511.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 16 )
