@@ -18,7 +18,6 @@
 ### In Progress
 - [ ] Generate rules from pixel matched edges [threshold]
 - [ ] Show a couple of mini generated tile maps
-- [ ] 
 
 ### Complete
 - [X] Random Noise Map
