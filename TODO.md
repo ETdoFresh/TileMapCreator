@@ -16,6 +16,7 @@
 - [ ] Genetic algorithm to generate rules from human rules/computer rules/programmer rules
 
 ### In Progress
+- [ ] Rule viewer
 - [ ] Generate rules from pixel matched edges [threshold]
 - [ ] Show a couple of mini generated tile maps
 
