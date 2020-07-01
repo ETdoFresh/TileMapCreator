@@ -1,0 +1,549 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://sprites/oskar/texture_atlas/12.tres" type="Texture" id=1]
+[ext_resource path="res://sprites/oskar/texture_atlas/14.tres" type="Texture" id=2]
+[ext_resource path="res://sprites/oskar/texture_atlas/15.tres" type="Texture" id=3]
+[ext_resource path="res://sprites/oskar/texture_atlas/08.tres" type="Texture" id=4]
+[ext_resource path="res://sprites/oskar/texture_atlas/02.tres" type="Texture" id=5]
+[ext_resource path="res://sprites/oskar/texture_atlas/03.tres" type="Texture" id=6]
+[ext_resource path="res://sprites/oskar/texture_atlas/10.tres" type="Texture" id=7]
+[ext_resource path="res://sprites/oskar/texture_atlas/06.tres" type="Texture" id=8]
+[ext_resource path="res://sprites/oskar/texture_atlas/13.tres" type="Texture" id=9]
+[ext_resource path="res://sprites/oskar/texture_atlas/07.tres" type="Texture" id=10]
+[ext_resource path="res://sprites/oskar/texture_atlas/09.tres" type="Texture" id=11]
+[ext_resource path="res://sprites/oskar/texture_atlas/04.tres" type="Texture" id=12]
+[ext_resource path="res://sprites/oskar/texture_atlas/01.tres" type="Texture" id=13]
+[ext_resource path="res://sprites/oskar/texture_atlas/05.tres" type="Texture" id=14]
+[ext_resource path="res://sprites/oskar/texture_atlas/11.tres" type="Texture" id=15]
+[ext_resource path="res://sprites/oskar/texture_atlas/00.tres" type="Texture" id=16]
+[ext_resource path="res://scenes/slot.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scripts/rule_viewer.gd" type="Script" id=18]
+[ext_resource path="res://scripts/indexed_texture_button.gd" type="Script" id=19]
+[ext_resource path="res://scripts/rules.gd" type="Script" id=20]
+[ext_resource path="res://sprites/oskar/tileset.svg" type="Texture" id=21]
+
+[sub_resource type="TileSet" id=1]
+0/name = "tileset.svg 00"
+0/texture = ExtResource( 21 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 128, 128 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "tileset.svg 01"
+1/texture = ExtResource( 21 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 128, 0, 128, 128 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "tileset.svg 02"
+2/texture = ExtResource( 21 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 256, 0, 128, 128 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "tileset.svg 03"
+3/texture = ExtResource( 21 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 384, 0, 128, 128 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "tileset.svg 04"
+4/texture = ExtResource( 21 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 128, 128, 128 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "tileset.svg 05"
+5/texture = ExtResource( 21 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 128, 128, 128, 128 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "tileset.svg 06"
+6/texture = ExtResource( 21 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 256, 128, 128, 128 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "tileset.svg 07"
+7/texture = ExtResource( 21 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 384, 128, 128, 128 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "tileset.svg 08"
+8/texture = ExtResource( 21 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 256, 128, 128 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "tileset.svg 09"
+9/texture = ExtResource( 21 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 128, 256, 128, 128 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+10/name = "tileset.svg 10"
+10/texture = ExtResource( 21 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 256, 256, 128, 128 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
+11/name = "tileset.svg 11"
+11/texture = ExtResource( 21 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 384, 256, 128, 128 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
+11/shapes = [  ]
+11/z_index = 0
+12/name = "tileset.svg 12"
+12/texture = ExtResource( 21 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 0, 384, 128, 128 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
+13/name = "tileset.svg 13"
+13/texture = ExtResource( 21 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 128, 384, 128, 128 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
+13/shapes = [  ]
+13/z_index = 0
+14/name = "tileset.svg 14"
+14/texture = ExtResource( 21 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 256, 384, 128, 128 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape_one_way = false
+14/shape_one_way_margin = 0.0
+14/shapes = [  ]
+14/z_index = 0
+15/name = "tileset.svg 15"
+15/texture = ExtResource( 21 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 384, 384, 128, 128 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
+
+[node name="RuleViewer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tiles" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -320.0
+margin_right = 320.0
+margin_bottom = 320.0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite00" type="TextureButton" parent="Tiles"]
+margin_right = 157.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 16 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite01" type="TextureButton" parent="Tiles"]
+margin_left = 161.0
+margin_right = 318.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 13 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite02" type="TextureButton" parent="Tiles"]
+margin_left = 322.0
+margin_right = 479.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 5 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite03" type="TextureButton" parent="Tiles"]
+margin_left = 483.0
+margin_right = 640.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite04" type="TextureButton" parent="Tiles"]
+margin_top = 161.0
+margin_right = 157.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 12 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite05" type="TextureButton" parent="Tiles"]
+margin_left = 161.0
+margin_top = 161.0
+margin_right = 318.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 14 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite06" type="TextureButton" parent="Tiles"]
+margin_left = 322.0
+margin_top = 161.0
+margin_right = 479.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 8 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite07" type="TextureButton" parent="Tiles"]
+margin_left = 483.0
+margin_top = 161.0
+margin_right = 640.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 10 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite08" type="TextureButton" parent="Tiles"]
+margin_top = 322.0
+margin_right = 157.0
+margin_bottom = 479.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite09" type="TextureButton" parent="Tiles"]
+margin_left = 161.0
+margin_top = 322.0
+margin_right = 318.0
+margin_bottom = 479.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite10" type="TextureButton" parent="Tiles"]
+margin_left = 322.0
+margin_top = 322.0
+margin_right = 479.0
+margin_bottom = 479.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 7 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite11" type="TextureButton" parent="Tiles"]
+margin_left = 483.0
+margin_top = 322.0
+margin_right = 640.0
+margin_bottom = 479.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 15 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite12" type="TextureButton" parent="Tiles"]
+margin_top = 483.0
+margin_right = 157.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite13" type="TextureButton" parent="Tiles"]
+margin_left = 161.0
+margin_top = 483.0
+margin_right = 318.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 9 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite14" type="TextureButton" parent="Tiles"]
+margin_left = 322.0
+margin_top = 483.0
+margin_right = 479.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 2 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Sprite15" type="TextureButton" parent="Tiles"]
+margin_left = 483.0
+margin_top = 483.0
+margin_right = 640.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 3 )
+expand = true
+script = ExtResource( 19 )
+
+[node name="Rule" type="GridContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -320.0
+margin_right = 320.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot00" type="Control" parent="Rule"]
+margin_right = 212.0
+margin_bottom = 212.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Top" parent="Rule" instance=ExtResource( 17 )]
+margin_left = 214.0
+margin_right = 426.0
+margin_bottom = 212.0
+
+[node name="Slot02" type="Control" parent="Rule"]
+margin_left = 428.0
+margin_right = 640.0
+margin_bottom = 212.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Left" parent="Rule" instance=ExtResource( 17 )]
+margin_top = 214.0
+margin_right = 212.0
+margin_bottom = 426.0
+
+[node name="Main" type="TextureRect" parent="Rule"]
+margin_left = 214.0
+margin_top = 214.0
+margin_right = 426.0
+margin_bottom = 426.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 13 )
+expand = true
+
+[node name="Right" parent="Rule" instance=ExtResource( 17 )]
+margin_left = 428.0
+margin_top = 214.0
+margin_right = 640.0
+margin_bottom = 426.0
+
+[node name="Slot06" type="Control" parent="Rule"]
+margin_top = 428.0
+margin_right = 212.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bottom" parent="Rule" instance=ExtResource( 17 )]
+margin_left = 214.0
+margin_top = 428.0
+margin_right = 426.0
+margin_bottom = 640.0
+
+[node name="Slot08" type="Control" parent="Rule"]
+margin_left = 428.0
+margin_top = 428.0
+margin_right = 640.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Rules" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 20 )
+
+[node name="RulesRight" type="TileMap" parent="Rules"]
+position = Vector2( 0, -2500 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 3, 1, 0, 4, 1, 0, 6, 2, 0, 7, 0, 0, 9, 3, 0, 10, 0, 0, 12, 5, 0, 13, 5, 0, 15, 6, 0, 16, 0, 0, 18, 7, 0, 19, 0, 0, 21, 8, 0, 22, 5, 0, 24, 9, 0, 25, 0, 0, 27, 10, 0, 28, 1, 0, 30, 11, 0, 31, 0, 0, 33, 12, 0, 34, 13, 0, 36, 15, 0, 37, 1, 0, 65536, 0, 0, 65537, 8, 0, 65539, 1, 0, 65540, 2, 0, 65542, 2, 0, 65543, 3, 0, 65545, 3, 0, 65546, 4, 0, 65548, 5, 0, 65549, 6, 0, 65551, 6, 0, 65552, 3, 0, 65554, 7, 0, 65555, 3, 0, 65557, 8, 0, 65558, 6, 0, 65560, 9, 0, 65561, 3, 0, 65563, 10, 0, 65564, 2, 0, 65566, 11, 0, 65567, 3, 0, 65569, 12, 0, 65570, 14, 0, 65572, 15, 0, 65573, 12, 0, 131072, 0, 0, 131073, 12, 0, 131075, 1, 0, 131076, 8, 0, 131078, 2, 0, 131079, 7, 0, 131081, 3, 0, 131082, 7, 0, 131084, 5, 0, 131085, 10, 0, 131087, 6, 0, 131088, 7, 0, 131090, 7, 0, 131091, 4, 0, 131093, 8, 0, 131094, 10, 0, 131096, 9, 0, 131097, 4, 0, 131099, 10, 0, 131100, 8, 0, 131102, 11, 0, 131103, 4, 0, 131105, 13, 0, 131106, 14, 0, 131108, 15, 0, 131109, 8, 0, 196608, 0, 0, 196609, 15, 0, 196611, 1, 0, 196612, 12, 0, 196614, 2, 0, 196615, 4, 0, 196617, 3, 0, 196618, 9, 0, 196623, 6, 0, 196624, 4, 0, 196626, 7, 0, 196627, 7, 0, 196632, 9, 0, 196633, 7, 0, 196635, 10, 0, 196636, 12, 0, 196638, 11, 0, 196639, 7, 0, 196641, 14, 0, 196642, 1, 0, 196644, 15, 0, 196645, 2, 0, 262144, 0, 0, 262145, 2, 0, 262147, 1, 0, 262148, 15, 0, 262150, 2, 0, 262151, 9, 0, 262153, 3, 0, 262154, 11, 0, 262159, 6, 0, 262160, 9, 0, 262162, 7, 0, 262163, 9, 0, 262168, 9, 0, 262169, 9, 0, 262171, 10, 0, 262172, 15, 0, 262174, 11, 0, 262175, 9, 0, 262177, 14, 0, 262178, 12, 0, 262180, 15, 0, 262181, 15, 0, 327686, 2, 0, 327687, 11, 0, 327689, 4, 0, 327690, 5, 0, 327695, 6, 0, 327696, 11, 0, 327698, 7, 0, 327699, 11, 0, 327704, 9, 0, 327705, 11, 0, 327710, 11, 0, 327711, 11, 0, 327713, 14, 0, 327714, 15, 0, 393225, 4, 0, 393226, 10, 0, 393249, 14, 0, 393250, 8, 0, 458785, 14, 0, 458786, 2, 0 )
+
+[node name="RulesLeft" type="TileMap" parent="Rules"]
+position = Vector2( 0, -1000 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 0, 2, 0, 1, 0, 0, 3, 0, 0, 4, 1, 0, 6, 0, 0, 7, 2, 0, 9, 2, 0, 10, 3, 0, 12, 2, 0, 13, 4, 0, 15, 4, 0, 16, 5, 0, 18, 4, 0, 19, 6, 0, 21, 2, 0, 22, 7, 0, 24, 0, 0, 25, 8, 0, 27, 2, 0, 28, 9, 0, 30, 4, 0, 31, 10, 0, 33, 2, 0, 34, 11, 0, 36, 1, 0, 37, 12, 0, 39, 13, 0, 40, 13, 0, 42, 13, 0, 43, 14, 0, 45, 1, 0, 46, 15, 0, 65536, 3, 0, 65537, 0, 0, 65539, 1, 0, 65540, 1, 0, 65542, 1, 0, 65543, 2, 0, 65545, 3, 0, 65546, 3, 0, 65548, 3, 0, 65549, 4, 0, 65551, 5, 0, 65552, 5, 0, 65554, 5, 0, 65555, 6, 0, 65557, 3, 0, 65558, 7, 0, 65560, 1, 0, 65561, 8, 0, 65563, 3, 0, 65564, 9, 0, 65566, 5, 0, 65567, 10, 0, 65569, 3, 0, 65570, 11, 0, 65572, 10, 0, 65573, 12, 0, 65575, 12, 0, 65576, 13, 0, 65578, 12, 0, 65579, 14, 0, 65581, 10, 0, 65582, 15, 0, 131072, 6, 0, 131073, 0, 0, 131075, 10, 0, 131076, 1, 0, 131078, 10, 0, 131079, 2, 0, 131081, 6, 0, 131082, 3, 0, 131084, 6, 0, 131085, 4, 0, 131087, 8, 0, 131088, 5, 0, 131090, 8, 0, 131091, 6, 0, 131093, 6, 0, 131094, 7, 0, 131096, 10, 0, 131097, 8, 0, 131099, 6, 0, 131100, 9, 0, 131102, 8, 0, 131103, 10, 0, 131105, 6, 0, 131106, 11, 0, 131108, 14, 0, 131109, 12, 0, 131117, 14, 0, 131118, 15, 0, 196608, 7, 0, 196609, 0, 0, 196611, 14, 0, 196612, 1, 0, 196614, 14, 0, 196615, 2, 0, 196617, 7, 0, 196618, 3, 0, 196620, 7, 0, 196621, 4, 0, 196629, 7, 0, 196630, 7, 0, 196632, 14, 0, 196633, 8, 0, 196635, 7, 0, 196636, 9, 0, 196641, 7, 0, 196642, 11, 0, 196644, 15, 0, 196645, 12, 0, 196653, 15, 0, 196654, 15, 0, 262144, 9, 0, 262145, 0, 0, 262147, 15, 0, 262148, 1, 0, 262150, 15, 0, 262151, 2, 0, 262153, 9, 0, 262154, 3, 0, 262156, 9, 0, 262157, 4, 0, 262165, 9, 0, 262166, 7, 0, 262168, 15, 0, 262169, 8, 0, 262171, 9, 0, 262172, 9, 0, 262177, 9, 0, 262178, 11, 0, 262180, 0, 0, 262181, 12, 0, 262189, 0, 0, 262190, 15, 0, 327680, 11, 0, 327681, 0, 0, 327689, 11, 0, 327690, 3, 0, 327692, 11, 0, 327693, 4, 0, 327701, 11, 0, 327702, 7, 0, 327707, 11, 0, 327708, 9, 0, 327713, 11, 0, 327714, 11, 0 )
+
+[node name="RulesTop" type="TileMap" parent="Rules"]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 0, 3, 0, 65536, 0, 0, 196608, 3, 0, 262144, 1, 0, 393216, 3, 0, 458752, 2, 0, 589824, 3, 0, 655360, 3, 0, 786432, 0, 0, 786433, 4, 0, 851968, 4, 0, 851969, 4, 0, 983040, 1, 0, 983041, 5, 0, 983042, 8, 0, 983043, 10, 0, 983044, 12, 0, 983045, 13, 0, 983046, 14, 0, 983047, 15, 0, 1048576, 5, 0, 1048577, 5, 0, 1048578, 5, 0, 1048579, 5, 0, 1048580, 5, 0, 1048581, 5, 0, 1048582, 5, 0, 1048583, 5, 0, 1179648, 2, 0, 1179649, 6, 0, 1245184, 6, 0, 1245185, 6, 0, 1376256, 3, 0, 1441792, 7, 0, 1572864, 4, 0, 1572865, 0, 0, 1638400, 8, 0, 1638401, 8, 0, 1769472, 3, 0, 1835008, 9, 0, 1966080, 6, 0, 1966081, 2, 0, 2031616, 10, 0, 2031617, 10, 0, 2162688, 7, 0, 2228224, 11, 0, 2359296, 3, 0, 2359297, 9, 0, 2424832, 12, 0, 2424833, 12, 0, 2555904, 3, 0, 2555905, 9, 0, 2621440, 13, 0, 2621441, 13, 0, 2752512, 3, 0, 2752513, 9, 0, 2818048, 14, 0, 2818049, 14, 0, 2949120, 11, 0, 3014656, 15, 0 )
+
+[node name="RulesBottom" type="TileMap" parent="Rules"]
+position = Vector2( 2000, 0 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 65536, 4, 0, 65537, 8, 0, 196608, 1, 0, 262144, 5, 0, 393216, 2, 0, 393217, 2, 0, 458752, 6, 0, 458753, 10, 0, 589824, 3, 0, 589825, 3, 0, 589826, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 589830, 3, 0, 589831, 3, 0, 589832, 3, 0, 655360, 0, 0, 655361, 1, 0, 655362, 2, 0, 655363, 3, 0, 655364, 7, 0, 655365, 9, 0, 655366, 12, 0, 655367, 13, 0, 655368, 14, 0, 786432, 4, 0, 786433, 4, 0, 851968, 4, 0, 851969, 8, 0, 983040, 5, 0, 1048576, 5, 0, 1179648, 6, 0, 1179649, 6, 0, 1245184, 6, 0, 1245185, 10, 0, 1376256, 7, 0, 1441792, 11, 0, 1572864, 8, 0, 1638400, 5, 0, 1769472, 9, 0, 1769473, 9, 0, 1769474, 9, 0, 1835008, 12, 0, 1835009, 13, 0, 1835010, 14, 0, 1966080, 10, 0, 2031616, 5, 0, 2162688, 11, 0, 2228224, 15, 0, 2359296, 12, 0, 2424832, 5, 0, 2555904, 13, 0, 2621440, 5, 0, 2752512, 14, 0, 2818048, 5, 0, 2949120, 15, 0, 3014656, 5, 0 )
