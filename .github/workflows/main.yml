@@ -14,10 +14,12 @@ jobs:
         GODOT_EXPORT_TARGET: HTML5
         GODOT_EXPORT_DIRECTORY: build/web
         GODOT_EXPORT_FILE: index.html
-    - uses: actions/upload-artifact@v1
+    - uses: ETdoFresh/Actions/UploadToGithubPages@latest
       with:
-        name: web
-        path: build/web
+        DIRECTORY_TO_UPLOAD: build/web
+        GITHUB_REPOSITORY: ETdoFresh/TileMapCreator
+        GITHUB_USERNAME: ${{ secrets.USERNAME }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_GEN_TOKEN }}
 
   windows:
     name: Godot Windows Desktop Build
