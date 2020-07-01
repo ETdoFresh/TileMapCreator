@@ -1,4 +1,4 @@
-name: Godot HTML5 Build and Upload to GitHub Pages
+name: Godot Automatic Build on Commit
 on:
   push:
     branches:
@@ -11,8 +11,25 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ETdoFresh/Actions/GodotBuild@latest
       with:
-        BUILD_TARGET: HTML5
+        GODOT_EXPORT_TARGET: HTML5
+        GODOT_EXPORT_DIRECTORY: build/web
+        GODOT_EXPORT_FILE: index.html
     - uses: actions/upload-artifact@v1
       with:
         name: web
         path: build/web
+
+  windows:
+    name: Godot Windows Desktop Build
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ETdoFresh/Actions/GodotBuild@latest
+      with:
+        GODOT_EXPORT_TARGET: Windows Desktop
+        GODOT_EXPORT_DIRECTORY: build/windows
+        GODOT_EXPORT_FILE: tilemapcreator.exe
+    - uses: actions/upload-artifact@v1
+      with:
+        name: windows
+        path: build/windows
