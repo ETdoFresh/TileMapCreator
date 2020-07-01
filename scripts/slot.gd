@@ -12,10 +12,16 @@ func _ready():
         calculate_entropy()
 
 func _process(_delta):
-    for i in range(1, 20 + 1):
-        if Util.get_visibile_child_count(self) <= i * i:
-            columns = i
-            break
+    if not Engine.editor_hint:
+        for i in range(1, 20 + 1):
+            if Util.get_visibile_child_count(self) <= i * i:
+                columns = i
+                break
+    else:
+        for i in range(1, 20 + 1):
+            if get_child_count() <= i * i:
+                columns = i
+                break
 
 func calculate_entropy():
     var weight = 1.0 / 16
