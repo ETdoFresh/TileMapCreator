@@ -46,7 +46,7 @@ func collapse():
                 sprites[i].queue_free()
                 sprites.remove(i)
 
-func collapse_neighbors(rules:Rules):
+func collapse_neighbors(rules):
     for direction in neighbors:
         
         if not neighbors[direction]: continue
@@ -66,7 +66,7 @@ func collapse_neighbors(rules:Rules):
         if neighbor_needs_to_collapse_its_neighbors:
             neighbor.collapse_neighbors(rules)
 
-func can_be_neighbors(rules:Rules, direction, neighbor_index):
+func can_be_neighbors(rules, direction, neighbor_index):
     for sprite in sprites:
         var sprite_index = int(sprite.name.replace("Sprite", ""))
         if rules.can_be_neighbor(sprite_index, direction, neighbor_index):

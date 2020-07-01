@@ -14,7 +14,7 @@ func pressed(index):
         
         for child in $Rule.get_node(direction).get_children():
             child.visible = true
-            
+        
         for i in range($Rule.get_node(direction).get_child_count()):
             if not $Rules.can_be_neighbor(index, direction.to_lower(), i):
                 $Rule.get_node(direction).get_child(i).visible = false

@@ -1,3 +1,5 @@
+#warning-ignore-all:return_value_discarded
+
 extends TextureButton
 
 signal indexed_pressed(index)
@@ -8,6 +10,11 @@ func _ready():
     connect("pressed", self, "emit_indexed_pressed")
     connect("mouse_entered", self, "emit_indexed_mouse_entered")
     connect("mouse_exited", self, "emit_indexed_mouse_exited")
+    connect("visibility_changed", self, "reset_color")
+
+func reset_color():
+    if visible:
+        modulate = Color(1.0, 1.0, 1.0)
 
 func emit_indexed_pressed():
     modulate = Color(0.5, 0.5, 0.5)

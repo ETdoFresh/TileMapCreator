@@ -25,7 +25,7 @@ func solve():
     var slot = select_lowest_entropy()
     while slot != null:
         slot.collapse()
-        slot.collapse_neighbors($Rules)
+        slot.collapse_neighbors($RuleViewer/Rules)
         if slots.is_invalid():
             slots.queue_free()
             slots = Slots.instance()
@@ -53,7 +53,7 @@ func step():
         fading_square.position = slot.rect_global_position
         add_child(fading_square)
         yield(self, "next_step")
-        slot.collapse_neighbors($Rules)
+        slot.collapse_neighbors($RuleViewer/Rules)
         
         if slots.is_invalid():
             fading_square = FadingSquare.instance()
