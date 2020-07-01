@@ -15,8 +15,8 @@ func emit_indexed_pressed():
 
 func emit_indexed_mouse_entered():
     modulate = Color(0.75, 0.75, 0.75)
-    emit_signal("indexed_moused_entered", get_index())
+    emit_signal("indexed_mouse_entered", get_index())
 
 func emit_indexed_mouse_exited():
     modulate = Color(1.0, 1.0, 1.0)
-    emit_signal("indexed_moused_exited", get_index())
+    emit_signal("indexed_mouse_exited", get_index())

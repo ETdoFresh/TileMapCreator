@@ -13,7 +13,7 @@ func _ready():
 
 func _process(_delta):
     for i in range(1, 20 + 1):
-        if get_child_count() <= i * i:
+        if Util.get_visibile_child_count(self) <= i * i:
             columns = i
             break
 

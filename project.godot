@@ -30,6 +30,10 @@ config/name="TileMapCreator"
 run/main_scene="res://scenes/rule_viewer.tscn"
 config/icon="res://sprites/iconscout/tile/tile.png"
 
+[autoload]
+
+Util="*res://scripts/util.gd"
+
 [display]
 
 window/size/width=1280
