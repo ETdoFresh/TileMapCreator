@@ -1,0 +1,14 @@
+name: Godot HTML5 Build and Upload to GitHub Pages
+on:
+  push:
+    branches:
+    - master
+jobs:
+  webgl:
+    name: Godot HTML5 Build
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ETdoFresh/Actions/GodotBuild@latest
+      with:
+        BUILD_TARGET: HTML5
