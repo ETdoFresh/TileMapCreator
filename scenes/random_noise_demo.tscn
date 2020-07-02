@@ -6,7 +6,8 @@
 [ext_resource path="res://sprites/kenney_medievalrtspack/PNG/Retina/Tile/medievalTile_58.png" type="Texture" id=4]
 [ext_resource path="res://sprites/kenney_medievalrtspack/PNG/Retina/Tile/medievalTile_43.png" type="Texture" id=5]
 [ext_resource path="res://sprites/kenney_medievalrtspack/PNG/Retina/Tile/medievalTile_44.png" type="Texture" id=6]
-[ext_resource path="res://fonts/arial_01.tres" type="DynamicFont" id=7]
+[ext_resource path="res://fonts/arial_48.tres" type="DynamicFont" id=7]
+
 
 [node name="RandomNoiseDemo" type="Control"]
 anchor_right = 1.0
