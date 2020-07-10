@@ -5,10 +5,10 @@ func _ready():
         tile.connect("indexed_pressed", self, "pressed")
 
 func pressed(index):
-    var child = $Tiles.get_child(index)
+    var tile = $Tiles.get_child(index)
     $Tiles.visible = false
     $Rule.visible = true
-    $Rule/Main.texture = child.texture_normal
+    $Rule/Main.texture = tile.texture_normal
     var directions = ["Top", "Right", "Bottom", "Left"]
     for direction in directions:
         
