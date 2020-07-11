@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/et/load_texture/tiles.svg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://sprites/et/load_texture/rows.svg" type="Texture" id=5]
 [ext_resource path="res://sprites/et/load_texture/padding.svg" type="Texture" id=6]
 [ext_resource path="res://scripts/load_texture.gd" type="Script" id=7]
+[ext_resource path="res://scenes/menu_button.tscn" type="PackedScene" id=8]
 
 [node name="LoadTexture" type="Control"]
 anchor_right = 1.0
@@ -73,7 +74,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
-text = "Columns"
+text = "Columns (qty)"
 valign = 1
 
 [node name="Columns" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
@@ -93,7 +94,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
-text = "Rows"
+text = "Rows (qty)"
 valign = 1
 
 [node name="Rows" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
@@ -114,7 +115,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
-text = "Padding"
+text = "Padding (px)"
 valign = 1
 
 [node name="Padding" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
@@ -135,7 +136,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
-text = "Spacing"
+text = "Spacing (px)"
 valign = 1
 
 [node name="Spacing" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
@@ -246,9 +247,9 @@ anchor_bottom = 0.5
 margin_left = 124.0
 margin_top = -30.0
 margin_right = -105.0
-margin_bottom = 5.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
-text = "https://www.etdofresh.com/images/2020/07/ETdoFresh-1.png"
+text = "https://raw.githubusercontent.com/ETdoFresh/TileMapCreator/master/sprites/kenney_medievalrtspack/Spritesheet/medievalRTS_spritesheet%402.png?token=AAJUCE737SRAQGDG6FYQV4K7COC3K"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -319,3 +320,9 @@ custom_fonts/font = ExtResource( 1 )
 text = "Cancel"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="MenuButton" parent="." instance=ExtResource( 8 )]
+margin_left = 8.98981
+margin_top = 229.241
+margin_right = 141.99
+margin_bottom = 362.241

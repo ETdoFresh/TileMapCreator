@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="TileMapCreator"
-run/main_scene="res://scenes/load_texture.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://sprites/iconscout/tile/tile.png"
 
 [autoload]

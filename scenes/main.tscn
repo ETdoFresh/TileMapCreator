@@ -26,7 +26,7 @@ __meta__ = {
 
 [node name="Button4" type="Button" parent="VBoxContainer"]
 margin_right = 551.0
-margin_bottom = 160.0
+margin_bottom = 105.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -46,9 +46,9 @@ __meta__ = {
 }
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
-margin_top = 164.0
+margin_top = 109.0
 margin_right = 551.0
-margin_bottom = 324.0
+margin_bottom = 214.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -68,9 +68,9 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
-margin_top = 328.0
+margin_top = 218.0
 margin_right = 551.0
-margin_bottom = 488.0
+margin_bottom = 323.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -90,10 +90,28 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 492.0
+margin_top = 327.0
+margin_right = 551.0
+margin_bottom = 432.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Grid Paint"
+
+[node name="Button5" type="Button" parent="VBoxContainer"]
+margin_top = 436.0
+margin_right = 551.0
+margin_bottom = 541.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Load Texture"
+
+[node name="Button6" type="Button" parent="VBoxContainer"]
+margin_top = 545.0
 margin_right = 551.0
 margin_bottom = 652.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Grid Paint"
+text = "XML Texture Atlas"
