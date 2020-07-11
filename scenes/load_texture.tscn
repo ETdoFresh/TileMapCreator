@@ -1,0 +1,321 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/et/load_texture/tiles.svg" type="Texture" id=2]
+[ext_resource path="res://sprites/et/load_texture/spacing.svg" type="Texture" id=3]
+[ext_resource path="res://sprites/et/load_texture/columns.svg" type="Texture" id=4]
+[ext_resource path="res://sprites/et/load_texture/rows.svg" type="Texture" id=5]
+[ext_resource path="res://sprites/et/load_texture/padding.svg" type="Texture" id=6]
+[ext_resource path="res://scripts/load_texture.gd" type="Script" id=7]
+
+[node name="LoadTexture" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Main/VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Load Texture"
+align = 1
+
+[node name="SettingsPanel" type="Panel" parent="Main/VBoxContainer"]
+margin_top = 32.0
+margin_right = 1280.0
+margin_bottom = 238.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/VBoxContainer/SettingsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer"]
+margin_right = 1004.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColumnsLabel" type="Label" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_right = 500.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+text = "Columns"
+valign = 1
+
+[node name="Columns" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+
+[node name="RowsLabel" type="Label" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_top = 45.0
+margin_right = 500.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+text = "Rows"
+valign = 1
+
+[node name="Rows" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_left = 504.0
+margin_top = 45.0
+margin_right = 1004.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+
+[node name="PaddingLabel" type="Label" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_top = 90.0
+margin_right = 500.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+text = "Padding"
+valign = 1
+
+[node name="Padding" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_left = 504.0
+margin_top = 90.0
+margin_right = 1004.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="SpacingLabel" type="Label" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_top = 135.0
+margin_right = 500.0
+margin_bottom = 176.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+text = "Spacing"
+valign = 1
+
+[node name="Spacing" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+margin_left = 504.0
+margin_top = 135.0
+margin_right = 1004.0
+margin_bottom = 176.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="Panel" type="Panel" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer"]
+margin_left = 1008.0
+margin_right = 1260.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="tiles" type="TextureRect" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="columns" type="TextureRect" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel"]
+visible = false
+modulate = Color( 0.32549, 0.388235, 0.890196, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 148.0
+margin_bottom = 197.0
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+
+[node name="rows" type="TextureRect" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel"]
+visible = false
+modulate = Color( 0.254902, 0.615686, 0.301961, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 148.0
+margin_bottom = 197.0
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="padding" type="TextureRect" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel"]
+visible = false
+modulate = Color( 0.74902, 0.388235, 0.388235, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 148.0
+margin_bottom = 197.0
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacing" type="TextureRect" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel"]
+visible = false
+modulate = Color( 0.956863, 0.780392, 0.0941176, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownloadPanel" type="Panel" parent="Main/VBoxContainer"]
+margin_top = 242.0
+margin_right = 1280.0
+margin_bottom = 654.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Main/VBoxContainer/DownloadPanel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -64.0
+margin_bottom = -36.0
+custom_fonts/font = ExtResource( 1 )
+text = "URL to Tileset"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="Main/VBoxContainer/DownloadPanel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 124.0
+margin_top = -30.0
+margin_right = -105.0
+margin_bottom = 5.0
+custom_fonts/font = ExtResource( 1 )
+text = "https://www.etdofresh.com/images/2020/07/ETdoFresh-1.png"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Main/VBoxContainer/DownloadPanel"]
+margin_left = 576.946
+margin_top = 236.228
+margin_right = 710.946
+margin_bottom = 281.228
+custom_fonts/font = ExtResource( 1 )
+text = "Download"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImagePanel" type="Panel" parent="Main/VBoxContainer"]
+visible = false
+margin_top = 422.0
+margin_right = 1280.0
+margin_bottom = 677.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Main/VBoxContainer/ImagePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonPanel" type="Panel" parent="Main/VBoxContainer"]
+margin_top = 658.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/VBoxContainer/ButtonPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Main/VBoxContainer/ButtonPanel/HBoxContainer"]
+margin_right = 638.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+disabled = true
+text = "OK"
+
+[node name="Button2" type="Button" parent="Main/VBoxContainer/ButtonPanel/HBoxContainer"]
+margin_left = 642.0
+margin_right = 1280.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Cancel"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
