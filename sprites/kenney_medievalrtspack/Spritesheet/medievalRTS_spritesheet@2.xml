@@ -1,5 +1,5 @@
 <TextureAtlas imagePath="medievalRTS_spritesheet@2.png">
-	<SubTexture name="medievalEnvironment_01.png" x="1029" y="636" width="38" height="92"><SubTexture/>
+	<SubTexture name="medievalEnvironment_01.png" x="1029" y="636" width="38" height="92"/>
 	<SubTexture name="medievalEnvironment_02.png" x="1030" y="728" width="37" height="66"/>
 	<SubTexture name="medievalEnvironment_03.png" x="1023" y="0" width="53" height="96"/>
 	<SubTexture name="medievalEnvironment_04.png" x="838" y="736" width="28" height="30"/>
