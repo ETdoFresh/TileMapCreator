@@ -3,12 +3,13 @@
 extends Control
 
 func _ready():
-    $VBoxContainer/Button.connect("pressed", self, "load_paint_grid")
-    $VBoxContainer/Button2.connect("pressed", self, "load_wfc")
-    $VBoxContainer/Button3.connect("pressed", self, "load_simplex")
-    $VBoxContainer/Button4.connect("pressed", self, "load_random")
-    $VBoxContainer/Button5.connect("pressed", self, "load_load_texture")
-    $VBoxContainer/Button6.connect("pressed", self, "load_xml_atlas")
+    $GridContainer/Button.connect("pressed", self, "load_paint_grid")
+    $GridContainer/Button2.connect("pressed", self, "load_wfc")
+    $GridContainer/Button3.connect("pressed", self, "load_simplex")
+    $GridContainer/Button4.connect("pressed", self, "load_random")
+    $GridContainer/Button5.connect("pressed", self, "load_load_texture")
+    $GridContainer/Button6.connect("pressed", self, "load_xml_atlas")
+    $GridContainer/Button7.connect("pressed", self, "load_tileset")
 
 func load_paint_grid():
     get_tree().change_scene("res://scenes/paint_grid.tscn")
@@ -27,3 +28,6 @@ func load_load_texture():
 
 func load_xml_atlas():
     get_tree().change_scene("res://scenes/load_texture_atlas_xml.tscn")
+
+func load_tileset():
+    get_tree().change_scene("res://scenes/tileset.tscn")

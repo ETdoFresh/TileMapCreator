@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Slot",
 "language": "GDScript",
 "path": "res://scripts/slot.gd"
+}, {
+"base": "TextureRect",
+"class": "TextureRectAsButton",
+"language": "GDScript",
+"path": "res://scripts/texture_rect_as_button.gd"
 } ]
 _global_script_class_icons={
 "Rules": "",
-"Slot": ""
+"Slot": "",
+"TextureRectAsButton": ""
 }
 
 [application]
