@@ -27,13 +27,13 @@ func get_slot(x ,y):
     return get_child(x + y * columns)
 
 func is_complete():
-    for child in get_children():
-        if child.sprites.size() != 1:
+    for slot in get_children():
+        if slot.get_child_count() != 1:
             return false
     return true
 
 func is_invalid():
-    for child in get_children():
-        if child.sprites.size() == 0:
+    for slot in get_children():
+        if slot.get_child_count() == 0:
             return true
     return false

@@ -1,39 +1,35 @@
-extends Control
+extends GridContainer
 
 var textures = []
 
-onready var grid = $GridContainer
+func _ready():            
+    for tile in get_children():
+        textures.append(tile.texture)
+        tile.texture.set_meta("index", tile.get_index())
 
 func _process(_delta):
-    if not grid.visible:
+    if not visible:
         return
     
-    grid.columns = max(round(sqrt(textures.size())), 1)
+    columns = int(max(round(sqrt(textures.size())), 1))
     
-    while grid.get_child_count() > textures.size():
-        grid.remove_child(grid.get_child(0))
+    while get_child_count() > textures.size():
+        remove_child(get_child(0))
         
-    while grid.get_child_count() < textures.size():
-        var panel = Panel.new()
-        panel.self_modulate = Color.orange
-        panel.size_flags_horizontal = Panel.SIZE_EXPAND_FILL
-        panel.size_flags_vertical = Panel.SIZE_EXPAND_FILL
-        
+    for i in range (get_child_count(), textures.size()):        
         var texture_rect = TextureRectAsButton.new()
         texture_rect.expand = true
         texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
         texture_rect.anchor_bottom = 1
         texture_rect.anchor_right = 1
-        
-        grid.add_child(panel)
-        panel.add_child(texture_rect)
+        texture_rect.name = "texture_rect_" + String(i)
+        add_child(texture_rect)
         
     for i in range(textures.size()):
-        var panel = grid.get_child(i)
-        var texture_rect = panel.get_child(0)
+        var texture_rect = get_child(i)
         texture_rect.texture = textures[i]
-        
+        textures[i].set_meta("index", i)
         if textures[i].has_meta("ignore") and textures[i].get_meta("ignore"):
-            panel.modulate.a = 0.5
+            texture_rect.modulate.a = 0.5
         else:
-            panel.modulate.a = 1.0
+            texture_rect.modulate.a = 1.0

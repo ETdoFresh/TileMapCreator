@@ -27,6 +27,7 @@ func disable():
     disconnect("mouse_exited", self, "set_normal")
     
 func enable():
+    connect("visibility_changed", self, "set_normal")
     connect("focus_entered", self, "set_focused")
     connect("focus_exited", self, "set_normal")
     connect("mouse_entered", self, "set_hover")

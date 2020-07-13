@@ -10,6 +10,7 @@ var is_running = false
 onready var slots = $Slots
 
 func _ready():
+    fill_slots()
     #warning-ignore:return_value_discarded
     $UI/Solve.connect("pressed", self, "solve")
     #warning-ignore:return_value_discarded
@@ -20,6 +21,12 @@ func _ready():
 func _input(event):
     if event.is_action_pressed("reset"):
         reset()
+
+func fill_slots():
+    for slot in $Slots.get_children():
+        for tile in $RuleViewer/Tileset.get_children():
+            slot.add_child(tile.duplicate())
+        slot.calculate_entropy()
 
 func solve():
     var slot = select_lowest_entropy()
@@ -74,7 +81,7 @@ func step():
 func select_lowest_entropy():
     var selection = null
     for slot in slots.get_children():
-        if slot.sprites.size() > 1:
+        if slot.get_child_count() > 1:
             if selection == null || slot.entropy < selection.entropy:
                 selection = slot
     return selection

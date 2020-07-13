@@ -11,14 +11,14 @@ var rules = \
     "left": [],
 }
 
-onready var tiles = get_parent().get_node("Tiles")
+onready var tiles = get_parent().get_node("Tileset")
 
 func _ready():
     for sprite in tiles.get_children():
-        var texture = sprite.texture_normal
+        var texture = sprite.texture
         var sprite_index = int(sprite.name.replace("Sprite",""))
         for other_sprite in tiles.get_children():
-            var other_texture = other_sprite.texture_normal
+            var other_texture = other_sprite.texture
             var other_sprite_index = int(other_sprite.name.replace("Sprite",""))
             if match_left_edge_to_right_edge(texture, other_texture):
                 rules.left.append([sprite_index, other_sprite_index])
