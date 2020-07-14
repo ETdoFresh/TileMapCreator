@@ -3,7 +3,7 @@
 extends Control
 
 func _ready():
-    for tile in $Tileset.get_children():
+    for tile in $Tileset.tiles:
         tile.connect("pressed", self, "tileset_pressed")
         $Rule/Top.add_child(tile.duplicate())
         $Rule/Right.add_child(tile.duplicate())
@@ -17,16 +17,15 @@ func tileset_pressed(tile):
     $Rule.visible = true
     $Rule/Main.texture = tile.texture
     
-    var index = tile.texture.get_meta("index")
+    var index = $Tileset.get_tile_index(tile)
     var directions = ["Top", "Right", "Bottom", "Left"]
     for direction in directions:
+        var slot = $Rule.get_node(direction)
+        slot.reset()
 
-        for child in $Rule.get_node(direction).get_children():
-            child.visible = true
-
-        for i in range($Rule.get_node(direction).get_child_count()):
+        for i in range(slot.tiles.size()):
             if not $Rules.can_be_neighbor(index, direction.to_lower(), i):
-                $Rule.get_node(direction).get_child(i).visible = false
+                slot.disable(i)
 
 func main_tile_pressed(_tile):
     $Tileset.visible = true

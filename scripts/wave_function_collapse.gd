@@ -99,7 +99,7 @@ func step_solve():
 func select_lowest_entropy():
     var selection = null
     for slot in slots.get_children():
-        if slot.enabled.size() > 1:
+        if slot.get_active_tiles().size() > 1:
             if selection == null || slot.entropy < selection.entropy:
                 selection = slot
     return selection
