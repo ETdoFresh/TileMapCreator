@@ -29,8 +29,10 @@ func fill_slots():
         slot.calculate_entropy()
 
 func solve():
-    while step_yield:
-        step_yield.resume()
+    while step_yield and step_yield.resume():
+        pass
+    
+    step_yield = null
     
     if slots.is_complete():
         reset()
@@ -53,7 +55,7 @@ func solve():
 
 func step():
     if step_yield:
-        step_yield.resume()
+        step_yield = step_yield.resume()
     else:
         step_yield = step_solve()
     return
@@ -93,8 +95,6 @@ func step_solve():
                 reset()
     else:
         reset()
-    
-    step_yield = null
 
 func select_lowest_entropy():
     var selection = null
