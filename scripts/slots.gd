@@ -23,17 +23,21 @@ func assign_neighbors():
         if bottom_y < get_child_count() / columns: 
             slot.neighbors.bottom = get_slot(x, bottom_y)
 
+func reset():
+    for slot in get_children():
+        slot.reset()
+
 func get_slot(x ,y):
     return get_child(x + y * columns)
 
 func is_complete():
     for slot in get_children():
-        if slot.get_child_count() != 1:
+        if slot.enabled.size() != 1:
             return false
     return true
 
 func is_invalid():
     for slot in get_children():
-        if slot.get_child_count() == 0:
+        if slot.enabled.size() == 0:
             return true
     return false

@@ -25,9 +25,9 @@ __meta__ = {
 }
 
 [node name="Step" type="Button" parent="UI"]
-margin_left = 669.122
+margin_left = 672.0
 margin_top = 612.0
-margin_right = 784.122
+margin_right = 822.0
 margin_bottom = 712.0
 custom_fonts/font = ExtResource( 4 )
 text = "Step"
@@ -36,9 +36,9 @@ __meta__ = {
 }
 
 [node name="Solve" type="Button" parent="UI"]
-margin_left = 797.385
+margin_left = 834.0
 margin_top = 612.0
-margin_right = 1009.39
+margin_right = 984.0
 margin_bottom = 712.0
 custom_fonts/font = ExtResource( 4 )
 text = "Solve"
@@ -47,9 +47,9 @@ __meta__ = {
 }
 
 [node name="Reset" type="Button" parent="UI"]
-margin_left = 1022.0
+margin_left = 996.0
 margin_top = 612.0
-margin_right = 1182.0
+margin_right = 1146.0
 margin_bottom = 712.0
 custom_fonts/font = ExtResource( 4 )
 text = "Reset"

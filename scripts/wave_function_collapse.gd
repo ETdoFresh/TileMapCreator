@@ -1,11 +1,11 @@
 extends Node2D
 
-signal next_step
+const CANCEL = true
 
 const Slots = preload("res://scenes/slots.tscn")
 const FadingSquare = preload("res://scenes/fading_square.tscn")
 
-var is_running = false
+var step_yield
 
 onready var slots = $Slots
 
@@ -29,6 +29,12 @@ func fill_slots():
         slot.calculate_entropy()
 
 func solve():
+    while step_yield:
+        step_yield.resume()
+    
+    if slots.is_complete():
+        reset()
+    
     var slot = select_lowest_entropy()
     while slot != null:
         slot.collapse()
@@ -43,49 +49,64 @@ func solve():
     if slots.is_complete():
         slots.add_constant_override("hseparation", 0)
         slots.add_constant_override("vseparation", 0)
-        $UI/Step.disabled = true
-        $UI/Solve.disabled = true
+        $UI/Step.text = "Reset"
 
 func step():
-    if is_running:
-        emit_signal("next_step")
-        return
-    
-    $UI/Solve.disabled = true
-    is_running = true
+    if step_yield:
+        step_yield.resume()
+    else:
+        step_yield = step_solve()
+    return
+
+func step_solve():
     var slot = select_lowest_entropy()
     if slot:
         slot.collapse()
         var fading_square = FadingSquare.instance()
         fading_square.position = slot.rect_global_position
         add_child(fading_square)
-        yield(self, "next_step")
-        slot.collapse_neighbors($RuleViewer/Rules)
         
-        if slots.is_invalid():
-            fading_square = FadingSquare.instance()
-            fading_square.modulate.r = 1
-            fading_square.modulate.g = 0
-            fading_square.modulate.b = 0
-            fading_square.position = slot.rect_global_position
-            add_child(fading_square)
-            $UI/Step.disabled = true
-        
-    is_running = false
+        if slots.is_complete():
+            slots.add_constant_override("hseparation", 0)
+            slots.add_constant_override("vseparation", 0)
+            $UI/Step.text = "Reset"
+            yield()
+            reset()
+        else:
+            yield()
+                
+            slot.collapse_neighbors($RuleViewer/Rules)
+            
+            if slots.is_invalid():
+                fading_square = FadingSquare.instance()
+                fading_square.modulate.r = 1
+                fading_square.modulate.g = 0
+                fading_square.modulate.b = 0
+                fading_square.position = slot.rect_global_position
+                add_child(fading_square)
+                $UI/Step.disabled = true
+            if slots.is_complete():
+                slots.add_constant_override("hseparation", 0)
+                slots.add_constant_override("vseparation", 0)
+                $UI/Step.text = "Reset"
+                yield()
+                reset()
+    else:
+        reset()
     
-    if slots.is_complete():
-        slots.add_constant_override("hseparation", 0)
-        slots.add_constant_override("vseparation", 0)
-        $UI/Step.disabled = true
+    step_yield = null
 
 func select_lowest_entropy():
     var selection = null
     for slot in slots.get_children():
-        if slot.get_child_count() > 1:
+        if slot.enabled.size() > 1:
             if selection == null || slot.entropy < selection.entropy:
                 selection = slot
     return selection
 
 func reset():
-    #warning-ignore:return_value_discarded
-    get_tree().change_scene("res://scenes/wave_function_collapse.tscn")
+    $Slots.reset()
+    $UI/Step.text = "Step"
+    $UI/Step.disabled = false
+    $Slots.add_constant_override("hseparation", 2)
+    $Slots.add_constant_override("vseparation", 2)
