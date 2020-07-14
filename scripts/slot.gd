@@ -38,7 +38,8 @@ func collapse():
         var random_child = get_child(random_index)
         for child in get_children():
             if child != random_child:
-                child.queue_free()
+                child.free()
+        calculate_entropy()
 
 func collapse_neighbors(rules):
     for direction in neighbors:
@@ -51,17 +52,18 @@ func collapse_neighbors(rules):
         if neighbor_sprite_count > 1:
             for i in range(neighbor_sprite_count - 1, -1, -1):
                 var neighbor_sprite = neighbor.get_child(i)
-                var neighbor_index = int(neighbor_sprite.name.replace("Sprite", ""))
+                var neighbor_index = neighbor_sprite.texture.get_meta("index")
                 if not can_be_neighbors(rules, direction, neighbor_index):
-                    neighbor_sprite.queue_free()
+                    neighbor_sprite.free() ##.queue_free()
                     neighbor_needs_to_collapse_its_neighbors = true
         
         if neighbor_needs_to_collapse_its_neighbors:
+            neighbor.calculate_entropy()
             neighbor.collapse_neighbors(rules)
 
 func can_be_neighbors(rules, direction, neighbor_index):
     for sprite in get_children():
-        var sprite_index = int(sprite.name.replace("Sprite", ""))
+        var sprite_index = int(sprite.texture.get_meta("index"))
         if rules.can_be_neighbor(sprite_index, direction, neighbor_index):
             return true
     return false
