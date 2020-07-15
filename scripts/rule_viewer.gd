@@ -5,10 +5,10 @@ extends Control
 func _ready():
     for tile in $Tileset.tiles:
         tile.connect("pressed", self, "tileset_pressed")
-        $Rule/Top.add_child(tile.duplicate())
-        $Rule/Right.add_child(tile.duplicate())
-        $Rule/Bottom.add_child(tile.duplicate())
-        $Rule/Left.add_child(tile.duplicate())
+        $Rule/Top.add_tile(tile.duplicate())
+        $Rule/Right.add_tile(tile.duplicate())
+        $Rule/Bottom.add_tile(tile.duplicate())
+        $Rule/Left.add_tile(tile.duplicate())
     
     $Rule/Main.connect("pressed", self, "main_tile_pressed")
 
@@ -25,7 +25,7 @@ func tileset_pressed(tile):
 
         for i in range(slot.tiles.size()):
             if not $Rules.can_be_neighbor(index, direction.to_lower(), i):
-                slot.disable(i)
+                slot.tiles[i].enabled = false
 
 func main_tile_pressed(_tile):
     $Tileset.visible = true
