@@ -9,7 +9,7 @@ func _ready():
     $GridContainer/Button4.connect("pressed", self, "load_random")
     $GridContainer/Button5.connect("pressed", self, "load_load_texture")
     $GridContainer/Button6.connect("pressed", self, "load_xml_atlas")
-    $GridContainer/Button7.connect("pressed", self, "load_tileset")
+    $GridContainer/Button7.connect("pressed", self, "load_wfc_2")
 
 func load_paint_grid():
     get_tree().change_scene("res://scenes/paint_grid.tscn")
@@ -29,5 +29,5 @@ func load_load_texture():
 func load_xml_atlas():
     get_tree().change_scene("res://scenes/load_texture_atlas_xml.tscn")
 
-func load_tileset():
-    get_tree().change_scene("res://scenes/tileset.tscn")
+func load_wfc_2():
+    get_tree().change_scene("res://scenes/wfc_2.tscn")

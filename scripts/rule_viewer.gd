@@ -30,3 +30,9 @@ func tileset_pressed(tile):
 func main_tile_pressed(_tile):
     $Tileset.visible = true
     $Rule.visible = false
+
+
+func load_tileset(tileset):
+    $Tileset.clear()
+    for tile in tileset.tiles:
+        $Tileset.add_tile(tile.duplicate())

@@ -1,6 +1,8 @@
 #warning-ignore-all: return_value_discarded
 extends Control
 
+const TILE_SCENE = preload("res://scenes/tile.tscn")
+
 signal texture_loaded
 signal cancelled
 
@@ -18,7 +20,7 @@ onready var rows_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridCon
 onready var padding_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Padding
 onready var spacing_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Spacing
 onready var texture_rect = $Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer/TextureRect
-onready var grid = $Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer/GridContainer
+onready var tileset = $Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer/Tileset
 
 func _ready():
     reset()
@@ -44,10 +46,10 @@ func _process(_delta):
         if not padding_field.text.is_valid_integer(): return
         if not spacing_field.text.is_valid_integer(): return
         
-        var columns = int(columns_field.text)
-        var rows = int(rows_field.text)
-        var padding = int(padding_field.text)
-        var spacing = int(spacing_field.text)
+        columns = int(columns_field.text)
+        rows = int(rows_field.text)
+        padding = int(padding_field.text)
+        spacing = int(spacing_field.text)
         
         if columns <= 0: return
         if rows <= 0: return
@@ -63,36 +65,28 @@ func _process(_delta):
         size.x /= columns
         size.y /= rows
         
-        grid.columns = columns
-        while grid.get_child_count() > count:
-            grid.remove_child(grid.get_child(0))
+        tileset.columns = columns
+        while tileset.tiles.size() > count:
+            tileset.remove_tile(tileset.tiles[0])
         
-        while grid.get_child_count() < count:
-            var panel = Panel.new()
-            panel.self_modulate = Color.orange
-            panel.size_flags_horizontal = TextureRect.SIZE_EXPAND_FILL
-            panel.size_flags_vertical = TextureRect.SIZE_EXPAND_FILL
-            var texture = TextureRect.new()
-            texture.expand = true
-            texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+        while tileset.tiles.size() < count:
             var atlas_texture = AtlasTexture.new()
             atlas_texture.atlas = texture_rect.texture
-            texture.texture = atlas_texture
-            texture.anchor_bottom = 1
-            texture.anchor_right = 1
-            grid.add_child(panel)
-            panel.add_child(texture)
+            
+            var tile = TILE_SCENE.instance()
+            tile.texture = atlas_texture
+            tileset.add_tile(tile)
         
         for y in range(rows):
             for x in range(columns):
                 var i = x + y * columns
-                var cell = grid.get_child(i).get_child(0)
+                var tile = tileset.tiles[i]
                 var rx = padding + x * size.x + x * spacing
                 var ry = padding + y * size.y + y * spacing
                 var rwidth = size.x
                 var rheight = size.y
-                cell.name = "Cell (" + String(x) + ", " + String(y) + ")"
-                cell.texture.region = Rect2(rx, ry, rwidth, rheight)
+                tile.name = "Tile (" + String(x) + ", " + String(y) + ")"
+                tile.texture.region = Rect2(rx, ry, rwidth, rheight)
 
 func download_image():
     $HTTPRequest.request($Main/VBoxContainer/DownloadPanel/TextEdit.text)
@@ -103,7 +97,7 @@ func download_complete(_result, _response_code, _headers, body):
     if image_error != OK:
         print("An error occurred while trying to display the image.")
 
-    var texture = ImageTexture.new()
+    texture = ImageTexture.new()
     texture.create_from_image(image)
 
     texture_rect.texture = texture
@@ -118,7 +112,7 @@ func emit_texture_loaded():
 func emit_cancelled():
     reset()
     $Main.visible = false
-    emit_signal("texture_loaded")
+    emit_signal("cancelled")
 
 func reset():
     url = null

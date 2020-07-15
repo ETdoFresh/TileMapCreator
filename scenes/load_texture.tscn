@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/et/load_texture/tiles.svg" type="Texture" id=2]
@@ -8,24 +8,20 @@
 [ext_resource path="res://sprites/et/load_texture/padding.svg" type="Texture" id=6]
 [ext_resource path="res://scripts/load_texture.gd" type="Script" id=7]
 [ext_resource path="res://scenes/menu_button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/tileset.tscn" type="PackedScene" id=9]
 
 [node name="LoadTexture" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MenuButton" parent="." instance=ExtResource( 8 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -140.0
-margin_top = -63.5
-margin_right = 140.0
-margin_bottom = 63.5
+margin_right = 150.0
+margin_bottom = 100.0
 
 [node name="Main" type="Panel" parent="."]
 anchor_right = 1.0
@@ -293,9 +289,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Main/VBoxContainer/ImagePanel/VBoxContainer"]
+anchor_right = 1.0
 margin_right = 1280.0
 margin_bottom = 28.0
-size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -326,6 +322,8 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Main/VBoxContainer/ImagePanel/VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_top = 32.0
 margin_right = 1280.0
 margin_bottom = 255.0
@@ -346,13 +344,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer"]
-margin_left = 642.0
-margin_right = 1280.0
-margin_bottom = 223.0
+[node name="Tileset" parent="Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
+margin_right = -1280.0
+margin_bottom = -223.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 5
 
 [node name="ButtonPanel" type="Panel" parent="Main/VBoxContainer"]
 margin_top = 658.0
@@ -380,8 +376,15 @@ custom_fonts/font = ExtResource( 1 )
 disabled = true
 text = "OK"
 
-[node name="Cancel" type="Button" parent="Main/VBoxContainer/ButtonPanel/HBoxContainer"]
+[node name="MenuButton" parent="Main/VBoxContainer/ButtonPanel/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 642.0
+margin_right = 1280.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+
+[node name="Cancel" type="Button" parent="Main/VBoxContainer/ButtonPanel/HBoxContainer"]
+visible = false
+margin_left = 710.0
 margin_right = 1280.0
 margin_bottom = 62.0
 size_flags_horizontal = 3

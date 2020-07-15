@@ -2,12 +2,27 @@ extends Control
 
 const SLOTS = preload("res://scenes/slots.tscn")
 const FADING_SQUARE = preload("res://scenes/fading_square.tscn")
+const RULE_VIEWER = preload("res://scenes/rule_viewer.tscn")
 
 var step_yield
 
 onready var slots = $Slots
 
 func _ready():
+    #warning-ignore:return_value_discarded
+    $LoadTexture.connect("texture_loaded", self, "start_wfc")
+
+func start_wfc():
+    $CalculatingRules.visible = true
+    yield(get_tree(), "idle_frame")
+    yield(get_tree(), "idle_frame")
+    
+    var rule_viewer = RULE_VIEWER.instance()
+    rule_viewer.load_tileset($LoadTexture.tileset)
+    add_child(rule_viewer)
+    rule_viewer.rect_position = Vector2(96, 96)
+    rule_viewer.rect_size = Vector2(512, 512)
+    
     fill_slots()
     #warning-ignore:return_value_discarded
     $UI/Solve.connect("pressed", self, "solve")
@@ -15,6 +30,8 @@ func _ready():
     $UI/Step.connect("pressed", self, "step")
     #warning-ignore:return_value_discarded
     $UI/Reset.connect("pressed", self, "reset")
+    
+    $CalculatingRules.visible = false
 
 func _input(event):
     if event.is_action_pressed("reset"):

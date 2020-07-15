@@ -1,15 +1,14 @@
 class_name Tileset
 extends GridContainer
 
-var tile_scene = preload("res://scenes/tile.tscn")
-
 var tiles = []
 var active_tiles = []
 var inactive_tiles = []
 
 func _ready():
     for tile in get_children():
-        add_tile(tile)
+        if not tiles.has(tile):
+            add_tile(tile)
 
 func _process(_delta):
     if not visible:
@@ -23,17 +22,18 @@ func add_tile(tile : Tile):
     tiles.append(tile)
     if tile.enabled and not active_tiles.has(tile):
         active_tiles.append(tile)
-    elif not tile.enable and not inactive_tiles.has(tile): 
+    elif not tile.enabled and not inactive_tiles.has(tile): 
         inactive_tiles.append(tile)
     #warning-ignore:return_value_discarded
     tile.connect("enabled_changed", self, "change_tile")
 
-func remove_tile(tile : Tile):
+func remove_tile(tile : Tile):    
     tiles.erase(tile)
     active_tiles.erase(tile)
     inactive_tiles.erase(tile)
-    tile.disconnect("enabled_changed", self, "change_tile")
-    tile.queue_free()
+    if tile:
+        tile.disconnect("enabled_changed", self, "change_tile")
+        tile.free()
 
 func change_tile(tile : Tile, enabled : bool):
     if enabled and not active_tiles.has(tile):
@@ -63,3 +63,9 @@ func reset():
 #    for i in range(tiles.size()):
 #        if tiles[i].get_index() != i:
 #            move_child(tiles[i], i)
+
+func clear():
+    for i in range(tiles.size() - 1, -1, -1):
+        remove_tile(tiles[i])
+    for i in range(get_child_count() - 1, -1, -1):
+        get_child(i).free()

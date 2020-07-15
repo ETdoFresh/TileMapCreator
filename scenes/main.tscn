@@ -12,18 +12,13 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -275.5
-margin_top = -326.0
-margin_right = 275.5
-margin_bottom = 326.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+columns = 2
 
 [node name="Button4" type="Button" parent="GridContainer"]
-margin_right = 551.0
-margin_bottom = 89.0
+margin_right = 638.0
+margin_bottom = 177.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -43,9 +38,9 @@ __meta__ = {
 }
 
 [node name="Button3" type="Button" parent="GridContainer"]
-margin_top = 93.0
-margin_right = 551.0
-margin_bottom = 182.0
+margin_left = 642.0
+margin_right = 1280.0
+margin_bottom = 177.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -65,9 +60,9 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="GridContainer"]
-margin_top = 186.0
-margin_right = 551.0
-margin_bottom = 275.0
+margin_top = 181.0
+margin_right = 638.0
+margin_bottom = 358.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -87,37 +82,52 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="GridContainer"]
-margin_top = 279.0
-margin_right = 551.0
-margin_bottom = 368.0
+margin_left = 642.0
+margin_top = 181.0
+margin_right = 1280.0
+margin_bottom = 358.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Grid Paint"
 
 [node name="Button5" type="Button" parent="GridContainer"]
-margin_top = 372.0
-margin_right = 551.0
-margin_bottom = 461.0
+margin_top = 362.0
+margin_right = 638.0
+margin_bottom = 539.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Load Texture"
 
 [node name="Button6" type="Button" parent="GridContainer"]
-margin_top = 465.0
-margin_right = 551.0
-margin_bottom = 554.0
+margin_left = 642.0
+margin_top = 362.0
+margin_right = 1280.0
+margin_bottom = 539.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "XML Texture Atlas"
 
 [node name="Button7" type="Button" parent="GridContainer"]
-margin_top = 558.0
-margin_right = 551.0
-margin_bottom = 647.0
+margin_top = 543.0
+margin_right = 638.0
+margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Tileset"
+
+[node name="Label" type="Label" parent="GridContainer/Button7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Wave Function
+Collapse Demo 2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

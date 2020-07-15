@@ -114,6 +114,7 @@ rect_min_size = Vector2( 908, 40 )
 text = "https://raw.githubusercontent.com/ETdoFresh/TileMapCreator/master/sprites/kenney_medievalrtspack/Spritesheet/medievalRTS_spritesheet.xml?token=AAJUCE5VOYZRFNUHDKISD5C7CO4RS"
 
 [node name="LoadingLabel" type="Label" parent="MainPanel/VBoxContainer/ContentPanel"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
