@@ -50,7 +50,7 @@ func solve():
     
     step_yield = null
     
-    if slots.is_complete():
+    if slots.is_complete() or slots.is_invalid():
         reset()
     
     var slot = select_lowest_entropy()
@@ -58,9 +58,7 @@ func solve():
         slot.collapse()
         slot.collapse_neighbors($RuleViewer/Rules)
         if slots.is_invalid():
-            slots.queue_free()
-            slots = SLOTS.instance()
-            add_child(slots)
+            reset()
             
         slot = select_lowest_entropy()
     
@@ -102,7 +100,9 @@ func step_solve():
                 fading_square.modulate.b = 0
                 fading_square.position = slot.rect_global_position
                 add_child(fading_square)
-                $UI/Step.disabled = true
+                $UI/Step.text = "Reset"
+                yield()
+                reset()
             if slots.is_complete():
                 slots.add_constant_override("hseparation", 0)
                 slots.add_constant_override("vseparation", 0)

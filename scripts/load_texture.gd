@@ -10,14 +10,20 @@ var url = null
 var texture = null
 var columns = -1
 var rows = -1
-var padding = -1
+var padding_top = -1
+var padding_right = -1
+var padding_bottom = -1
+var padding_left = -1
 var spacing = -1
 
 onready var ok_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/OK
 onready var cancel_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/Cancel
 onready var columns_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Columns
 onready var rows_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Rows
-onready var padding_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Padding
+onready var padding_top_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer/Padding
+onready var padding_right_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer/Padding2
+onready var padding_bottom_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer/Padding3
+onready var padding_left_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer/Padding4
 onready var spacing_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Spacing
 onready var texture_rect = $Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer/TextureRect
 onready var tileset = $Main/VBoxContainer/ImagePanel/VBoxContainer/HBoxContainer/Tileset
@@ -33,8 +39,15 @@ func _ready():
     columns_field.connect("focus_exited", self, "hide_highlight_columns")
     rows_field.connect("focus_entered", self, "show_highlight_rows")
     rows_field.connect("focus_exited", self, "hide_highlight_rows")
-    padding_field.connect("focus_entered", self, "show_highlight_padding")
-    padding_field.connect("focus_exited", self, "hide_highlight_padding")
+    padding_top_field.connect("focus_entered", self, "show_highlight_padding")
+    padding_top_field.connect("focus_exited", self, "hide_highlight_padding")
+    padding_top_field.connect("text_changed", self, "populate_other_paddings")
+    padding_right_field.connect("focus_entered", self, "show_highlight_padding")
+    padding_right_field.connect("focus_exited", self, "hide_highlight_padding")
+    padding_bottom_field.connect("focus_entered", self, "show_highlight_padding")
+    padding_bottom_field.connect("focus_exited", self, "hide_highlight_padding")
+    padding_left_field.connect("focus_entered", self, "show_highlight_padding")
+    padding_left_field.connect("focus_exited", self, "hide_highlight_padding")
     spacing_field.connect("focus_entered", self, "show_highlight_spacing")
     spacing_field.connect("focus_exited", self, "hide_highlight_spacing")
 
@@ -43,23 +56,32 @@ func _process(_delta):
         if not texture_rect.texture: return
         if not columns_field.text.is_valid_integer(): return
         if not rows_field.text.is_valid_integer(): return
-        if not padding_field.text.is_valid_integer(): return
+        if not padding_top_field.text.is_valid_integer(): return
+        if not padding_right_field.text.is_valid_integer(): return
+        if not padding_bottom_field.text.is_valid_integer(): return
+        if not padding_left_field.text.is_valid_integer(): return
         if not spacing_field.text.is_valid_integer(): return
         
         columns = int(columns_field.text)
         rows = int(rows_field.text)
-        padding = int(padding_field.text)
+        padding_top = int(padding_top_field.text)
+        padding_right = int(padding_right_field.text)
+        padding_bottom = int(padding_bottom_field.text)
+        padding_left = int(padding_left_field.text)
         spacing = int(spacing_field.text)
         
         if columns <= 0: return
         if rows <= 0: return
-        if padding < 0: return
+        if padding_top < 0: return
+        if padding_right < 0: return
+        if padding_bottom < 0: return
+        if padding_left < 0: return
         if spacing < 0: return
         
         var count = rows * columns
         var size = texture_rect.texture.get_size()
-        size.x -= padding * 2
-        size.y -= padding * 2
+        size.x -= padding_left + padding_right
+        size.y -= padding_top + padding_bottom
         size.x -= spacing * (columns - 1)
         size.y -= spacing * (rows - 1)
         size.x /= columns
@@ -81,8 +103,8 @@ func _process(_delta):
             for x in range(columns):
                 var i = x + y * columns
                 var tile = tileset.tiles[i]
-                var rx = padding + x * size.x + x * spacing
-                var ry = padding + y * size.y + y * spacing
+                var rx = padding_left + x * size.x + x * spacing
+                var ry = padding_top + y * size.y + y * spacing
                 var rwidth = size.x
                 var rheight = size.y
                 tile.name = "Tile (" + String(x) + ", " + String(y) + ")"
@@ -94,6 +116,10 @@ func download_image():
 func download_complete(_result, _response_code, _headers, body):
     var image = Image.new()
     var image_error = image.load_png_from_buffer(body)
+    if image_error != OK:
+        image_error = image.load_jpg_from_buffer(body)
+    if image_error != OK:
+        image_error = image.load_webp_from_buffer(body)
     if image_error != OK:
         print("An error occurred while trying to display the image.")
 
@@ -119,7 +145,10 @@ func reset():
     texture = null
     columns = -1
     rows = -1
-    padding = -1
+    padding_top = -1
+    padding_right = -1
+    padding_bottom = -1
+    padding_left = -1
     spacing = -1
 
 func show_highlight_columns():
@@ -145,3 +174,11 @@ func show_highlight_padding():
 
 func hide_highlight_padding():
     $Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel/padding.visible = false
+
+func populate_other_paddings():
+    if padding_right_field.text == padding_bottom_field.text \
+    and padding_bottom_field.text == padding_left_field.text:
+        var value = padding_top_field.text
+        padding_right_field.text = value
+        padding_bottom_field.text = value
+        padding_left_field.text = value
