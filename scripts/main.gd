@@ -11,6 +11,7 @@ func _ready():
     $GridContainer/Button6.connect("pressed", self, "load_xml_atlas")
     $GridContainer/Button7.connect("pressed", self, "load_wfc_2")
     $GridContainer/Button8.connect("pressed", self, "load_file_io")
+    $GridContainer/Button9.connect("pressed", self, "load_single_tile")
 
 func load_paint_grid():
     get_tree().change_scene("res://scenes/paint_grid.tscn")
@@ -35,3 +36,6 @@ func load_wfc_2():
 
 func load_file_io():
     get_tree().change_scene("res://scenes/file_io.tscn")
+
+func load_single_tile():
+    get_tree().change_scene("res://scenes/load_single_tile.tscn")

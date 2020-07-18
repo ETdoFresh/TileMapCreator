@@ -1,0 +1,193 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/tileset_editor.gd" type="Script" id=1]
+[ext_resource path="res://scenes/tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/tileset.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends GridContainer
+
+func _process(_delta):
+    if not visible:
+        return
+    
+    columns = int(max(round(sqrt(get_child_count())), 1))
+"
+
+[node name="TilesetEditor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tileset" parent="." instance=ExtResource( 3 )]
+
+[node name="Tile" parent="Tileset" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 317.0
+margin_bottom = 720.0
+
+[node name="Tile2" parent="Tileset" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 321.0
+margin_right = 638.0
+margin_bottom = 720.0
+
+[node name="Tile3" parent="Tileset" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 642.0
+margin_right = 959.0
+margin_bottom = 720.0
+
+[node name="Tile4" parent="Tileset" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 963.0
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="DeleteOverlay" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+columns = 4
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tile" type="Control" parent="DeleteOverlay"]
+margin_right = 317.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DeleteButton" type="Button" parent="DeleteOverlay/Tile"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -34.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Delete"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tile2" type="Control" parent="DeleteOverlay"]
+margin_left = 321.0
+margin_right = 638.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DeleteButton" type="Button" parent="DeleteOverlay/Tile2"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -34.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Delete"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tile3" type="Control" parent="DeleteOverlay"]
+margin_left = 642.0
+margin_right = 959.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DeleteButton" type="Button" parent="DeleteOverlay/Tile3"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -34.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Delete"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tile4" type="Control" parent="DeleteOverlay"]
+margin_left = 963.0
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DeleteButton" type="Button" parent="DeleteOverlay/Tile4"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -34.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Delete"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_right = 258.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 5 )
+text = "Add Individual Tile(s)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 258.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 5 )
+text = "Add Uniform Tile Sheet"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 258.0
+margin_bottom = 110.0
+custom_fonts/font = ExtResource( 5 )
+text = "Add Atlas Tilesheet"
+__meta__ = {
+"_edit_use_anchors_": false
+}

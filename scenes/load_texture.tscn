@@ -83,7 +83,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "Columns (qty)"
 valign = 1
 
-[node name="Columns" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+[node name="Columns" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
 margin_left = 504.0
 margin_right = 1004.0
 margin_bottom = 41.0
@@ -103,7 +103,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "Rows (qty)"
 valign = 1
 
-[node name="Rows" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+[node name="Rows" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
 margin_left = 504.0
 margin_top = 45.0
 margin_right = 1004.0
@@ -130,7 +130,7 @@ margin_top = 90.0
 margin_right = 1004.0
 margin_bottom = 131.0
 
-[node name="Padding" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
+[node name="Padding" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
 margin_right = 122.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
@@ -138,7 +138,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 
-[node name="Padding2" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
+[node name="Padding2" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
 margin_left = 126.0
 margin_right = 248.0
 margin_bottom = 41.0
@@ -147,7 +147,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 
-[node name="Padding3" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
+[node name="Padding3" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
 margin_left = 252.0
 margin_right = 374.0
 margin_bottom = 41.0
@@ -156,7 +156,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 
-[node name="Padding4" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
+[node name="Padding4" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/HBoxContainer"]
 margin_left = 378.0
 margin_right = 500.0
 margin_bottom = 41.0
@@ -176,7 +176,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "Spacing (px)"
 valign = 1
 
-[node name="Spacing" type="TextEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
+[node name="Spacing" type="LineEdit" parent="Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer"]
 margin_left = 504.0
 margin_top = 135.0
 margin_right = 1004.0
@@ -277,7 +277,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextEdit" type="TextEdit" parent="Main/VBoxContainer/DownloadPanel"]
+[node name="TextEdit" type="LineEdit" parent="Main/VBoxContainer/DownloadPanel"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -287,9 +287,6 @@ margin_right = -105.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
 text = "https://raw.githubusercontent.com/ETdoFresh/TileMapCreator/master/sprites/kenney_medievalrtspack/Spritesheet/medievalRTS_texture_packer.png?token=AAJUCE4WCUULT5N3MZFK2NK7CO6ZK"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button" type="Button" parent="Main/VBoxContainer/DownloadPanel"]
 margin_left = 576.946

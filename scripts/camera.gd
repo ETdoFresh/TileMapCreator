@@ -13,7 +13,7 @@ var zoom_event_position
 var camera_start_position
 var camera_end_position
 
-func _unhandled_input(event):
+func _gui_input(event):
     handle_event(event)
 
 func handle_event(event):

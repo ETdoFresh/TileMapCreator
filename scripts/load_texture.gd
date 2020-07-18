@@ -175,7 +175,7 @@ func show_highlight_padding():
 func hide_highlight_padding():
     $Main/VBoxContainer/SettingsPanel/HBoxContainer/Panel/padding.visible = false
 
-func populate_other_paddings():
+func populate_other_paddings(_text):
     if padding_right_field.text == padding_bottom_field.text \
     and padding_bottom_field.text == padding_left_field.text:
         var value = padding_top_field.text
