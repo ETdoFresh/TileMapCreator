@@ -1,4 +1,3 @@
-tool
 extends GridContainer
 
 export var auto_populate = true

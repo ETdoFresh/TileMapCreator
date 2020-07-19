@@ -3,8 +3,6 @@ extends Control
 #const DATA_PATH = "user://save_01.tres"
 const DATA_PATH = "res://prefabs/save/save_01.tres"
 
-var data = Save.new()
-
 onready var is_persistent = $Panel/VBoxContainer/Control/GridContainer/IsPersistent
 onready var test_int = $Panel/VBoxContainer/Control/GridContainer/TestInt
 onready var test_float = $Panel/VBoxContainer/Control/GridContainer/TestFloat
@@ -19,14 +17,15 @@ func _ready():
     load_button.connect("pressed", self, "load_data")
 
 func save_data():
+    var data = Save.new()
     data.test_int = int(test_int.text)
     data.test_float = float(test_float.text)
     data.test_string = test_string.text
     data.test_boolean = test_boolean.pressed
-    ResourceSaver.save(DATA_PATH, data)
+    var _error = ResourceSaver.save(DATA_PATH, data)
 
 func load_data():
-    data = ResourceLoader.load(DATA_PATH, "", true)
+    var data = ResourceLoader.load(DATA_PATH, "", true)
     test_int.text = String(data.test_int)
     test_float.text = String(data.test_float)
     test_string.text = data.test_string
