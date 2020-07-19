@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/wave_function_collapse_demo/slots.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prefabs/menu_button/menu_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/arial_48.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/wave_function_collapse_demo/wave_function_collapse.gd" type="Script" id=5]
+[ext_resource path="res://scenes/wave_function_collapse_demo/rule_viewer.tscn" type="PackedScene" id=6]
+
+
+
+
+
+[node name="WaveFunctionCollapse" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slots" parent="." instance=ExtResource( 2 )]
+margin_left = 672.0
+margin_top = 96.0
+margin_right = 1184.0
+margin_bottom = 608.0
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1280.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Step" type="Button" parent="UI"]
+margin_left = 672.0
+margin_top = 612.0
+margin_right = 822.0
+margin_bottom = 712.0
+custom_fonts/font = ExtResource( 4 )
+text = "Step"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Solve" type="Button" parent="UI"]
+margin_left = 834.0
+margin_top = 612.0
+margin_right = 984.0
+margin_bottom = 712.0
+custom_fonts/font = ExtResource( 4 )
+text = "Solve"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="UI"]
+visible = false
+margin_left = 996.0
+margin_top = 612.0
+margin_right = 1146.0
+margin_bottom = 712.0
+custom_fonts/font = ExtResource( 4 )
+text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesetLabel" type="Label" parent="UI"]
+anchor_top = -0.00161993
+anchor_bottom = -0.00161993
+margin_left = 96.0
+margin_top = 26.1664
+margin_right = 608.0
+margin_bottom = 81.1664
+custom_fonts/font = ExtResource( 4 )
+text = "Tileset"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlotsLabel" type="Label" parent="UI"]
+margin_left = 672.0
+margin_top = 25.0
+margin_right = 1184.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 4 )
+text = "Slots"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" parent="." instance=ExtResource( 3 )]
+margin_right = 150.0
+margin_bottom = 100.0
+
+[node name="RuleViewer" parent="." instance=ExtResource( 6 )]
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 608.0
+margin_bottom = 608.0

@@ -12,32 +12,32 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Rules",
 "language": "GDScript",
-"path": "res://scripts/rules.gd"
+"path": "res://scenes/wave_function_collapse_demo/rules.gd"
 }, {
 "base": "Resource",
 "class": "Save",
 "language": "GDScript",
-"path": "res://save/save.gd"
+"path": "res://prefabs/save/save.gd"
 }, {
 "base": "Tileset",
 "class": "Slot",
 "language": "GDScript",
-"path": "res://scripts/slot.gd"
+"path": "res://scenes/wave_function_collapse_demo/slot.gd"
 }, {
 "base": "TextureRect",
 "class": "TextureRectAsButton",
 "language": "GDScript",
-"path": "res://scripts/texture_rect_as_button.gd"
+"path": "res://prefabs/texture_rect_as_button/texture_rect_as_button.gd"
 }, {
 "base": "TextureRectAsButton",
 "class": "Tile",
 "language": "GDScript",
-"path": "res://scripts/tile.gd"
+"path": "res://prefabs/tile/tile.gd"
 }, {
 "base": "GridContainer",
 "class": "Tileset",
 "language": "GDScript",
-"path": "res://scripts/tileset.gd"
+"path": "res://prefabs/tileset/tileset.gd"
 } ]
 _global_script_class_icons={
 "Rules": "",
@@ -51,12 +51,12 @@ _global_script_class_icons={
 [application]
 
 config/name="TileMapCreator"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main/main.tscn"
 config/icon="res://sprites/iconscout/tile/tile.png"
 
 [autoload]
 
-Util="*res://scripts/util.gd"
+Util="*res://autoload/util.gd"
 
 [display]
 
@@ -82,4 +82,4 @@ pointing/emulate_touch_from_mouse=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default/default_env.tres"
+environment/default_environment="res://autoload/default_env.tres"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/wave_function_collapse_demo/fading_square.gd" type="Script" id=1]
+[ext_resource path="res://sprites/et/white_box.svg" type="Texture" id=2]
+
+[node name="FadingSquare" type="Sprite"]
+modulate = Color( 0.921569, 1, 0, 0.501961 )
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

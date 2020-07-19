@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/load_tilesheet/load_texture.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/wave_function_collapse_demo/slots.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/arial_48.tres" type="DynamicFont" id=9]
+[ext_resource path="res://scenes/wave_function_collapse_demo/wave_function_collapse2.gd" type="Script" id=27]
+
+
+
+
+[node name="WaveFunctionCollapse2" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slots" parent="." instance=ExtResource( 3 )]
+margin_left = 672.0
+margin_top = 96.0
+margin_right = 1184.0
+margin_bottom = 608.0
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Step" type="Button" parent="UI"]
+margin_left = 672.0
+margin_top = 612.0
+margin_right = 822.0
+margin_bottom = 712.0
+custom_fonts/font = ExtResource( 9 )
+text = "Step"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Solve" type="Button" parent="UI"]
+margin_left = 834.0
+margin_top = 612.0
+margin_right = 984.0
+margin_bottom = 712.0
+custom_fonts/font = ExtResource( 9 )
+text = "Solve"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="UI"]
+visible = false
+margin_left = 996.0
+margin_top = 612.0
+margin_right = 1146.0
+margin_bottom = 712.0
+custom_fonts/font = ExtResource( 9 )
+text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesetLabel" type="Label" parent="UI"]
+anchor_top = -0.00161993
+anchor_bottom = -0.00161993
+margin_left = 96.0
+margin_top = 26.1664
+margin_right = 608.0
+margin_bottom = 81.1664
+custom_fonts/font = ExtResource( 9 )
+text = "Tileset"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlotsLabel" type="Label" parent="UI"]
+margin_left = 672.0
+margin_top = 25.0
+margin_right = 1184.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 9 )
+text = "Slots"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadTexture" parent="." instance=ExtResource( 1 )]
+
+[node name="CalculatingRules" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 0, 0.741176, 1, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -100.0
+margin_right = 250.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CalculatingRules"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 9 )
+text = "Calculating Rules"
+align = 1
+valign = 1
