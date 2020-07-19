@@ -20,4 +20,4 @@ func add_square(index):
     $SimplexNoise.add_child(new_square)
 
 func reset():
-    get_tree().change_scene("res://scenes/random_noise_demo/random_noise_demo.tscn")
+    get_tree().change_scene_to(Scene.RANDOM_NOISE_DEMO)

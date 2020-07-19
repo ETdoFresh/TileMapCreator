@@ -2,11 +2,6 @@ extends Control
 
 signal tileset_updated
 
-const IND_TILE_SCENE = preload("res://scenes/load_single_tile/load_single_tile.tscn")
-const TILESHEET_SCENE = preload("res://scenes/load_tilesheet/load_texture.tscn")
-const ATLAS_TILESHEET_SCENE = preload("res://scenes/load_atlas_tilesheet/load_texture_atlas_xml.tscn")
-const DELETE_OVERLAY_CONTROL = preload("res://scenes/load_single_tile/DeleteOverlayControl.tscn")
-
 var tiles setget , get_tiles
 
 onready var add_tile_button = $CanvasLayer/VBoxContainer/AddIndividualTile
@@ -28,17 +23,17 @@ func get_tiles():
     return tileset.tiles
 
 func add_tile_prompt():
-    var scene = IND_TILE_SCENE.instance()
+    var scene = Scene.TILE_PROMPT.instance()
     scene.connect("tile_loaded", self, "add_tile", [scene])
     $CanvasLayer.add_child(scene)
 
 func add_tilesheet_prompt():
-    var scene = TILESHEET_SCENE.instance()
+    var scene = Scene.TILESHEET_PROMPT.instance()
     scene.connect("tiles_loaded", self, "add_tiles", [scene])
     $CanvasLayer.add_child(scene)
 
 func add_atlas_tilesheet_prompt():
-    var scene = ATLAS_TILESHEET_SCENE.instance()
+    var scene = Scene.ATLAS_TILESHEET_PROMPT.instance()
     $CanvasLayer.add_child(scene)
 
 func add_tile(tile_prompt):
@@ -55,7 +50,7 @@ func add_tiles(tiles_prompt):
         add_delete_tile()
 
 func add_delete_tile():
-    var tile = DELETE_OVERLAY_CONTROL.instance()
+    var tile = Prefab.DELETE_TILE_OVERLAY.instance()
     var delete_button = tile.get_child(0)
     delete_button.connect("pressed", self, "delete_tile", [tile])
     $DeleteOverlay.add_child(tile)

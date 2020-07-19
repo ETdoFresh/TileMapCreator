@@ -1,9 +1,5 @@
 extends Control
 
-const SLOTS = preload("res://scenes/wave_function_collapse_demo/slots.tscn")
-const FADING_SQUARE = preload("res://scenes/wave_function_collapse_demo/fading_square.tscn")
-const RULE_VIEWER = preload("res://scenes/wave_function_collapse_demo/rule_viewer.tscn")
-
 var step_yield
 
 onready var slots = $Slots
@@ -17,7 +13,7 @@ func start_wfc():
     yield(get_tree(), "idle_frame")
     yield(get_tree(), "idle_frame")
     
-    var rule_viewer = RULE_VIEWER.instance()
+    var rule_viewer = Scene.RULE_VIEWER.instance()
     rule_viewer.load_tileset($LoadTexture.tileset)
     add_child(rule_viewer)
     rule_viewer.rect_position = Vector2(96, 96)
@@ -78,7 +74,7 @@ func step_solve():
     var slot = select_lowest_entropy()
     if slot:
         slot.collapse()
-        var fading_square = FADING_SQUARE.instance()
+        var fading_square = Prefab.FADING_SQUARE.instance()
         fading_square.position = slot.rect_global_position
         add_child(fading_square)
         
@@ -94,7 +90,7 @@ func step_solve():
             slot.collapse_neighbors($RuleViewer/Rules)
             
             if slots.is_invalid():
-                fading_square = FADING_SQUARE.instance()
+                fading_square = Prefab.FADING_SQUARE.instance()
                 fading_square.modulate.r = 1
                 fading_square.modulate.g = 0
                 fading_square.modulate.b = 0

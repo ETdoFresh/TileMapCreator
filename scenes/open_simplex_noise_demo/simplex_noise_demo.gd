@@ -26,7 +26,6 @@ func generate_map():
         var o = image.get_pixel(x, y).v
         o = map(o, 0.0, 0.9, 0.0, 1.0)
         add_square(o)
-        print(i, ": ", o)
     
     image.unlock()
 
@@ -48,9 +47,8 @@ func add_square(o):
             var square = $Layer1Palette.get_child(index)
             var new_square = square.duplicate()
             $SimplexNoise.add_child(new_square)
-            print(index)
             return
         index += 1
 
 func reset():
-    get_tree().change_scene("res://scenes/open_simplex_noise_demo/simplex_noise_demo.tscn")
+    get_tree().change_scene_to(Scene.OPEN_SIMPLEX_NOISE_DEMO)

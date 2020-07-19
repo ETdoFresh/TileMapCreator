@@ -3,8 +3,6 @@ extends Control
 signal tile_loaded
 signal cancelled
 
-const TILE_SCENE = preload("res://prefabs/tile/tile.tscn")
-
 var tile
 
 onready var rows = $Main/VBoxContainer/ScrollContainer/VBoxContainer
@@ -62,7 +60,7 @@ func cancel():
     emit_signal("cancelled")
 
 func reset():
-    tile = TILE_SCENE.instance()
+    tile = Prefab.TILE.instance()
 
 func add_row():
     rows.add_child(row.duplicate())

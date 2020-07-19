@@ -14,28 +14,28 @@ func _ready():
     $GridContainer/Button9.connect("pressed", self, "load_single_tile")
 
 func load_paint_grid():
-    get_tree().change_scene("res://scenes/map_editor/paint_grid.tscn")
+    get_tree().change_scene_to(Scene.MAP_EDITOR)
 
 func load_wfc():
-    get_tree().change_scene("res://scenes/wave_function_collapse_demo/wave_function_collapse.tscn")
+    get_tree().change_scene_to(Scene.WAVE_FUNCTION_COLLAPSE_DEMO)
 
 func load_simplex():
-    get_tree().change_scene("res://scenes/open_simplex_noise_demo/simplex_noise_demo.tscn")
+    get_tree().change_scene_to(Scene.OPEN_SIMPLEX_NOISE_DEMO)
 
 func load_random():
-    get_tree().change_scene("res://scenes/random_noise_demo/random_noise_demo.tscn")
+    get_tree().change_scene_to(Scene.RANDOM_NOISE_DEMO)
 
 func load_load_texture():
-    get_tree().change_scene("res://scenes/load_tilesheet/load_texture.tscn")
+    get_tree().change_scene_to(Scene.TILESHEET_PROMPT)
 
 func load_xml_atlas():
-    get_tree().change_scene("res://scenes/load_atlas_tilesheet/load_texture_atlas_xml.tscn")
+    get_tree().change_scene_to(Scene.ATLAS_TILESHEET_PROMPT)
 
 func load_wfc_2():
-    get_tree().change_scene("res://scenes/wave_function_collapse_demo/wfc_2.tscn")
+    get_tree().change_scene_to(Scene.WAVE_FUNCTION_COLLAPSE_DEMO2)
 
 func load_file_io():
-    get_tree().change_scene("res://scenes/file_io/file_io.tscn")
+    get_tree().change_scene_to(Scene.FILE_IO)
 
 func load_single_tile():
-    get_tree().change_scene("res://scenes/load_single_tile/load_single_tile.tscn")
+    get_tree().change_scene_to(Scene.TILE_PROMPT)

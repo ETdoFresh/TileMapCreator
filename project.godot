@@ -57,6 +57,8 @@ config/icon="res://sprites/iconscout/tile/tile.png"
 [autoload]
 
 Util="*res://autoload/util.gd"
+Scene="*res://autoload/scene.gd"
+Prefab="*res://autoload/prefab.gd"
 
 [display]
 

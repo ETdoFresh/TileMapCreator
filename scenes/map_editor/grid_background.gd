@@ -1,8 +1,6 @@
 tool
 extends GridContainer
 
-const GridBackgroundSquare = preload("res://scenes/map_editor/grid_background_square.tscn")
-
 export var auto_populate = true
 export var rows = 1
 
@@ -11,7 +9,7 @@ func _process(_delta):
         return
         
     while get_child_count() < rows * columns:
-        var child = GridBackgroundSquare.instance()
+        var child = Prefab.GRID_BACKGROUND_SQUARE.instance()
         add_child(child)
     
     while get_child_count() > rows * columns:

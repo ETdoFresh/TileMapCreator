@@ -1,8 +1,6 @@
 #warning-ignore-all: return_value_discarded
 extends Control
 
-const TILE_SCENE = preload("res://prefabs/tile/tile.tscn")
-
 signal tiles_loaded
 signal cancelled
 
@@ -98,7 +96,7 @@ func _process(_delta):
             var atlas_texture = AtlasTexture.new()
             atlas_texture.atlas = texture_rect.texture
             
-            var tile = TILE_SCENE.instance()
+            var tile = Prefab.TILE.instance()
             tile.texture = atlas_texture
             tileset.add_tile(tile)
         
