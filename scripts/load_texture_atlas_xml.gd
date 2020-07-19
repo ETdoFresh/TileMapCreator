@@ -6,6 +6,9 @@ var texture
 
 func _ready():
     $MainPanel/VBoxContainer/Buttons/HBoxContainer/OK.connect("pressed", self, "download_files")
+    
+    if get_parent() != get_tree().get_root():
+        $MenuButton.queue_free()
 
 func download_files():
     $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/ImageURL.readonly = true

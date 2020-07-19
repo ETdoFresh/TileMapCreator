@@ -3,7 +3,7 @@ extends Control
 
 const TILE_SCENE = preload("res://scenes/tile.tscn")
 
-signal texture_loaded
+signal tiles_loaded
 signal cancelled
 
 var url = null
@@ -50,6 +50,9 @@ func _ready():
     padding_left_field.connect("focus_exited", self, "hide_highlight_padding")
     spacing_field.connect("focus_entered", self, "show_highlight_spacing")
     spacing_field.connect("focus_exited", self, "hide_highlight_spacing")
+    
+    if get_parent() != get_tree().get_root():
+        $MenuButton.queue_free()
 
 func _process(_delta):
     if $Main/VBoxContainer/ImagePanel.visible:
@@ -133,7 +136,7 @@ func download_complete(_result, _response_code, _headers, body):
 
 func emit_texture_loaded():
     $Main.visible = false
-    emit_signal("texture_loaded")
+    emit_signal("tiles_loaded")
 
 func emit_cancelled():
     reset()

@@ -15,14 +15,21 @@ onready var download_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/
 onready var add_row_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/AddRowButton
 onready var delete_row_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DeleteRowButton
 onready var ok_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/OK
+onready var cancel_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/Cancel
 
 func _ready():
     reset()
     download_button.connect("pressed", self, "download_tile")
     add_row_button.connect("pressed", self, "add_row")
     ok_button.connect("pressed", self, "ok")
+    cancel_button.connect("pressed", self, "cancel")
+    
+    if get_parent() != get_tree().get_root():
+        while find_node("MenuButton"):
+            find_node("MenuButton").free()
 
 func download_tile():
+    #warning-ignore:return_value_discarded
     $HTTPRequest.connect("request_completed", self, "download_complete")
     $HTTPRequest.request(url.text)
 
@@ -49,7 +56,7 @@ func ok():
     $Main.visible = false
     emit_signal("tile_loaded")
 
-func emit_cancelled():
+func cancel():
     reset()
     $Main.visible = false
     emit_signal("cancelled")
