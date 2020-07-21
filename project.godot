@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "ControlCanvasLayer",
+"language": "GDScript",
+"path": "res://prefabs/control_canvas_layer/control_canvas_layer.gd"
+}, {
 "base": "Node2D",
 "class": "Rules",
 "language": "GDScript",
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://prefabs/tileset/tileset.gd"
 } ]
 _global_script_class_icons={
+"ControlCanvasLayer": "",
 "Rules": "",
 "Save": "",
 "Slot": "",
@@ -74,10 +80,6 @@ reset={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

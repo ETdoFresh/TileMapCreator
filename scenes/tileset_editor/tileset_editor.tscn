@@ -16,6 +16,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="EmptyMessage" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,6 +33,9 @@ text = "Your Tileset is empty.
 Please add tile(s) to your tileset before using the Map Editor."
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tileset" parent="." instance=ExtResource( 3 )]
 margin_left = 150.0
@@ -41,9 +53,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Control" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 margin_top = 150.0
 margin_right = 150.0
 margin_bottom = 562.0
@@ -51,7 +66,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AddIndividualTile" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="AddIndividualTile" type="Button" parent="Control/VBoxContainer"]
 margin_right = 150.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 150, 100 )
@@ -60,7 +75,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/AddIndividualTile"]
+[node name="Label" type="Label" parent="Control/VBoxContainer/AddIndividualTile"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 5 )
@@ -72,7 +87,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AddTileSheet" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="AddTileSheet" type="Button" parent="Control/VBoxContainer"]
 margin_top = 104.0
 margin_right = 150.0
 margin_bottom = 204.0
@@ -82,7 +97,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/AddTileSheet"]
+[node name="Label" type="Label" parent="Control/VBoxContainer/AddTileSheet"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 5 )
@@ -95,7 +110,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AddAtlasTilesheet" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="AddAtlasTilesheet" type="Button" parent="Control/VBoxContainer"]
 margin_top = 208.0
 margin_right = 150.0
 margin_bottom = 308.0
@@ -105,7 +120,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/AddAtlasTilesheet"]
+[node name="Label" type="Label" parent="Control/VBoxContainer/AddAtlasTilesheet"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 5 )
@@ -118,7 +133,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Confirm" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Confirm" type="Button" parent="Control/VBoxContainer"]
 margin_top = 312.0
 margin_right = 150.0
 margin_bottom = 412.0
@@ -129,7 +144,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/Confirm"]
+[node name="Label" type="Label" parent="Control/VBoxContainer/Confirm"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 5 )

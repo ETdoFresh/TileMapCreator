@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://prefabs/tileset/tileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/map_editor/grid_background.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/map_editor/not_yet_implemented_popup.gd" type="Script" id=8]
 [ext_resource path="res://scenes/map_editor/paint_grid.gd" type="Script" id=9]
 [ext_resource path="res://prefabs/menu_button/menu_button.tscn" type="PackedScene" id=10]
+[ext_resource path="res://prefabs/control_canvas_layer/control_canvas_layer.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -24,6 +25,14 @@ __meta__ = {
 position = Vector2( 640, 360 )
 current = true
 script = ExtResource( 3 )
+
+[node name="Background" type="Control" parent="Camera2D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -20480.0
+margin_top = -11520.0
+margin_right = 20480.0
+margin_bottom = 11520.0
 
 [node name="GridBackground" type="GridContainer" parent="."]
 margin_right = 640.0
@@ -42,16 +51,21 @@ rows = 10
 margin_right = 64.0
 margin_bottom = 640.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Tileset" parent="." instance=ExtResource( 1 )]
+visible = false
 
-[node name="GUI_Background" type="Control" parent="CanvasLayer"]
+[node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Control" type="Control" parent="UI/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -59,7 +73,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TopToolbar" type="Panel" parent="CanvasLayer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopToolbar" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer"]
 margin_right = 1280.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 0, 34 )
@@ -68,7 +90,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="CanvasLayer/VBoxContainer/TopToolbar"]
+[node name="Panel" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar"]
 modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,7 +100,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TopToolbar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -87,7 +109,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="NewButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_right = 98.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
@@ -95,7 +117,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "New"
 
-[node name="OpenButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="OpenButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 102.0
 margin_right = 200.0
 margin_bottom = 34.0
@@ -104,7 +126,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Open"
 
-[node name="DownloadButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="DownloadButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 204.0
 margin_right = 320.0
 margin_bottom = 34.0
@@ -113,7 +135,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Download"
 
-[node name="UndoButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="UndoButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 324.0
 margin_right = 422.0
 margin_bottom = 34.0
@@ -122,7 +144,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Undo"
 
-[node name="RedoButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="RedoButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 426.0
 margin_right = 524.0
 margin_bottom = 34.0
@@ -131,7 +153,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Redo"
 
-[node name="ResizeGridButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="ResizeGridButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 528.0
 margin_right = 664.0
 margin_bottom = 34.0
@@ -140,7 +162,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Resize Grid"
 
-[node name="SelectButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="SelectButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 668.0
 margin_right = 766.0
 margin_bottom = 34.0
@@ -149,7 +171,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Select"
 
-[node name="DrawButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="DrawButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 770.0
 margin_right = 868.0
 margin_bottom = 34.0
@@ -158,7 +180,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Draw"
 
-[node name="PanButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="PanButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 872.0
 margin_right = 970.0
 margin_bottom = 34.0
@@ -167,7 +189,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Pan"
 
-[node name="ZoomButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="ZoomButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 974.0
 margin_right = 1072.0
 margin_bottom = 34.0
@@ -176,7 +198,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Zoom"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer"]
 margin_left = 1076.0
 margin_right = 1174.0
 margin_bottom = 34.0
@@ -185,7 +207,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 text = "Settings"
 
-[node name="MenuButton" parent="CanvasLayer/VBoxContainer/TopToolbar/HBoxContainer" instance=ExtResource( 10 )]
+[node name="MenuButton" parent="UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer" instance=ExtResource( 10 )]
 margin_left = 1178.0
 margin_right = 1280.0
 margin_bottom = 34.0
@@ -193,67 +215,75 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 
-[node name="ContentUI" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="ContentUI" type="HBoxContainer" parent="UI/CanvasLayer/Control/VBoxContainer"]
 margin_top = 38.0
 margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ToolsPanel" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI"]
+margin_right = 64.0
+margin_bottom = 682.0
+rect_min_size = Vector2( 64, 0 )
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 603.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer"]
+margin_top = 607.0
+margin_right = 100.0
+margin_bottom = 682.0
+
+[node name="TilesetButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 100, 75 )
+custom_fonts/font = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer/VBoxContainer/TilesetButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 7 )
+text = "Tileset
+Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContentControl" type="Control" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI"]
+margin_left = 68.0
+margin_right = 1020.0
 margin_bottom = 682.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsPanel" type="Panel" parent="CanvasLayer/VBoxContainer/ContentUI"]
-margin_right = 64.0
-margin_bottom = 644.0
-rect_min_size = Vector2( 64, 0 )
-size_flags_vertical = 3
-
-[node name="ContentControl" type="Control" parent="CanvasLayer/VBoxContainer/ContentUI"]
-margin_left = 68.0
-margin_right = 1020.0
-margin_bottom = 644.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="LayersPanel" type="Panel" parent="CanvasLayer/VBoxContainer/ContentUI"]
+[node name="LayersPanel" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI"]
 margin_left = 1024.0
 margin_right = 1280.0
-margin_bottom = 644.0
+margin_bottom = 682.0
 rect_min_size = Vector2( 256, 0 )
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-margin_top = 686.0
-margin_right = 1280.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 0, 30 )
-mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="TilesetButton" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-margin_right = 175.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 175, 0 )
-custom_fonts/font = ExtResource( 7 )
-text = "Tileset Editor"
-
-[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-margin_left = 179.0
-margin_right = 1101.0
-margin_bottom = 34.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MapEditorButton" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-margin_left = 1105.0
-margin_right = 1280.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 175, 0 )
-custom_fonts/font = ExtResource( 7 )
-text = "Map Editor"
-
-[node name="NotYetImplementedPopup" type="PopupPanel" parent="CanvasLayer"]
+[node name="NotYetImplementedPopup" type="PopupPanel" parent="UI/CanvasLayer/Control"]
 self_modulate = Color( 1, 1, 1, 0.105882 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -263,7 +293,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelBackground" type="Panel" parent="CanvasLayer/NotYetImplementedPopup"]
+[node name="PanelBackground" type="Panel" parent="UI/CanvasLayer/Control/NotYetImplementedPopup"]
 self_modulate = Color( 1, 1, 1, 0.129412 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -272,7 +302,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="CanvasLayer/NotYetImplementedPopup/PanelBackground"]
+[node name="Panel" type="Panel" parent="UI/CanvasLayer/Control/NotYetImplementedPopup/PanelBackground"]
 anchor_left = 0.3
 anchor_top = 0.3
 anchor_right = 0.7
@@ -281,7 +311,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/NotYetImplementedPopup/PanelBackground/Panel"]
+[node name="Label" type="Label" parent="UI/CanvasLayer/Control/NotYetImplementedPopup/PanelBackground/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -294,7 +324,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="CanvasLayer/NotYetImplementedPopup/PanelBackground/Panel"]
+[node name="Button" type="Button" parent="UI/CanvasLayer/Control/NotYetImplementedPopup/PanelBackground/Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -306,7 +336,7 @@ margin_bottom = 74.0
 custom_fonts/font = ExtResource( 7 )
 text = "OK"
 
-[node name="BottomPanel" type="Panel" parent="CanvasLayer"]
+[node name="BottomPanel" type="Panel" parent="UI/CanvasLayer/Control"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_left = 0.25
@@ -318,7 +348,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BottomPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/Control/BottomPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -332,7 +362,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BottomPanel/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer"]
 margin_right = 120.0
 margin_bottom = 95.0
 size_flags_horizontal = 3
@@ -341,7 +371,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer"]
 margin_right = 120.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
@@ -352,7 +382,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer"]
 margin_top = 81.0
 margin_right = 120.0
 margin_bottom = 95.0
@@ -360,7 +390,7 @@ text = "Your Map"
 align = 1
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/BottomPanel/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer"]
 margin_left = 160.0
 margin_right = 280.0
 margin_bottom = 95.0
@@ -370,7 +400,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
 margin_right = 120.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
@@ -381,7 +411,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
 margin_top = 81.0
 margin_right = 120.0
 margin_bottom = 95.0
@@ -389,7 +419,7 @@ text = "CCC #1"
 align = 1
 valign = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/BottomPanel/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer"]
 margin_left = 320.0
 margin_right = 440.0
 margin_bottom = 95.0
@@ -399,7 +429,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer3"]
 margin_right = 120.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
@@ -410,7 +440,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer3"]
 margin_top = 81.0
 margin_right = 120.0
 margin_bottom = 95.0
@@ -418,7 +448,7 @@ text = "CCC #2"
 align = 1
 valign = 1
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/BottomPanel/HBoxContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer"]
 margin_left = 480.0
 margin_right = 600.0
 margin_bottom = 95.0
@@ -428,7 +458,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer4"]
+[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer4"]
 margin_right = 120.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
@@ -439,7 +469,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/BottomPanel/HBoxContainer/VBoxContainer4"]
+[node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer4"]
 margin_top = 81.0
 margin_right = 120.0
 margin_bottom = 95.0
@@ -447,7 +477,7 @@ text = "CCC #3"
 align = 1
 valign = 1
 
-[node name="EmptyTilesetWarning" type="Label" parent="CanvasLayer"]
+[node name="EmptyTilesetWarning" type="Label" parent="UI/CanvasLayer/Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -465,7 +495,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TilesetButton" type="Button" parent="CanvasLayer/EmptyTilesetWarning"]
+[node name="TilesetButton" type="Button" parent="UI/CanvasLayer/Control/EmptyTilesetWarning"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -479,6 +509,3 @@ text = "Tileset Editor"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Tileset" parent="." instance=ExtResource( 1 )]
-visible = false

@@ -5,32 +5,34 @@ export var was_pressed = false
 var zoomLevel = [0.0625, 0.125, 0.25, 0.50, 0.75, 1.00, 2.00, 4.00, 8.00, 16.00, 32.00]
 var zoomIndex = 5
 
-var start_posiiton = Vector2()
-var event_position = Vector2()
-var pointer_start_position = null
+var event_start_position
 
 var zoom_event_position
 var camera_start_position
 var camera_end_position
 
-func _gui_input(event):
-    handle_event(event)
+onready var background = get_node("Background")
+
+func _ready():
+    var _error = background.connect("gui_input", self, "handle_event")
 
 func handle_event(event):
-    if event is InputEventScreenTouch:
+    if event is InputEventMouseButton:
         if not was_pressed:
             if event.pressed:
-                start_posiiton = position
-                pointer_start_position = event.position
+                camera_start_position = position
+                event_start_position = event.global_position
                 was_pressed = true
         elif not event.pressed:
+            camera_start_position = null
+            event_start_position = null
             was_pressed = false
-            pointer_start_position = null
-            
-    if pointer_start_position != null:
-        var delta = event.position - pointer_start_position
-        delta *= zoom.x
-        position = start_posiiton - delta
+    
+    if event is InputEventMouseMotion:
+        if event_start_position != null:
+            var delta = event.global_position - event_start_position
+            delta *= zoom.x
+            position = camera_start_position - delta
     
     if event is InputEventMouseButton:
         if event.is_pressed():
@@ -49,3 +51,6 @@ func handle_event(event):
                 var zoom_value = zoomLevel[zoomIndex]
                 zoom = Vector2(zoom_value, zoom_value)
                 position += delta * (previous_zoom_value - zoom_value) / previous_zoom_value
+
+func get_screen_position(event_position):
+    return event_position + background.rect_position + position
