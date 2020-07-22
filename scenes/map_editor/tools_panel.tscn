@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://prefabs/texture_rect_as_button/texture_rect_as_button.gd" type="Script" id=2]
+[ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/pointer.png" type="Texture" id=3]
+[ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolBrush.png" type="Texture" id=4]
+[ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/cursor.png" type="Texture" id=5]
+[ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolEraser.png" type="Texture" id=6]
+[ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolFill.png" type="Texture" id=7]
+[ext_resource path="res://scenes/map_editor/tools_panel.gd" type="Script" id=8]
+
+[node name="ToolsPanel" type="Panel"]
+margin_right = 100.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 3
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 641.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="cursor" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_right = 100.0
+margin_bottom = 100.0
+texture = ExtResource( 5 )
+script = ExtResource( 2 )
+disabled = true
+
+[node name="pointer" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_top = 104.0
+margin_right = 100.0
+margin_bottom = 204.0
+texture = ExtResource( 3 )
+script = ExtResource( 2 )
+disabled = true
+
+[node name="toolBrush" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+modulate = Color( 0.937255, 0.945098, 0.0470588, 1 )
+margin_top = 208.0
+margin_right = 100.0
+margin_bottom = 308.0
+texture = ExtResource( 4 )
+script = ExtResource( 2 )
+disabled = true
+
+[node name="toolEraser" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_top = 312.0
+margin_right = 100.0
+margin_bottom = 412.0
+texture = ExtResource( 6 )
+script = ExtResource( 2 )
+disabled = true
+
+[node name="toolFill" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_top = 416.0
+margin_right = 100.0
+margin_bottom = 516.0
+texture = ExtResource( 7 )
+script = ExtResource( 2 )
+disabled = true
+
+[node name="TilesetButton" type="Button" parent="VBoxContainer"]
+margin_top = 645.0
+margin_right = 100.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 100, 75 )
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="VBoxContainer/TilesetButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Tileset
+Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

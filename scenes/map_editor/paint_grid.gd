@@ -1,9 +1,10 @@
 #warning-ignore-all:return_value_discarded
 extends Control
 
+onready var tools_panel = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel
 onready var tileset = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel/Tileset
 onready var tileset_button1 = $UI/CanvasLayer/Control/EmptyTilesetWarning/TilesetButton
-onready var tileset_button2 = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer/VBoxContainer/TilesetButton
+onready var tileset_button2 = tools_panel.tileset_button
 onready var top_toolbar = $UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer
 onready var not_yet_implemented_popup = $UI/CanvasLayer/Control/NotYetImplementedPopup
 onready var empty_tileset_warning = $UI/CanvasLayer/Control/EmptyTilesetWarning
@@ -16,6 +17,10 @@ func _ready():
     tileset_button1.connect("pressed", self, "open_tileset_editor")
     tileset_button2.connect("pressed", self, "open_tileset_editor")
     refresh()
+    center_camera_on_grid()
+
+func center_camera_on_grid():
+    $Camera2D.position = $GridBackground.rect_position + $GridBackground.rect_size / 2
 
 func refresh():
     if tileset.tiles.size() > 0:
