@@ -1,28 +1,42 @@
 #warning-ignore-all:return_value_discarded
 extends Control
 
-onready var tileset = $Tileset
+onready var tileset = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel/Tileset
+onready var tileset_button1 = $UI/CanvasLayer/Control/EmptyTilesetWarning/TilesetButton
+onready var tileset_button2 = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer/VBoxContainer/TilesetButton
+onready var top_toolbar = $UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer
+onready var not_yet_implemented_popup = $UI/CanvasLayer/Control/NotYetImplementedPopup
+onready var empty_tileset_warning = $UI/CanvasLayer/Control/EmptyTilesetWarning
 
 func _ready():
-    for button in $UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer.get_children():
+    for button in top_toolbar.get_children():
         if button.name != "MenuButton":
             button.connect("pressed", self, "popup_not_yet_implemented")
     
-    $UI/CanvasLayer/Control/EmptyTilesetWarning/TilesetButton.connect("pressed", self, "open_tileset_editor")
-    $UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel/VBoxContainer/VBoxContainer/TilesetButton.connect("pressed", self, "open_tileset_editor")
+    tileset_button1.connect("pressed", self, "open_tileset_editor")
+    tileset_button2.connect("pressed", self, "open_tileset_editor")
+    refresh()
+
+func refresh():
+    if tileset.tiles.size() > 0:
+        empty_tileset_warning.visible = false
+    else:
+        empty_tileset_warning.visible = true
 
 func open_tileset_editor():
-    var scene = Scene.TILESET_EDITOR.instance()
-    scene.connect("tileset_updated", self, "update_tileset", [scene])
-    for tile in tileset.tiles:
-        scene.tileset.add_tile(tile)
-    add_child(scene)
+    visible = false
+    var tileset_editor = Scene.TILESET_EDITOR.instance()
+    add_child(tileset_editor)
+    tileset_editor.add_starting_tiles(tileset.tiles)
+    tileset_editor.connect("tileset_updated", self, "update_tileset", [tileset_editor])
 
-func update_tileset(scene):
+func update_tileset(tileset_editor):
     tileset.clear()
-    for tile in scene.tileset.tiles:
-        tileset.add_tile(tile.duplicate())
-    scene.queue_free()
+    for tile in tileset_editor.tileset.tiles:
+        tileset.add_tile(tile)
+    tileset_editor.queue_free()
+    visible = true
+    refresh()
 
 func popup_not_yet_implemented():
-    $UI/CanvasLayer/Control/NotYetImplementedPopup.show()
+    not_yet_implemented_popup.show()

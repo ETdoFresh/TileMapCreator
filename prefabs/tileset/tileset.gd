@@ -17,21 +17,23 @@ func _process(_delta):
     columns = int(max(round(sqrt(active_tiles.size())), 1))
 
 func add_tile(tile : Tile):
-    if tile.get_parent() != self:
-        add_child(tile)
+    if tile.get_parent() != null:
+        tile.get_parent().remove_child(tile)
+        
+    add_child(tile)
     tiles.append(tile)
     if tile.enabled and not active_tiles.has(tile):
         active_tiles.append(tile)
     elif not tile.enabled and not inactive_tiles.has(tile): 
         inactive_tiles.append(tile)
-    #warning-ignore:return_value_discarded
-    tile.connect("enabled_changed", self, "change_tile")
+        
+    var _a = tile.connect("enabled_changed", self, "change_tile")
 
 func remove_tile(tile : Tile):    
     tiles.erase(tile)
     active_tiles.erase(tile)
     inactive_tiles.erase(tile)
-    if tile:
+    if tile and tile.get_parent() == self:
         tile.disconnect("enabled_changed", self, "change_tile")
         tile.free()
 
