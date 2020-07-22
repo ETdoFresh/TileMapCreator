@@ -4,7 +4,7 @@ class_name ControlCanvasLayer
 extends Control
 
 func _ready():
-    var _error = connect("visibility_changed", self, "change_visibility")
+    var _1 = connect("visibility_changed", self, "change_visibility")
 
 func change_visibility():
     var visibility = get_visibility(self)

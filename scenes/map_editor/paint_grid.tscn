@@ -227,13 +227,29 @@ size_flags_vertical = 3
 [node name="ToolsPanel" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI" instance=ExtResource( 4 )]
 margin_bottom = 682.0
 
-[node name="ContentControl" type="Control" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI"]
 margin_left = 104.0
 margin_right = 1020.0
 margin_bottom = 682.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="ContentControl" type="Control" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/VBoxContainer"]
+margin_right = 916.0
+margin_bottom = 650.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ToolName" type="Label" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/VBoxContainer"]
+margin_top = 654.0
+margin_right = 916.0
+margin_bottom = 682.0
+custom_fonts/font = ExtResource( 7 )
+text = "Tool Name"
+align = 1
+valign = 1
 
 [node name="LayersPanel" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI"]
 margin_left = 1024.0

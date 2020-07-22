@@ -1,5 +1,3 @@
-#warning-ignore-all: return_value_discarded
-
 class_name TextureRectAsButton
 extends TextureRect
 
@@ -28,11 +26,11 @@ func disable():
 
 
 func enable():
-    connect("visibility_changed", self, "set_normal")
-    connect("focus_entered", self, "set_focused")
-    connect("focus_exited", self, "set_normal")
-    connect("mouse_entered", self, "set_hover")
-    connect("mouse_exited", self, "set_normal")
+    var _1 = connect("visibility_changed", self, "set_normal")
+    var _2 = connect("focus_entered", self, "set_focused")
+    var _3 = connect("focus_exited", self, "set_normal")
+    var _4 = connect("mouse_entered", self, "set_hover")
+    var _5 = connect("mouse_exited", self, "set_normal")
 
 
 func _gui_input(event):

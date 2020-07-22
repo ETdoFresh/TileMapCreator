@@ -1,4 +1,3 @@
-#warning-ignore-all:return_value_discarded
 extends Control
 
 onready var tools_panel = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel
@@ -16,8 +15,14 @@ func _ready():
     
     tileset_button1.connect("pressed", self, "open_tileset_editor")
     tileset_button2.connect("pressed", self, "open_tileset_editor")
+    tools_panel.connect("selection_changed", self, "select_tool")
+    
     refresh()
     center_camera_on_grid()
+    select_tool(tools_panel.selected)
+
+func select_tool(selection):
+    $UI/CanvasLayer/Control/VBoxContainer/ContentUI/VBoxContainer/ToolName.text = selection.name
 
 func center_camera_on_grid():
     $Camera2D.position = $GridBackground.rect_position + $GridBackground.rect_size / 2
