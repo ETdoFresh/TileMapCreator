@@ -29,7 +29,7 @@ func add_tile(tile : Tile):
         tile.get_parent().remove_child(tile)
     
     if tile.has_signal("selected"):
-            tile.connect("selected", self, "emit_selection_changed", [tile])
+        var _1 = tile.connect("selected", self, "emit_selection_changed", [tile])
     
     add_child(tile)
     tiles.append(tile)

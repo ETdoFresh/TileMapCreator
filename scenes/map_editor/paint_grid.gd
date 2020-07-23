@@ -7,6 +7,10 @@ onready var tileset_button2 = tools_panel.tileset_button
 onready var top_toolbar = $UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer
 onready var not_yet_implemented_popup = $UI/CanvasLayer/Control/NotYetImplementedPopup
 onready var empty_tileset_warning = $UI/CanvasLayer/Control/EmptyTilesetWarning
+onready var left_click_state = $LeftClickState
+onready var middle_click_state = $MiddleClickState
+onready var right_click_state = $RightClickState
+onready var background = $Camera2D/Background
 
 func _ready():
     for button in top_toolbar.get_children():
@@ -16,6 +20,9 @@ func _ready():
     tileset_button1.connect("pressed", self, "open_tileset_editor")
     tileset_button2.connect("pressed", self, "open_tileset_editor")
     tools_panel.connect("selection_changed", self, "select_tool")
+    background.connect("gui_input", left_click_state, "_gui_input")
+    background.connect("gui_input", middle_click_state, "_gui_input")
+    background.connect("gui_input", right_click_state, "_gui_input")
     
     refresh()
     center_camera_on_grid()
@@ -23,6 +30,10 @@ func _ready():
 
 func select_tool(selection):
     $UI/CanvasLayer/Control/VBoxContainer/ContentUI/VBoxContainer/ToolName.text = selection.name
+    if selection.name == "Pointer":
+        left_click_state.set_state_by_name("MoveCamera")
+    else:
+        left_click_state.set_state_by_name("SelectionRectangle")
 
 func center_camera_on_grid():
     $Camera2D.position = $GridBackground.rect_position + $GridBackground.rect_size / 2
