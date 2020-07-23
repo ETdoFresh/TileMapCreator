@@ -8,23 +8,15 @@ func _ready():
     if not Engine.editor_hint:
         calculate_entropy()
 
-func _process(_delta):
-    for tile in active_tiles:
-        if tile.get_parent() != self:
-            add_child(tile)
-    for tile in inactive_tiles:
-        if tile.get_parent() == self:
-            remove_child(tile)
-
 func calculate_entropy():
-    if active_tiles.size() == 0:
+    if tiles.size() == 0:
         return
         
     var weight = 1.0 / 16
-    var total_sum_of_weights = weight * active_tiles.size()
+    var total_sum_of_weights = weight * tiles.size()
     var log_2_total_sum_of_weights = log(total_sum_of_weights) / log (2)
     var sum_log_2_of_weights = 0
-    for _i in range(active_tiles.size()):
+    for _i in range(tiles.size()):
         sum_log_2_of_weights += log(weight) / log(2)
     
     var small_random_value = randf() * 0.001
@@ -34,11 +26,12 @@ func calculate_entropy():
     entropy += small_random_value
 
 func collapse():
-    if active_tiles.size() > 1:
-        var random_index = randi() % active_tiles.size()
-        for i in range(active_tiles.size() - 1, -1, -1):
-            var active_tile = active_tiles[i]
-            active_tile.enabled = i == random_index
+    if tiles.size() > 1:
+        var random_index = randi() % tiles.size()
+        for i in range(tiles.size() - 1, -1, -1):
+            var tile = tiles[i]
+            if i != random_index:
+                remove_tile(tile)
         add_constant_override("hseparation", 0)
         add_constant_override("vseparation", 0)
         calculate_entropy()
@@ -50,15 +43,15 @@ func collapse_neighbors(rules):
         
         var neighbor = neighbors[direction]
         var neighbor_needs_to_collapse_its_neighbors = false
-        var neighbor_tiles = neighbor.active_tiles
+        var neighbor_tiles = neighbor.tiles
         if neighbor_tiles.size() > 1:
             for i in range(neighbor_tiles.size() - 1, -1, -1):
                 var neighbor_tile = neighbor_tiles[i]
                 var neighbor_index = neighbor.get_tile_index(neighbor_tile)
                 if not can_be_neighbors(rules, direction, neighbor_index):
-                    neighbor_tile.enabled = false
+                    neighbor.remove_tile(neighbor_tile)
                     neighbor_needs_to_collapse_its_neighbors = true
-                    if neighbor.active_tiles.size() == 1:
+                    if neighbor.tiles.size() == 1:
                         neighbor.add_constant_override("hseparation", 0)
                         neighbor.add_constant_override("vseparation", 0)
         
@@ -67,8 +60,18 @@ func collapse_neighbors(rules):
             neighbor.collapse_neighbors(rules)
 
 func can_be_neighbors(rules, direction, neighbor_index):
-    for tile in active_tiles:
+    for tile in tiles:
         var tile_index = get_tile_index(tile)
         if rules.can_be_neighbor(tile_index, direction, neighbor_index):
             return true
     return false
+
+func reset():
+    for i in range(all_tiles.size()):
+        if i >= tiles.size():
+            tiles.append(all_tiles[i])
+            add_child(all_tiles[i])
+        elif not all_tiles[i] in tiles:
+            tiles.insert(i, all_tiles[i])
+            add_child(all_tiles[i])
+            move_child(all_tiles[i], i)

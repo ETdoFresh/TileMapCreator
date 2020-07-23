@@ -6,10 +6,6 @@
 [ext_resource path="res://scenes/wave_function_collapse_demo/wave_function_collapse.gd" type="Script" id=5]
 [ext_resource path="res://scenes/wave_function_collapse_demo/rule_viewer.tscn" type="PackedScene" id=6]
 
-
-
-
-
 [node name="WaveFunctionCollapse" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://prefabs/texture_rect/texture_rect_radio_group.gd" type="Script" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolEraser.png" type="Texture" id=6]
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolFill.png" type="Texture" id=7]
 [ext_resource path="res://scenes/map_editor/tools_panel.gd" type="Script" id=8]
-
+[ext_resource path="res://prefabs/texture_rect/texture_rect_radio.gd" type="Script" id=9]
 
 [node name="ToolsPanel" type="Panel"]
 margin_right = 100.0
@@ -41,6 +41,7 @@ rect_min_size = Vector2( 75, 75 )
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 9 )
 
 [node name="Pointer" type="TextureRect" parent="VBoxContainer/TextureRectRadioGroup"]
 margin_top = 79.0
@@ -50,6 +51,7 @@ rect_min_size = Vector2( 75, 75 )
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 9 )
 
 [node name="Brush" type="TextureRect" parent="VBoxContainer/TextureRectRadioGroup"]
 margin_top = 158.0
@@ -59,6 +61,7 @@ rect_min_size = Vector2( 75, 75 )
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 9 )
 
 [node name="Eraser" type="TextureRect" parent="VBoxContainer/TextureRectRadioGroup"]
 margin_top = 237.0
@@ -68,6 +71,7 @@ rect_min_size = Vector2( 75, 75 )
 texture = ExtResource( 6 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 9 )
 
 [node name="Fill" type="TextureRect" parent="VBoxContainer/TextureRectRadioGroup"]
 margin_top = 316.0
@@ -77,6 +81,7 @@ rect_min_size = Vector2( 75, 75 )
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 9 )
 
 [node name="TilesetButton" type="Button" parent="VBoxContainer"]
 margin_top = 645.0

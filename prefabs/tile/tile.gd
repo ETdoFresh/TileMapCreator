@@ -1,12 +1,24 @@
 class_name Tile
-extends Resource
+extends TextureRect
 
-signal texture_changed
+#warning-ignore: UNUSED_SIGNAL
+#warning-ignore: UNUSED_SIGNAL
+signal selected
+signal pressed
 
 export var url : String = ""
-export var region : Rect2 = Rect2()
-export var texture : Texture = null setget emit_signal_texture_changed
 
-func emit_signal_texture_changed(value):
-    texture = value
-    emit_signal("texture_changed")
+func clear_behavior():
+    for child in get_children():
+        child.queue_free()
+
+func set_image_behavior():
+    clear_behavior()
+
+func set_button_behavior():
+    clear_behavior()
+    add_child(ButtonBehavior.new())
+
+func set_radio_behavior():
+    clear_behavior()
+    add_child(RadioBehavior.new())

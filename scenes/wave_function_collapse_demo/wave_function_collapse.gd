@@ -20,7 +20,7 @@ func _input(event):
 func fill_slots():
     for slot in $Slots.get_children():
         slot.clear()
-        for tile in $RuleViewer/Tileset.active_tiles:
+        for tile in $RuleViewer/Tileset.tiles:
             slot.add_tile(tile.duplicate())
         slot.calculate_entropy()
 
@@ -95,7 +95,7 @@ func step_solve():
 func select_lowest_entropy():
     var selection = null
     for slot in slots.get_children():
-        if slot.active_tiles.size() > 1:
+        if slot.tiles.size() > 1:
             if selection == null || slot.entropy < selection.entropy:
                 selection = slot
     return selection

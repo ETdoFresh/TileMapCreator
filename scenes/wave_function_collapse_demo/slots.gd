@@ -32,12 +32,12 @@ func get_slot(x ,y):
 
 func is_complete():
     for slot in get_children():
-        if slot.active_tiles.size() != 1:
+        if slot.tiles.size() != 1:
             return false
     return true
 
 func is_invalid():
     for slot in get_children():
-        if slot.active_tiles.size() == 0:
+        if slot.tiles.size() == 0:
             return true
     return false

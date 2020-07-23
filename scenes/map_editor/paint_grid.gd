@@ -36,7 +36,7 @@ func refresh():
 func open_tileset_editor():
     visible = false
     var tileset_editor = Scene.TILESET_EDITOR.instance()
-    add_child(tileset_editor)
+    get_parent().add_child(tileset_editor)
     tileset_editor.add_starting_tiles(tileset.tiles)
     tileset_editor.connect("tileset_updated", self, "update_tileset", [tileset_editor])
 

@@ -4,7 +4,7 @@ extends Control
 
 func _ready():
     for tile in $Tileset.tiles:
-        tile.connect("pressed", self, "tileset_pressed")
+        tile.connect("pressed", self, "tileset_pressed", [tile])
         $Rule/Top.add_tile(tile.duplicate())
         $Rule/Right.add_tile(tile.duplicate())
         $Rule/Bottom.add_tile(tile.duplicate())
@@ -23,16 +23,17 @@ func tileset_pressed(tile):
         var slot = $Rule.get_node(direction)
         slot.reset()
 
-        for i in range(slot.tiles.size()):
+        for i in range(slot.all_tiles.size()):
             if not $Rules.can_be_neighbor(index, direction.to_lower(), i):
-                slot.tiles[i].enabled = false
+                slot.remove_tile(slot.all_tiles[i])
 
-func main_tile_pressed(_tile):
+func main_tile_pressed():
     $Tileset.visible = true
     $Rule.visible = false
-
 
 func load_tileset(tileset):
     $Tileset.clear()
     for tile in tileset.tiles:
-        $Tileset.add_tile(tile.duplicate())
+        var new_tile = tile.duplicate()
+        new_tile.set_button_behavior()
+        $Tileset.add_tile(new_tile)

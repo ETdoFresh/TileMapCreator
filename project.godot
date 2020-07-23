@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "ButtonBehavior",
+"language": "GDScript",
+"path": "res://prefabs/behavior/button_behavior.gd"
+}, {
 "base": "Control",
 "class": "ControlCanvasLayer",
 "language": "GDScript",
 "path": "res://prefabs/control_canvas_layer/control_canvas_layer.gd"
+}, {
+"base": "Node",
+"class": "RadioBehavior",
+"language": "GDScript",
+"path": "res://prefabs/behavior/radio_behavior.gd"
 }, {
 "base": "Node2D",
 "class": "Rules",
@@ -44,25 +54,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://prefabs/texture_rect/texture_rect_radio_group.gd"
 }, {
-"base": "Resource",
+"base": "TextureRect",
 "class": "Tile",
 "language": "GDScript",
 "path": "res://prefabs/tile/tile.gd"
-}, {
-"base": "TextureRectButton",
-"class": "TileButton",
-"language": "GDScript",
-"path": "res://prefabs/tile/tile_button.gd"
-}, {
-"base": "TextureRectRadio",
-"class": "TileRadio",
-"language": "GDScript",
-"path": "res://prefabs/tile/tile_radio.gd"
-}, {
-"base": "TextureRect",
-"class": "TileTexture",
-"language": "GDScript",
-"path": "res://prefabs/tile/tile_texture.gd"
 }, {
 "base": "GridContainer",
 "class": "Tileset",
@@ -70,7 +65,9 @@ _global_script_classes=[ {
 "path": "res://prefabs/tileset/tileset.gd"
 } ]
 _global_script_class_icons={
+"ButtonBehavior": "",
 "ControlCanvasLayer": "",
+"RadioBehavior": "",
 "Rules": "",
 "Save": "",
 "Slot": "",
@@ -78,9 +75,6 @@ _global_script_class_icons={
 "TextureRectRadio": "",
 "TextureRectRadioGroup": "",
 "Tile": "",
-"TileButton": "",
-"TileRadio": "",
-"TileTexture": "",
 "Tileset": ""
 }
 

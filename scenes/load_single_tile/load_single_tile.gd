@@ -3,11 +3,9 @@ extends Control
 signal tile_loaded
 signal cancelled
 
-var tile
-
 onready var rows = $Main/VBoxContainer/ScrollContainer/VBoxContainer
 onready var row = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer
-onready var tile_preview = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/TileTexture
+onready var tile = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Control/Tile
 onready var url = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/URL
 onready var download_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DownloadButton
 onready var add_row_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/AddRowButton
@@ -43,14 +41,12 @@ func download_complete(_result, _response_code, _headers, body):
     var texture = ImageTexture.new()
     texture.create_from_image(image)
 
-    tile_preview.init(Tile.new())
-    tile_preview.tile.texture = texture
+    tile.texture = texture
     url.editable = false
     download_button.visible = false
     ok_button.disabled = false
 
 func ok():
-    tile = tile_preview.tile
     $Main.visible = false
     emit_signal("tile_loaded")
 
