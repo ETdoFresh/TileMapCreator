@@ -1,13 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=1]
-[ext_resource path="res://scenes/map_editor/texture_rect_radio_group.gd" type="Script" id=2]
+[ext_resource path="res://prefabs/texture_rect/texture_rect_radio_group.gd" type="Script" id=2]
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/pointer.png" type="Texture" id=3]
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolBrush.png" type="Texture" id=4]
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/cursor.png" type="Texture" id=5]
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolEraser.png" type="Texture" id=6]
 [ext_resource path="res://sprites/kenney.nl/gameicons-expansion/PNG/White/2x/toolFill.png" type="Texture" id=7]
 [ext_resource path="res://scenes/map_editor/tools_panel.gd" type="Script" id=8]
+
 
 [node name="ToolsPanel" type="Panel"]
 margin_right = 100.0

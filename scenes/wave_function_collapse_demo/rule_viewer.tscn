@@ -18,10 +18,12 @@
 [ext_resource path="res://sprites/oskar/texture_atlas/01.tres" type="Texture" id=16]
 [ext_resource path="res://prefabs/tileset/tileset.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/wave_function_collapse_demo/slot.tscn" type="PackedScene" id=18]
-[ext_resource path="res://prefabs/texture_rect_as_button/texture_rect_as_button.gd" type="Script" id=19]
+[ext_resource path="res://prefabs/texture_rect/texture_rect_button.gd" type="Script" id=19]
 [ext_resource path="res://scenes/wave_function_collapse_demo/rule_viewer.gd" type="Script" id=20]
 [ext_resource path="res://scenes/wave_function_collapse_demo/rules_by_edge_detection.gd" type="Script" id=21]
 [ext_resource path="res://prefabs/tile/tile.gd" type="Script" id=22]
+
+
 
 
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://prefabs/tile/tile.gd" type="Script" id=1]
+[ext_resource path="res://sprites/et/no_texture/no_texture.svg" type="Texture" id=2]
+
+[resource]
+resource_name = "Unknown Tile"
+script = ExtResource( 1 )
+url = "N/A"
+region = Rect2( 0, 0, 0, 0 )
+texture = ExtResource( 2 )

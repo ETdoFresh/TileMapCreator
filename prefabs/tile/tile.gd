@@ -1,13 +1,12 @@
 class_name Tile
-extends TextureRectAsButton
+extends Resource
 
-signal enabled_changed(tile, enabled)
+signal texture_changed
 
-var enabled = true setget enabled_set, enabled_get
+export var url : String = ""
+export var region : Rect2 = Rect2()
+export var texture : Texture = null setget emit_signal_texture_changed
 
-func enabled_set(value):
-    enabled = value
-    emit_signal("enabled_changed", self, value)
-
-func enabled_get():
-    return enabled
+func emit_signal_texture_changed(value):
+    texture = value
+    emit_signal("texture_changed")

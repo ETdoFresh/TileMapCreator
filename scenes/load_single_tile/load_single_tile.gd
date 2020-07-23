@@ -7,7 +7,7 @@ var tile
 
 onready var rows = $Main/VBoxContainer/ScrollContainer/VBoxContainer
 onready var row = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer
-onready var tile_preview = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Tile
+onready var tile_preview = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/TileTexture
 onready var url = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/URL
 onready var download_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DownloadButton
 onready var add_row_button = $Main/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/AddRowButton
@@ -16,7 +16,6 @@ onready var ok_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/OK
 onready var cancel_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/Cancel
 
 func _ready():
-    reset()
     download_button.connect("pressed", self, "download_tile")
     add_row_button.connect("pressed", self, "add_row")
     ok_button.connect("pressed", self, "ok")
@@ -44,23 +43,20 @@ func download_complete(_result, _response_code, _headers, body):
     var texture = ImageTexture.new()
     texture.create_from_image(image)
 
-    tile_preview.texture = texture
+    tile_preview.init(Tile.new())
+    tile_preview.tile.texture = texture
     url.editable = false
     download_button.visible = false
     ok_button.disabled = false
 
 func ok():
-    tile.texture = tile_preview.texture
+    tile = tile_preview.tile
     $Main.visible = false
     emit_signal("tile_loaded")
 
 func cancel():
-    reset()
     $Main.visible = false
     emit_signal("cancelled")
-
-func reset():
-    tile = Prefab.TILE.instance()
 
 func add_row():
     rows.add_child(row.duplicate())

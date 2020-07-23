@@ -2,7 +2,6 @@
 
 [ext_resource path="res://prefabs/save/save.gd" type="Script" id=1]
 
-
 [resource]
 script = ExtResource( 1 )
 test_int = 1
