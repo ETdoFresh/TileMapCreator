@@ -27,6 +27,7 @@ func add_starting_tiles(tiles):
     
     for tile in tiles:
         tileset.add_tile(tile)
+        tile.set_image_behavior()
         add_delete_tile()
 
 func get_tiles():

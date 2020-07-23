@@ -44,6 +44,7 @@ func update_tileset(tileset_editor):
     tileset.clear()
     for tile in tileset_editor.tileset.tiles:
         tileset.add_tile(tile)
+        tile.set_radio_behavior()
     tileset_editor.queue_free()
     visible = true
     refresh()

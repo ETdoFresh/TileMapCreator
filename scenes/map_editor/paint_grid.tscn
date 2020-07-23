@@ -260,6 +260,8 @@ size_flags_vertical = 3
 
 [node name="Tileset" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel" instance=ExtResource( 1 )]
 margin_top = 476.0
+custom_constants/vseparation = 1
+custom_constants/hseparation = 1
 
 [node name="NotYetImplementedPopup" type="PopupPanel" parent="UI/CanvasLayer/Control"]
 self_modulate = Color( 1, 1, 1, 0.105882 )

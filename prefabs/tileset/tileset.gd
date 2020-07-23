@@ -27,7 +27,10 @@ func emit_selection_changed(tile):
 func add_tile(tile : Tile):
     if tile.get_parent() != null:
         tile.get_parent().remove_child(tile)
-        
+    
+    if tile.has_signal("selected"):
+            tile.connect("selected", self, "emit_selection_changed", [tile])
+    
     add_child(tile)
     tiles.append(tile)
     all_tiles.append(tile)
@@ -46,5 +49,7 @@ func get_tile_index(tile):
 func clear():
     for i in range(tiles.size() - 1, -1, -1):
         remove_tile(tiles[i])
+    for i in range(all_tiles.size() - 1, -1, -1):
+        all_tiles.remove(i)
     for i in range(get_child_count() - 1, -1, -1):
         get_child(i).free()

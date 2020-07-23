@@ -19,6 +19,10 @@ func _ready():
     parent.connect("visibility_changed", self, "set_normal_color")
     parent.connect("gui_input", self, "_gui_input")
 
+func _exit_tree():
+    is_selected = false
+    set_normal_color()
+
 func _gui_input(event):
     if event is InputEventMouse:
         if event.is_pressed():
