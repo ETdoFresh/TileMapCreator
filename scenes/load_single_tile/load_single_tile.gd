@@ -41,6 +41,7 @@ func download_complete(_result, _response_code, _headers, body):
     var texture = ImageTexture.new()
     texture.create_from_image(image)
 
+    tile.url = url.text
     tile.texture = texture
     url.editable = false
     download_button.visible = false

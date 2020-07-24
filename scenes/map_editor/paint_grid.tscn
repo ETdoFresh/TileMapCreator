@@ -70,7 +70,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 
 [node name="Control" type="Control" parent="UI/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

@@ -4,7 +4,6 @@ extends Control
 signal tiles_loaded
 signal cancelled
 
-var url = null
 var texture = null
 var columns = -1
 var rows = -1
@@ -14,6 +13,7 @@ var padding_bottom = -1
 var padding_left = -1
 var spacing = -1
 
+onready var url = $Main/VBoxContainer/DownloadPanel/Url
 onready var ok_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/OK
 onready var cancel_button = $Main/VBoxContainer/ButtonPanel/HBoxContainer/Cancel
 onready var columns_field = $Main/VBoxContainer/SettingsPanel/HBoxContainer/GridContainer/Columns
@@ -112,7 +112,7 @@ func _process(_delta):
                 tile.texture.region = Rect2(rx, ry, rwidth, rheight)
 
 func download_image():
-    $HTTPRequest.request($Main/VBoxContainer/DownloadPanel/TextEdit.text)
+    $HTTPRequest.request(url.text)
 
 func download_complete(_result, _response_code, _headers, body):
     var image = Image.new()
@@ -134,6 +134,8 @@ func download_complete(_result, _response_code, _headers, body):
 
 func emit_texture_loaded():
     $Main.visible = false
+    for tile in tileset.tiles:
+        tile.url = url.text
     emit_signal("tiles_loaded")
 
 func emit_cancelled():
@@ -142,7 +144,6 @@ func emit_cancelled():
     emit_signal("cancelled")
 
 func reset():
-    url = null
     texture = null
     columns = -1
     rows = -1
