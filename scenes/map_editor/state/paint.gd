@@ -19,17 +19,6 @@ func _gui_input(event):
         if is_painting:
             var tile_position = get_world_position(event.global_position) / 64
             grid.temp_paint(tile_position, TEMP_TEXTURE)
-    
-    if event is InputEventMouseButton:
-        if event.is_pressed():
-            print(
-                "event.global_position: ", event.global_position,
-                " camera.get_camera_position(): ", camera.get_camera_position(),
-                " camera.get_camera_screen_center(): ", camera.get_camera_screen_center(),
-                " screen_size: ", screen_size,
-                " world_position: ", get_world_position(event.global_position),
-                " tile_position: ", get_world_position(event.global_position) / 64
-            )
 
 func get_world_position(screen_position):
     var screen_center = screen_size / 2
