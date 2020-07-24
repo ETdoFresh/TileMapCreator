@@ -32,8 +32,16 @@ func select_tool(selection):
     $UI/CanvasLayer/Control/VBoxContainer/ContentUI/VBoxContainer/ToolName.text = selection.name
     if selection.name == "Pointer":
         left_click_state.set_state_by_name("MoveCamera")
+        right_click_state.set_state_by_name("Unselect")
+    elif selection.name == "Brush":
+        left_click_state.set_state_by_name("PaintGrid")
+        right_click_state.set_state_by_name("EraseGrid")
+    elif selection.name == "Eraser":
+        left_click_state.set_state_by_name("EraseGrid")
+        right_click_state.set_state_by_name("EraseGrid")
     else:
         left_click_state.set_state_by_name("SelectionRectangle")
+        right_click_state.set_state_by_name("Unselect")
 
 func center_camera_on_grid():
     $Camera2D.position = $GridBackground.rect_position + $GridBackground.rect_size / 2
