@@ -22,3 +22,7 @@ func set_button_behavior():
 func set_radio_behavior():
     clear_behavior()
     add_child(RadioBehavior.new())
+
+func set_non_blocking_behavior():
+    clear_behavior()
+    add_child(NonBlockingBehavior.new())

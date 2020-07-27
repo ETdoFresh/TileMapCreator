@@ -10,6 +10,7 @@ export var color_disabled = Color(0.25, 0.25, 0.25)
 onready var parent = get_parent()
 
 func _ready():
+    parent.mouse_filter = Control.MOUSE_FILTER_STOP
     if not disabled:
         enable()
 

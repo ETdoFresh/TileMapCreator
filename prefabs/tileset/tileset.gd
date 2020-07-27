@@ -5,6 +5,7 @@ signal selection_changed(tile)
 
 var all_tiles = []
 var tiles = []
+var selected
 
 func _ready():
     for tile in get_children():
@@ -22,6 +23,7 @@ func _process(_delta):
     columns = int(max(round(sqrt(tiles.size())), 1))
 
 func emit_selection_changed(tile):
+    selected = tile
     emit_signal("selection_changed", tile)
 
 func add_tile(tile : Tile):

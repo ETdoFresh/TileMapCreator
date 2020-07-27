@@ -7,6 +7,7 @@ var is_painting = false
 onready var screen_size = get_viewport().size
 onready var camera = get_parent().get_parent().get_node("Camera2D")
 onready var grid = get_parent().get_parent().get_node("GridBackground")
+onready var layer = get_parent().get_parent().get_node("Layers/Layer1")
 
 func _gui_input(event):
     if event is InputEventMouseButton:
@@ -18,7 +19,7 @@ func _gui_input(event):
     if event is InputEventMouse:
         if is_painting:
             var tile_position = get_world_position(event.global_position) / 64
-            grid.temp_paint(tile_position, TEMP_TEXTURE, Color(0.5,0.5,0.5,0.5))
+            layer.remove_position(tile_position)
 
 func get_world_position(screen_position):
     var screen_center = screen_size / 2
