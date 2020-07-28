@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://prefabs/tileset/tileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/map_editor/grid_background.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scenes/map_editor/state/paint.gd" type="Script" id=15]
 [ext_resource path="res://scenes/map_editor/state/erase.gd" type="Script" id=16]
 [ext_resource path="res://prefabs/layer/layer.gd" type="Script" id=17]
+[ext_resource path="res://scenes/map_editor/layers_editor.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -37,9 +38,9 @@ script = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -20480.0
-margin_top = -11520.0
+margin_top = -11521.3
 margin_right = 20480.0
-margin_bottom = 11520.0
+margin_bottom = 11518.7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -277,6 +278,9 @@ margin_right = 1280.0
 margin_bottom = 682.0
 rect_min_size = Vector2( 256, 0 )
 size_flags_vertical = 3
+
+[node name="LayersEditor" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel" instance=ExtResource( 18 )]
+margin_bottom = -431.0
 
 [node name="Tileset" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel" instance=ExtResource( 1 )]
 margin_top = 476.0
