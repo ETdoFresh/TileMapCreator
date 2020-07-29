@@ -16,7 +16,7 @@
 [ext_resource path="res://scenes/map_editor/state/selection_rectangle.gd" type="Script" id=14]
 [ext_resource path="res://scenes/map_editor/state/paint.gd" type="Script" id=15]
 [ext_resource path="res://scenes/map_editor/state/erase.gd" type="Script" id=16]
-[ext_resource path="res://prefabs/layer/layer.gd" type="Script" id=17]
+[ext_resource path="res://scenes/map_editor/layer_viewer.gd" type="Script" id=17]
 [ext_resource path="res://scenes/map_editor/layers_editor.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -62,19 +62,14 @@ rows = 10
 margin_right = 64.0
 margin_bottom = 640.0
 
-[node name="Layers" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Layer1" type="Control" parent="Layers"]
+[node name="LayerViewer" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0

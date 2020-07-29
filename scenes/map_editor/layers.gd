@@ -1,11 +1,13 @@
 extends VBoxContainer
 
+signal visibility_toggled
 signal selection_changed
 
 var selected
 
 func _ready():
     var _1 = $Layer1.connect("pressed", self, "change_layer", [$Layer1])
+    var _2 = $Layer1.connect("visibility_toggled", self, "emit_visibility_toggled_signal")
     if get_child_count() > 0:
         change_layer(get_child(0))
 
@@ -18,9 +20,13 @@ func change_layer(layer):
             selected.highlight()
         emit_signal("selection_changed")
 
+func emit_visibility_toggled_signal():
+    emit_signal("visibility_toggled")
+
 func add_layer():
     var layer = Prefab.LAYER.instance()
     layer.connect("pressed", self, "change_layer", [layer])
+    layer.connect("visibility_toggled", self, "emit_visibility_toggled_signal")
     layer.name = get_next_layer_name()
     add_child(layer)
     if selected != null:
@@ -28,15 +34,17 @@ func add_layer():
     change_layer(layer)
 
 func delete_layer():
-    var layer = selected
     if get_child_count() <= 1:
+        selected.queue_free()
         change_layer(null)
     elif is_last_layer(selected):
-        change_layer(get_above_layer(selected))
+        var next_layer = get_above_layer(selected)
+        selected.queue_free()
+        change_layer(next_layer)
     else:
-        change_layer(get_below_layer(selected))
-    
-    layer.queue_free()
+        var next_layer = get_below_layer(selected)
+        selected.queue_free()
+        change_layer(next_layer)
 
 func move_selected_up():
     move_child(selected, get_above_layer(selected).get_index())
