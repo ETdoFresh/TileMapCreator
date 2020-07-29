@@ -2,27 +2,42 @@
 
 extends Control
 
+signal tiles_loaded
+signal cancelled
+
 var texture
 
+onready var ok = $MainPanel/VBoxContainer/Buttons/HBoxContainer/OK
+onready var cancel = $MainPanel/VBoxContainer/Buttons/HBoxContainer/Cancel
+onready var image_url = $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/ImageURL
+onready var texture_atlas_url = $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/TextureAtlasURL
+onready var loading_label = $MainPanel/VBoxContainer/ContentPanel/LoadingLabel
+onready var http = $HTTPRequest
+onready var tileset = $Tileset
+
 func _ready():
-    $MainPanel/VBoxContainer/Buttons/HBoxContainer/OK.connect("pressed", self, "download_files")
+    ok.connect("pressed", self, "download_files")
+    cancel.connect("pressed", self, "emit_cancelled")
     
     if get_parent() != get_tree().get_root():
         $MenuButton.queue_free()
 
+func emit_cancelled():
+    $MainPanel.visible = false
+    emit_signal("cancelled")
+
 func download_files():
-    $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/ImageURL.readonly = true
-    $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/TextureAtlasURL.readonly = true
-    $MainPanel/VBoxContainer/Buttons/HBoxContainer/OK.disabled = true
-    $MainPanel/VBoxContainer/Buttons/HBoxContainer/Cancel.disabled = true
-    $MainPanel/VBoxContainer/ContentPanel/LoadingLabel.visible = true
-    $MainPanel/VBoxContainer/ContentPanel/LoadingLabel.text = "Downloading Image..."
-    $HTTPRequest.connect("request_completed", self, "process_image")
-    var image_url = $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/ImageURL.text
-    $HTTPRequest.request(image_url)
+    image_url.readonly = true
+    texture_atlas_url.readonly = true
+    ok.disabled = true
+    cancel.disabled = true
+    loading_label.visible = true
+    loading_label.text = "Downloading Image..."
+    http.connect("request_completed", self, "process_image")
+    http.request(image_url.text)
 
 func process_image(_result, _response_code, _headers, body):   
-    $MainPanel/VBoxContainer/ContentPanel/LoadingLabel.text = "Processing Image..."
+    loading_label.text = "Processing Image..."
     var image = Image.new()
     var err = image.load_png_from_buffer(body)
     if err != OK:
@@ -30,14 +45,14 @@ func process_image(_result, _response_code, _headers, body):
     texture = ImageTexture.new()
     texture.create_from_image(image)
     
-    $HTTPRequest.disconnect("request_completed", self, "process_image")
-    $HTTPRequest.connect("request_completed", self, "process_xml")
-    var xml_url = $MainPanel/VBoxContainer/ContentPanel/VBoxContainer/TextureAtlasURL.text
-    $HTTPRequest.request(xml_url)
-    $MainPanel/VBoxContainer/ContentPanel/LoadingLabel.text = "Downloading Texture Atlas..."
+    http.disconnect("request_completed", self, "process_image")
+    http.connect("request_completed", self, "process_xml")
+    var xml_url = texture_atlas_url.text
+    http.request(xml_url)
+    loading_label.text = "Downloading Texture Atlas..."
 
 func process_xml(_result, _response_code, _headers, body):
-    $MainPanel/VBoxContainer/ContentPanel/LoadingLabel.text = "Processing Texture Atlas..."
+    loading_label.text = "Processing Texture Atlas..."
     var xml = parse_xml_texture_atlas(body)
     for subTexture in xml.TextureAtlas[0].SubTexture:
         var atlas_texture = AtlasTexture.new()
@@ -47,13 +62,13 @@ func process_xml(_result, _response_code, _headers, body):
         var width = subTexture.width
         var height = subTexture.height
         atlas_texture.region = Rect2(x, y, width, height)
-        var texture_rect = TextureRect.new()
-        texture_rect.texture = atlas_texture
-        texture_rect.name = subTexture.name
-        texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
-        $GridContainer.add_child(texture_rect)
+        var tile = Prefab.TILE.instance()
+        tile.texture = atlas_texture
+        tile.url = image_url.text
+        tileset.add_tile(tile)
     
     $MainPanel.visible = false
+    emit_signal("tiles_loaded")
     
 func parse_xml_texture_atlas(buffer):
     var texture_atlas = {}

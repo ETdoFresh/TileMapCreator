@@ -45,6 +45,7 @@ func add_tilesheet_prompt():
 
 func add_atlas_tilesheet_prompt():
     var scene = Scene.ATLAS_TILESHEET_PROMPT.instance()
+    scene.connect("tiles_loaded", self, "add_tiles", [scene])
     canvas_layer.add_child(scene)
 
 func add_tile(tile_prompt):
@@ -52,6 +53,7 @@ func add_tile(tile_prompt):
     confirm_button.disabled = false
     tileset.add_tile(tile_prompt.tile)
     add_delete_tile()
+    tile_prompt.queue_free()
 
 func add_tiles(tiles_prompt):
     empty_message.visible = false
@@ -59,6 +61,7 @@ func add_tiles(tiles_prompt):
     for tile in tiles_prompt.tileset.get_children():
         tileset.add_tile(tile.duplicate())
         add_delete_tile()
+    tiles_prompt.queue_free()
 
 func add_delete_tile():
     var tile = Prefab.DELETE_TILE_OVERLAY.instance()

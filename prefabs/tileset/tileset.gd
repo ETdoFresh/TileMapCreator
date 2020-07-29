@@ -31,7 +31,8 @@ func add_tile(tile : Tile):
         tile.get_parent().remove_child(tile)
     
     if tile.has_signal("selected"):
-        var _1 = tile.connect("selected", self, "emit_selection_changed", [tile])
+        if not tile.is_connected("selected", self, "emit_selection_changed"):
+            var _1 = tile.connect("selected", self, "emit_selection_changed", [tile])
     
     add_child(tile)
     tiles.append(tile)
