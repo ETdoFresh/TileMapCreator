@@ -4,7 +4,7 @@ const TEMP_TEXTURE = preload("res://sprites/et/no_texture/no_texture.svg")
 
 var is_painting = false
 
-onready var screen_size = get_viewport().size
+onready var screen_size = Vector2(1280,720) # get_viewport().size
 onready var camera = get_parent().get_parent().get_node("Camera2D")
 onready var grid = get_parent().get_parent().get_node("GridBackground")
 onready var layer_viewer = get_parent().get_parent().get_node("LayerViewer")
