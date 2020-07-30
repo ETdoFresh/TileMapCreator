@@ -275,7 +275,7 @@ rect_min_size = Vector2( 256, 0 )
 size_flags_vertical = 3
 
 [node name="LayersEditor" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel" instance=ExtResource( 18 )]
-margin_bottom = -431.0
+margin_bottom = -264.0
 
 [node name="Tileset" parent="UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel" instance=ExtResource( 1 )]
 margin_top = 476.0
