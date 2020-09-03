@@ -64,10 +64,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://prefabs/tile/tile.gd"
 }, {
+"base": "Resource",
+"class": "TileResource",
+"language": "GDScript",
+"path": "res://resources/tile_resource.gd"
+}, {
 "base": "GridContainer",
 "class": "Tileset",
 "language": "GDScript",
 "path": "res://prefabs/tileset/tileset.gd"
+}, {
+"base": "Resource",
+"class": "TilesetResource",
+"language": "GDScript",
+"path": "res://resources/tileset_resource.gd"
+}, {
+"base": "Resource",
+"class": "TilesetsResource",
+"language": "GDScript",
+"path": "res://resources/tilesets_resource.gd"
 } ]
 _global_script_class_icons={
 "ButtonBehavior": "",
@@ -81,7 +96,10 @@ _global_script_class_icons={
 "TextureRectRadio": "",
 "TextureRectRadioGroup": "",
 "Tile": "",
-"Tileset": ""
+"TileResource": "",
+"Tileset": "",
+"TilesetResource": "",
+"TilesetsResource": ""
 }
 
 [application]

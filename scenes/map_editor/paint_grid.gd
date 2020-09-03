@@ -34,6 +34,7 @@ func _ready():
     background.connect("gui_input", middle_click_state, "_gui_input")
     background.connect("gui_input", right_click_state, "_gui_input")
     
+    preload_tileset()
     refresh()
     center_camera_on_grid()
     select_tool(tools_panel.selected)
@@ -76,7 +77,27 @@ func update_tileset(tileset_editor):
         tile.set_radio_behavior()
     tileset_editor.queue_free()
     visible = true
+    save_tileset()
     refresh()
 
 func show_popup(popup):
     popup.show()
+
+func preload_tileset():
+    var tileset_resource = ResourceLoader.load("res://resources/tileset.tres")
+    if tileset_resource:
+        for tile_resource in tileset_resource.tiles:
+            var tile = Prefab.TILE.instance()
+            tile.texture = tile_resource.texture
+            tile.stretch_mode = tile_resource.stretch_mode
+            tileset.add_tile(tile)
+            tile.set_radio_behavior()
+
+func save_tileset():
+    var tileset_resource = TilesetResource.new()
+    for tile in tileset.tiles:
+        var tile_resource = TileResource.new()
+        tile_resource.texture = tile.texture
+        tile_resource.stretch_mode = tile.stretch_mode
+        tileset_resource.tiles.append(tile_resource)
+    var _1 = ResourceSaver.save("res://resources/tileset.tres", tileset_resource)
