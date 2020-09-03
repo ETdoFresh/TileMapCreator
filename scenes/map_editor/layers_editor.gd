@@ -20,7 +20,7 @@ func _ready():
     add_layer_types_to_dropdown()
     option_button.connect("item_selected", self, "print_selected")
 
-func print_selected(selected):
+func print_selected(_selected):
     if layers.selected != null:
         layers.selected.layer_type = option_button.text
         layers.selected.update_text()
