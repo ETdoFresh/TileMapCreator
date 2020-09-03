@@ -6,6 +6,7 @@ onready var tileset_button1 = $UI/CanvasLayer/Control/EmptyTilesetWarning/Tilese
 onready var tileset_button2 = tools_panel.tileset_button
 onready var top_toolbar = $UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer
 onready var not_yet_implemented_popup = $UI/CanvasLayer/Control/NotYetImplementedPopup
+onready var new_popup = $UI/CanvasLayer/Control/NewPopupWindow
 onready var empty_tileset_warning = $UI/CanvasLayer/Control/EmptyTilesetWarning
 onready var left_click_state = $LeftClickState
 onready var middle_click_state = $MiddleClickState
@@ -13,9 +14,18 @@ onready var right_click_state = $RightClickState
 onready var background = $Camera2D/Background
 
 func _ready():
+    #this dictionary links buttons with their corresponding popup
+    var popup_dictionary = {
+        "MenuButton": null, 
+        "NewButton": new_popup
+    }
     for button in top_toolbar.get_children():
-        if button.name != "MenuButton":
-            button.connect("pressed", self, "popup_not_yet_implemented")
+        if button.name in popup_dictionary:
+            if popup_dictionary[button.name] != null:
+                button.connect("pressed", self, "show_popup", [popup_dictionary[button.name]])
+        else:
+            #if button not in dictionary, then it's not implemented
+            button.connect("pressed", self, "show_popup", [not_yet_implemented_popup])
     
     tileset_button1.connect("pressed", self, "open_tileset_editor")
     tileset_button2.connect("pressed", self, "open_tileset_editor")
@@ -68,5 +78,5 @@ func update_tileset(tileset_editor):
     visible = true
     refresh()
 
-func popup_not_yet_implemented():
-    not_yet_implemented_popup.show()
+func show_popup(popup):
+    popup.show()
