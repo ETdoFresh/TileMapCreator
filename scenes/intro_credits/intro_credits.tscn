@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/intro_credits/UNOLogo-horiz.svg" type="Texture" id=1]
+[ext_resource path="res://fonts/arial_24.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/arial_48.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/intro_credits/intro_credits.gd" type="Script" id=4]
+[ext_resource path="res://sprites/et/white_box.svg" type="Texture" id=5]
+
+[node name="IntroCredits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -519.0
+margin_top = -278.0
+margin_right = 519.0
+margin_bottom = 278.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 21.3348
+margin_top = 20.0
+margin_right = -18.6652
+margin_bottom = -20.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+margin_right = 998.0
+margin_bottom = 55.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "2D Co-Creative Map Editor"
+align = 1
+
+[node name="Subtitle" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 67.0
+margin_right = 998.0
+margin_bottom = 95.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "a research project by"
+align = 1
+
+[node name="Author" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 108.0
+margin_right = 998.0
+margin_bottom = 163.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "Edward Thomas Garcia"
+align = 1
+
+[node name="AuthorNickname" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 176.0
+margin_right = 998.0
+margin_bottom = 204.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "aka ETdoFresh"
+align = 1
+
+[node name="AdvisorLabel" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 219.0
+margin_right = 998.0
+margin_bottom = 247.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "Primary Advisor"
+align = 1
+
+[node name="AdvisorName" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 263.0
+margin_right = 998.0
+margin_bottom = 291.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "Dr. Ben Samuel"
+align = 1
+
+[node name="UniveristyLogo" type="TextureRect" parent="Panel/VBoxContainer"]
+margin_top = 304.0
+margin_right = 998.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 0, 100 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 414.0
+margin_right = 998.0
+margin_bottom = 445.0
+text = "Please Note: Your actions will be recorded anonymously via a randomly generated session_id for research purposes. By clicking \"Get Started\", you agree to share this information with us. Thank you!"
+autowrap = true
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 455.0
+margin_right = 998.0
+margin_bottom = 516.0
+custom_fonts/font = ExtResource( 3 )
+text = "Get Started"
+expand_icon = true
+
+[node name="FadeIn" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true

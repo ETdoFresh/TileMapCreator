@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://prefabs/control_canvas_layer/control_canvas_layer.gd"
 }, {
+"base": "Reference",
+"class": "KeyboardShortcuts",
+"language": "GDScript",
+"path": "res://functions/keyboard_shortcuts.gd"
+}, {
 "base": "Node",
 "class": "NonBlockingBehavior",
 "language": "GDScript",
@@ -87,6 +92,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ButtonBehavior": "",
 "ControlCanvasLayer": "",
+"KeyboardShortcuts": "",
 "NonBlockingBehavior": "",
 "RadioBehavior": "",
 "Rules": "",
@@ -105,11 +111,13 @@ _global_script_class_icons={
 [application]
 
 config/name="TileMapCreator"
-run/main_scene="res://scenes/main/main.tscn"
+run/main_scene="res://scenes/intro_credits/intro_credits.tscn"
 config/icon="res://sprites/iconscout/tile/tile.png"
 
 [autoload]
 
+Console="*res://autoload/in_game_console.gd"
+Settings="*res://autoload/settings.gd"
 Util="*res://autoload/util.gd"
 Scene="*res://autoload/scene.gd"
 Prefab="*res://autoload/prefab.gd"
@@ -126,6 +134,16 @@ window/stretch/aspect="keep"
 reset={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+scene_menu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+in_game_console={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"unicode":0,"echo":false,"script":null)
  ]
 }
 

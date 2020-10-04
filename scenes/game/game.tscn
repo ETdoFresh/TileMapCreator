@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/arial.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 1 )
+
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 5.0
+margin_bottom = 3.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "	• Introductory Game
+		○ Intro Screen - Digital Collaborator introduces himself and presents the following problems
+		○ Paint Tool tutorial… Fill in the grass gaps
+		○ Erase Tool tutorial… Remove the junk from the lake
+		○ Fill Tool tutorial… Fill in the lake
+		○ Layer tutorial… add some roads
+		○ Boss cutscene - Create a simple forest level with a vertical path
+		○ Collaborator says he'll take care of the forest if you can handle just drawing a dirt road
+			§ Lock edges of the screen and only dirt tile is available
+		○ Upon completion collaborator shows the tiles he's been working with
+			§ Collaborator shows end result
+			§ Ask user what he thinks?
+				□ Looks great, let's submit it!
+				□ Can I make some changes?
+				□ Can you try again?
+		○ Boss gives a rating
+		○ Another collaborator asks if you can help
+			§ Has a couple map, but needs a more different map
+			§ A more different map? Sure, whatever you need champ!
+				□ Collaborator mentions a variation score
+		○ Collaborator shows you the list of tools
+			§ Random noise 
+			§ Perlin noise
+			§ Vernoi noise
+		○ Boss comes in with assignment #2
+			§ Collaborator now works separately 
+			§ Can peek at collaborator
+		○ Other client asks if you can finish a platforming map following a set of rules
+			§ Collaborator introduces wave function collapse
+		○ Boss comes in for final assignment
+		○ Questionnaire at the end
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
