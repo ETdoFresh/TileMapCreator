@@ -1,8 +1,8 @@
 name: Godot Automatic Build on Commit
 on:
   push:
-    branches:
-    - master
+    tags:
+    - 'v*'
 jobs:
   webgl:
     name: Godot HTML5 Build
