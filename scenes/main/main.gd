@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+    $Version.text = "v%s" % Settings.VERSION
     var _1 = $VBoxContainer/VBoxContainer/Button.connect("pressed", self, "load_game")
     var _2 = $VBoxContainer/VBoxContainer/Button2.connect("pressed", self, "load_tool")
     var _3 = $VBoxContainer/VBoxContainer/Button3.connect("pressed", self, "load_settings")

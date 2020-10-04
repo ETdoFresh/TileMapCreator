@@ -116,3 +116,17 @@ text = "Debug: All Scenes"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Version" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -329.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 34.0
+text = "v0.0.0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
