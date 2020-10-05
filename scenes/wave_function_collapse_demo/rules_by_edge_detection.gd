@@ -15,6 +15,9 @@ var image_data = null
 onready var tileset = get_parent().get_node("Tileset")
 
 func _ready():
+    rules = match_edges(tileset)
+
+func match_edges(tileset):
     var atlasTexture = tileset.tiles[0].texture
     var image = atlasTexture.atlas.get_data()
     image.lock()
@@ -26,6 +29,7 @@ func _ready():
             image_data[x].append(image.get_pixel(x,y))
     image.unlock()
     
+    var rules = {"top": [], "right": [], "bottom": [], "left": []}
     for tile in tileset.tiles:
         var texture = tile.texture
         var tile_index = tileset.get_tile_index(tile)
@@ -40,6 +44,7 @@ func _ready():
                 rules.top.append([tile_index, other_tile_index])
             if match_bottm_edge_to_top_edge(texture, other_texture):
                 rules.bottom.append([tile_index, other_tile_index])
+    return rules
 
 func match_left_edge_to_right_edge(texture1, texture2):
     var region1 = texture1.region
