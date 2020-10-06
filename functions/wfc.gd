@@ -45,6 +45,7 @@ static func get_slot(slots, x, y):
     return null
 
 static func solve(original_slots, tileset, rules):
+    # TODO: Implement
     #append_rules(rules, original_slots)
     #collapse_starting_neighbors(original_slots)
     var slots = start_solve(original_slots)
@@ -85,6 +86,7 @@ static func collapse_neighbors(slot, tileset, rules):
         var neighbor_needs_to_collapse_its_neighbors = false
         var neighbor_tiles = neighbor.tiles
         if neighbor_tiles.size() > 1:
+            # TODO: Check that this is correct
             for i in range(neighbor_tiles.size() - 1, -1, -1):
                 var neighbor_tile = neighbor_tiles[i]
                 var neighbor_index = tileset.get_tile_index(neighbor_tile)
@@ -107,6 +109,7 @@ static func remove_tile(slot, tile):
     slot.tiles.erase(tile)
 
 static func is_deadend(slots):
+    # TODO: Implement
     pass
 
 static func select_lowest_entropy(slots):
@@ -119,6 +122,7 @@ static func select_lowest_entropy(slots):
     return lowest_entropy_slot
 
 static func slots_to_map(slots):
+    # TODO: Implement
     pass
 
 static func calculate_entropy(slot, tileset_tiles):
