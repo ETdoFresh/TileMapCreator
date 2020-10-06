@@ -1,5 +1,6 @@
 class_name WaveFunctionCollapse
 
+const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
 
 static func map_to_slots(map, tiles):
@@ -45,9 +46,8 @@ static func get_slot(slots, x, y):
     return null
 
 static func solve(original_slots, tileset, rules):
-    # TODO: Implement
-    #append_rules(rules, original_slots)
-    #collapse_starting_neighbors(original_slots)
+    append_rules(original_slots, tileset, rules)
+    collapse_starting_neighbors(original_slots, tileset, rules)
     var slots = start_solve(original_slots)
     var slot = select_lowest_entropy(slots)
     while slot != null:
@@ -58,6 +58,24 @@ static func solve(original_slots, tileset, rules):
             pass
         slot = select_lowest_entropy(slots)
     return slots_to_map(slots)
+
+static func append_rules(slots, tileset, rules):
+    for i in range(slots.size()):
+        if slots[i].tiles.size() == 1:
+            var tile = slots[i].tiles[0]
+            var tile_index = tileset.get_tile_index(tile)
+            for direction in DIRECTIONS:
+                var neighbor = slots[i][direction]
+                if neighbor and neighbor.tiles.size() == 1:
+                    var neighbor_tile = neighbor.tiles[0]
+                    var neighbor_tile_index = tileset.get_tile_index(neighbor_tile)
+                    if not rules.rules[direction].has([tile_index, neighbor_tile_index]):
+                        rules.rules[direction].append([tile_index, neighbor_tile_index])
+
+static func collapse_starting_neighbors(slots, tileset, rules):
+    for i in range(slots.size()):
+        if slots[i].tiles.size() == 1:
+            collapse_neighbors(slots[i], tileset, rules)
 
 static func start_solve(slots):
     var new_slots = slots.duplicate()
@@ -109,19 +127,24 @@ static func remove_tile(slot, tile):
     slot.tiles.erase(tile)
 
 static func is_deadend(slots):
-    # TODO: Implement
-    pass
+    for i in range(slots.size()):
+        if slots[i].tiles.size() == 0:
+            return true
+    return false
 
 static func select_lowest_entropy(slots):
     if slots.size() <= 1:
         return null
-    var lowest_entropy_slot = slots[0]
+    var lowest_entropy_slot = null
     for i in range(slots.size()):
-        if lowest_entropy_slot.entropy > slots[i].entropy:
-            lowest_entropy_slot = slots[i]
+        if slots[i].tiles.size() > 1:
+            if not lowest_entropy_slot:
+                lowest_entropy_slot = slots[i]
+            elif lowest_entropy_slot.entropy > slots[i].entropy:
+                lowest_entropy_slot = slots[i]
     return lowest_entropy_slot
 
-static func slots_to_map(slots):
+static func slots_to_map(_slots):
     # TODO: Implement
     pass
 

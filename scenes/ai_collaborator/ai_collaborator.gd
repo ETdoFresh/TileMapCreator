@@ -13,6 +13,7 @@ func _ready():
     set_rules(null)
     set_user_map(null)
     run_wfc()
+    display_generated_map()
 
 func _process(_delta):
     pass
@@ -35,10 +36,10 @@ func set_rules(_set_rules):
 func set_user_map(_set_user_map):
     user_map = LAYER_DATA.new()
     user_map.size = Vector2(8, 8)
-    user_map.add_tile(Vector2(0,0), tileset.tiles[42].duplicate())
-    user_map.add_tile(Vector2(0,1), tileset.tiles[42].duplicate())
-    user_map.add_tile(Vector2(1,0), tileset.tiles[42].duplicate())
-    user_map.add_tile(Vector2(1,1), tileset.tiles[42].duplicate())
+    user_map.add_tile(Vector2(0,0), tileset.tiles[42])
+    user_map.add_tile(Vector2(0,1), tileset.tiles[42])
+    user_map.add_tile(Vector2(1,0), tileset.tiles[42])
+    user_map.add_tile(Vector2(1,1), tileset.tiles[42])
 
 func run_wfc():
     var slots = WaveFunctionCollapse.map_to_slots(user_map, tileset.tiles)
