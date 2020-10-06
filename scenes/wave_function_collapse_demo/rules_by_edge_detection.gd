@@ -17,6 +17,7 @@ onready var tileset = get_parent().get_node("Tileset")
 func _ready():
     rules = match_edges(tileset)
 
+# warning-ignore:shadowed_variable
 func match_edges(tileset):
     var atlasTexture = tileset.tiles[0].texture
     var image = atlasTexture.atlas.get_data()
@@ -29,6 +30,7 @@ func match_edges(tileset):
             image_data[x].append(image.get_pixel(x,y))
     image.unlock()
     
+# warning-ignore:shadowed_variable
     var rules = {"top": [], "right": [], "bottom": [], "left": []}
     for tile in tileset.tiles:
         var texture = tile.texture

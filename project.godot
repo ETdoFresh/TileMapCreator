@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://prefabs/save/save.gd"
 }, {
-"base": "Tileset",
+"base": "Reference",
 "class": "Slot",
 "language": "GDScript",
 "path": "res://scenes/wave_function_collapse_demo/slot.gd"
@@ -88,6 +88,11 @@ _global_script_classes=[ {
 "class": "TilesetsResource",
 "language": "GDScript",
 "path": "res://resources/tilesets_resource.gd"
+}, {
+"base": "Reference",
+"class": "WaveFunctionCollapse",
+"language": "GDScript",
+"path": "res://functions/wfc.gd"
 } ]
 _global_script_class_icons={
 "ButtonBehavior": "",
@@ -105,13 +110,14 @@ _global_script_class_icons={
 "TileResource": "",
 "Tileset": "",
 "TilesetResource": "",
-"TilesetsResource": ""
+"TilesetsResource": "",
+"WaveFunctionCollapse": ""
 }
 
 [application]
 
 config/name="TileMapCreator"
-run/main_scene="res://scenes/intro_credits/intro_credits.tscn"
+run/main_scene="res://scenes/ai_collaborator/ai_collaborator.tscn"
 config/icon="res://sprites/iconscout/tile/tile.png"
 
 [autoload]

@@ -1,5 +1,6 @@
 extends Control
 
+var size = Vector2.ZERO
 var grid_size = 64
 var x_positions = []
 var y_positions = []
@@ -27,6 +28,12 @@ func exists_tile(x, y):
         if x == x_positions[i] and y == y_positions[i]:
             return true
     return false
+
+func get_tile(x, y):
+    for i in range(tiles.size()):
+        if x == x_positions[i] and y == y_positions[i]:
+            return tiles[i]
+    return null
 
 func overwrite_tile(x, y, tile):
     for i in range(tiles.size()):
