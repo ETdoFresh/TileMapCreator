@@ -42,7 +42,8 @@ func set_user_map(_set_user_map):
 
 func run_wfc():
     var slots = WaveFunctionCollapse.map_to_slots(user_map, tileset.tiles)
-    generated_map = WaveFunctionCollapse.solve(slots, rules)
+    generated_map = WaveFunctionCollapse.solve(slots, tileset, rules)
 
 func display_generated_map():
+    #GridContainerExt.map_to_grid(generated_map)
     pass
