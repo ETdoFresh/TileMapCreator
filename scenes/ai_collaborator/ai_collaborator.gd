@@ -40,11 +40,12 @@ func set_user_map(_set_user_map):
     user_map.add_tile(Vector2(0,1), tileset.tiles[42])
     user_map.add_tile(Vector2(1,0), tileset.tiles[42])
     user_map.add_tile(Vector2(1,1), tileset.tiles[42])
+    user_map.add_tile(Vector2(2,1), tileset.tiles[42])
 
 func run_wfc():
     var slots = WaveFunctionCollapse.map_to_slots(user_map, tileset.tiles)
     generated_map = WaveFunctionCollapse.solve(slots, tileset, rules)
 
 func display_generated_map():
-    #GridContainerExt.map_to_grid(generated_map) # TODO: Implement
+    WaveFunctionCollapse.map_to_grid(generated_map, self) # TODO: Implement
     pass

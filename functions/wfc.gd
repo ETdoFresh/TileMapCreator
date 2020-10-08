@@ -2,6 +2,7 @@ class_name WaveFunctionCollapse
 
 const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
+const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
 
 static func map_to_slots(map, tiles):
     var slots = []
@@ -144,9 +145,12 @@ static func select_lowest_entropy(slots):
                 lowest_entropy_slot = slots[i]
     return lowest_entropy_slot
 
-static func slots_to_map(_slots):
-    # TODO: Implement
-    pass
+static func slots_to_map(slots):
+    var map = LAYER_DATA.new()
+    map.size = Vector2(8,8)
+    for slot in slots:
+        map.add_tile(Vector2(slot.x, slot.y), slot.tiles[0].duplicate())
+    return map
 
 static func calculate_entropy(slot, tileset_tiles):
     var tiles = slot.tiles
@@ -165,3 +169,12 @@ static func calculate_entropy(slot, tileset_tiles):
     slot.entropy = log_2_total_sum_of_weights
     slot.entropy -= sum_log_2_of_weights / total_sum_of_weights
     slot.entropy += small_random_value
+
+static func map_to_grid(map, grid_parent):
+    grid_parent.columns = map.size.y
+    for i in range(map.tiles.size()):
+        var tile = map.tiles[i]
+        var _x = map.x_positions[i]
+        var _y = map.y_positions[i]
+        var _grid_size = map.grid_size
+        grid_parent.add_child(tile.duplicate())
