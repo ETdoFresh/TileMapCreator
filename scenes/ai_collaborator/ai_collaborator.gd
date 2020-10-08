@@ -1,51 +1,68 @@
 extends Control
 
+const TILE = preload("res://prefabs/tile/tile_new.gd")
+const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
 const EDGE_DETECTION = preload("res://scenes/wave_function_collapse_demo/rules_by_edge_detection.gd")
 
-var tileset: Tileset = Tileset.new()
-var rules: Rules = Rules.new()
 var user_map
 var generated_map
 
+onready var tileset = $Tileset
+onready var rules = $Rules
+
 func _ready():
-    set_tileset(null)
-    set_rules(null)
-    set_user_map(null)
-    run_wfc()
-    display_generated_map()
+    set_tileset(tileset)
+    set_rules(tileset, rules)
+    #set_user_map(tileset, map)
+    #run_wfc(tileset, rules, map)
 
-func _process(_delta):
-    pass
-
-func set_tileset(_set_tileset):
+# warning-ignore:shadowed_variable
+static func set_tileset(tileset):
     var tileset_resource = ResourceLoader.load("res://resources/tileset.tres")
     if tileset_resource:
-        for tile_resource in tileset_resource.tiles:
-            var tile = Prefab.TILE.instance()
-            tile.texture = tile_resource.texture
-            tile.stretch_mode = tile_resource.stretch_mode
-            tileset.add_tile(tile)
-            tile.set_radio_behavior()
-    #tileset = set_tileset
+        var tiles = tileset_resource.tiles
+        var grid_cells = int(max(round(sqrt(tiles.size())), 1))
+        TILESET.init(tileset, Vector2(grid_cells, grid_cells))
+        for tile_resource in tiles:
+            var tile = TILE.new()
+            TILE.set_texture(tile, tile_resource.texture)
+            TILE.set_stretch_mode(tile, tile_resource.stretch_mode)
+            TILESET.add_tile(tileset, tile)
+            #TILESET.set_behavior(tileset, TILESET.RADIO)
+        TILESET.assign_ids(tileset)
+    return tileset
 
-func set_rules(_set_rules):
-    var edge_detection = EDGE_DETECTION.new()
-    rules.rules = edge_detection.match_edges(tileset)
-
-func set_user_map(_set_user_map):
-    user_map = LAYER_DATA.new()
-    user_map.size = Vector2(8, 8)
-    user_map.add_tile(Vector2(0,0), tileset.tiles[42])
-    user_map.add_tile(Vector2(0,1), tileset.tiles[42])
-    user_map.add_tile(Vector2(1,0), tileset.tiles[42])
-    user_map.add_tile(Vector2(1,1), tileset.tiles[42])
-    user_map.add_tile(Vector2(2,1), tileset.tiles[42])
-
-func run_wfc():
-    var slots = WaveFunctionCollapse.map_to_slots(user_map, tileset.tiles)
-    generated_map = WaveFunctionCollapse.solve(slots, tileset, rules)
-
-func display_generated_map():
-    WaveFunctionCollapse.map_to_grid(generated_map, self) # TODO: Implement
+# warning-ignore:shadowed_variable
+static func set_rules(tileset, _rules):
+    #EdgeDetection.match_edges(rules, tileset_selector)
+    var tileset_selector = TileSetSelector.new()
+    NodeExt.full_rect_layout(tileset_selector)
+    TileSetSelector.from_tileset(tileset_selector, tileset)
+    NodeExt.replace(tileset, tileset_selector)
+    #TileSetSelector.connect_tiles_to_rules(tileset_selector, rules)
     pass
+
+static func set_user_map(_tileset, _map):
+#    var map = Map.new()
+#    Map.set_size(8, 8)
+#    Map.add_tile_instance(0, 0, tileset.tiles[42])
+#    Map.add_tile_instance(0, 1, tileset.tiles[42])
+#    Map.add_tile_instance(1, 0, tileset.tiles[42])
+#    Map.add_tile_instance(1, 1, tileset.tiles[42])
+#    Map.add_tile_instance(2, 1, tileset.tiles[42])
+#    return map
+#    user_map = LAYER_DATA.new()
+#    user_map.size = Vector2(8, 8)
+#    user_map.add_tile(Vector2(0,0), tileset.tiles[42])
+#    user_map.add_tile(Vector2(0,1), tileset.tiles[42])
+#    user_map.add_tile(Vector2(1,0), tileset.tiles[42])
+#    user_map.add_tile(Vector2(1,1), tileset.tiles[42])
+#    user_map.add_tile(Vector2(2,1), tileset.tiles[42])
+    pass
+
+static func run_wfc():
+#    var slots = WaveFunctionCollapse.map_to_slots(user_map, tileset.tiles)
+#    generated_map = WaveFunctionCollapse.solve(slots, tileset, rules)
+    pass
+

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "ArrayExt",
+"language": "GDScript",
+"path": "res://functions/extension/array_ext.gd"
+}, {
 "base": "Node",
 "class": "ButtonBehavior",
 "language": "GDScript",
@@ -23,6 +28,11 @@ _global_script_classes=[ {
 "class": "KeyboardShortcuts",
 "language": "GDScript",
 "path": "res://functions/keyboard_shortcuts.gd"
+}, {
+"base": "Reference",
+"class": "NodeExt",
+"language": "GDScript",
+"path": "res://functions/extension/node_ext.gd"
 }, {
 "base": "Node",
 "class": "NonBlockingBehavior",
@@ -69,10 +79,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://prefabs/tile/tile.gd"
 }, {
+"base": "TextureRect",
+"class": "TileButtonNode",
+"language": "GDScript",
+"path": "res://prefabs/tile/tile_button_node.gd"
+}, {
+"base": "TextureRect",
+"class": "TileNode",
+"language": "GDScript",
+"path": "res://prefabs/tile/tile_node.gd"
+}, {
 "base": "Resource",
 "class": "TileResource",
 "language": "GDScript",
 "path": "res://resources/tile_resource.gd"
+}, {
+"base": "GridContainer",
+"class": "TileSetSelector",
+"language": "GDScript",
+"path": "res://prefabs/tileset/tileset_selector.gd"
 }, {
 "base": "GridContainer",
 "class": "Tileset",
@@ -95,9 +120,11 @@ _global_script_classes=[ {
 "path": "res://functions/wfc.gd"
 } ]
 _global_script_class_icons={
+"ArrayExt": "",
 "ButtonBehavior": "",
 "ControlCanvasLayer": "",
 "KeyboardShortcuts": "",
+"NodeExt": "",
 "NonBlockingBehavior": "",
 "RadioBehavior": "",
 "Rules": "",
@@ -107,7 +134,10 @@ _global_script_class_icons={
 "TextureRectRadio": "",
 "TextureRectRadioGroup": "",
 "Tile": "",
+"TileButtonNode": "",
+"TileNode": "",
 "TileResource": "",
+"TileSetSelector": "",
 "Tileset": "",
 "TilesetResource": "",
 "TilesetsResource": "",
