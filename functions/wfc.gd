@@ -4,49 +4,21 @@ const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
 const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
+const SLOTS = preload("res://prefabs/slot/slots.gd")
 
-static func map_to_slots(map, tiles):
-    var slots = []
+static func slots_from_map(slots, map, tiles):
+    slots = SLOTS.clear(slots)
     for y in range(map.size.y):
         for x in range(map.size.x):
             var slot
             var tile = Map.get_tile(map, x, y)
             if tile:
-                slot = create_slot(x, y, [tile.tile])
+                slot = SLOT.init(SLOT.new(), x, y, [tile.tile])
             else:
-                slot = create_slot(x, y, tiles)
-            slots.append(slot)
-            assign_neighbors(slots, slot)
-            calculate_entropy(slot, tiles)
+                slot = SLOT.init(SLOT.new(), x, y, tiles)
+            slots = SLOTS.add_slot(slots, slot)
+            slot = SLOT.calculate_entropy(slot, tiles)
     return slots
-
-static func create_slot(x, y, tiles):
-    var slot = SLOT.new()
-    slot.x = x
-    slot.y = y
-    slot.tiles = tiles.duplicate()
-    return slot
-
-static func assign_neighbors(slots, slot):
-    assign_neighbor(slots, slot, "left", "right", -1, 0)
-    assign_neighbor(slots, slot, "right", "left", 1, 0)
-    assign_neighbor(slots, slot, "top", "bottom", 0, -1)
-    assign_neighbor(slots, slot, "bottom", "top", 0, 1)
-
-static func assign_neighbor(slots, slot, neighbor_name, reciprocal_name, offset_x, offset_y):
-    var neighbor_x = slot.x + offset_x
-    var neighbor_y = slot.y + offset_y
-    var neighbor = get_slot(slots, neighbor_x, neighbor_y)
-    if neighbor:
-        slot[neighbor_name] = neighbor
-        assert(neighbor[reciprocal_name] == null)
-        neighbor[reciprocal_name] = slot
-
-static func get_slot(slots, x, y):
-    for i in range(slots.size()):
-        if slots[i].x == x and slots[i].y == y:
-            return slots[i]
-    return null
 
 static func solve(original_slots, tileset, rules):
     append_rules(original_slots, tileset, rules)
@@ -58,11 +30,28 @@ static func solve(original_slots, tileset, rules):
         collapse_neighbors(slot, tileset, rules)
         if is_deadend(slots):
             slots = restart_solve(original_slots)
-            pass
         slot = select_lowest_entropy(slots)
-    return slots_to_map(slots)
+    return slots
 
-static func append_rules(slots, tileset, rules):
+static func step1(original_slots, tileset, rules):
+    var slots = start_solve(original_slots)
+    slots = append_rules(slots, tileset, rules)
+    slots = collapse_starting_neighbors(slots, tileset, rules)
+    return slots
+
+static func step(original_slots, tileset, rules):
+    var slots = start_solve(original_slots)
+    var slot = select_lowest_entropy(slots)
+    if slot != null:
+        slot = random_collapse(slot)
+        slot = collapse_neighbors(slot, tileset, rules)
+        if is_deadend(slots):
+            slots = restart_solve(original_slots)
+        slot = select_lowest_entropy(slots)
+    return slots
+
+static func append_rules(slots_node, tileset, rules):
+    var slots = slots_node.slots
     for i in range(slots.size()):
         if slots[i].tiles.size() == 1:
             var tile = slots[i].tiles[0]
@@ -74,24 +63,27 @@ static func append_rules(slots, tileset, rules):
                     var neighbor_tile_id = TILESET.get_id(tileset, neighbor_tile)
                     if not rules[direction].has([tile_id, neighbor_tile_id]):
                         rules[direction].append([tile_id, neighbor_tile_id])
+    return slots_node
 
-static func collapse_starting_neighbors(slots, tileset, rules):
+static func collapse_starting_neighbors(slots_node, tileset, rules):
+    var slots = slots_node.slots
     for i in range(slots.size()):
         if slots[i].tiles.size() == 1:
             collapse_neighbors(slots[i], tileset, rules)
+    return slots_node
 
 static func start_solve(slots):
-    var new_slots = slots.duplicate()
-    for i in range(slots.size()):
-        new_slots[i] = slots[i].duplicate()
-    return new_slots
-    
+    return SLOTS.copy(slots)
+
 static func restart_solve(slots):
     return start_solve(slots)
 
 static func random_collapse(slot):
     var tile = choose_random(slot.tiles)
-    slot.tiles = [tile]
+    for i in range(slot.tiles.size() - 1, -1, -1):
+        var slot_tile = slot.tiles[i]
+        if slot_tile != tile:
+            SLOT.remove_tile(slot, slot_tile)
     return slot
 
 static func choose_random(array):
@@ -107,34 +99,34 @@ static func collapse_neighbors(slot, tileset, rules):
         var neighbor_needs_to_collapse_its_neighbors = false
         var neighbor_tiles = neighbor.tiles
         if neighbor_tiles.size() > 1:
-            # TODO: Check that this is correct
             for i in range(neighbor_tiles.size() - 1, -1, -1):
                 var neighbor_tile = neighbor_tiles[i]
                 var neighbor_id = TILESET.get_id(tileset, neighbor_tile)
                 if not can_be_neighbors(slot, tileset, rules, direction, neighbor_id):
-                    remove_tile(neighbor, neighbor_tile)
+                    SLOT.remove_tile(neighbor, neighbor_tile)
                     neighbor_needs_to_collapse_its_neighbors = true
         
         if neighbor_needs_to_collapse_its_neighbors:
-            calculate_entropy(neighbor, tileset.tiles)
+            SLOT.calculate_entropy(neighbor, tileset.tiles)
             collapse_neighbors(neighbor, tileset, rules)
+    return slot
 
+# warning-ignore:unused_argument
 static func can_be_neighbors(slot, tileset, rules, direction, neighbor_id):
     for tile in slot.tiles:
         if RulesNew.can_be_neighbor(rules, tile.id, direction, neighbor_id):
             return true
     return false
 
-static func remove_tile(slot, tile):
-    slot.tiles.erase(tile)
-
-static func is_deadend(slots):
+static func is_deadend(slots_node):
+    var slots = slots_node.slots
     for i in range(slots.size()):
         if slots[i].tiles.size() == 0:
             return true
     return false
 
-static func select_lowest_entropy(slots):
+static func select_lowest_entropy(slots_node):
+    var slots = slots_node.slots
     if slots.size() <= 1:
         return null
     var lowest_entropy_slot = null
@@ -152,24 +144,6 @@ static func slots_to_map(slots):
     for slot in slots:
         map = Map.add_tile(map, slot.x, slot.y, slot.tiles[0])
     return map
-
-static func calculate_entropy(slot, tileset_tiles):
-    var tiles = slot.tiles
-    if tiles.size() == 0:
-        return
-        
-    var weight = 1.0 / tileset_tiles.size()
-    var total_sum_of_weights = weight * tiles.size()
-    var log_2_total_sum_of_weights = log(total_sum_of_weights) / log (2)
-    var sum_log_2_of_weights = 0
-    for _i in range(tiles.size()):
-        sum_log_2_of_weights += log(weight) / log(2)
-    
-    var small_random_value = randf() * 0.001
-    
-    slot.entropy = log_2_total_sum_of_weights
-    slot.entropy -= sum_log_2_of_weights / total_sum_of_weights
-    slot.entropy += small_random_value
 
 static func map_to_grid(map, grid_parent):
     grid_parent.columns = map.size.y

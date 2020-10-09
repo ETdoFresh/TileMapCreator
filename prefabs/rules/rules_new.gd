@@ -35,11 +35,7 @@ static func show_rule(rules, tileset, tile):
     return rules
 
 static func can_be_neighbor(rules, slot, direction, neighbor):
-    for rule in rules[direction]:
-        if rule[0] == slot:
-            if rule[1] == neighbor:
-                return true
-    return false
+    return rules[direction].has([slot, neighbor])
 
 # warning-ignore:shadowed_variable
 static func connect_press_to_tileset(rules, tileset):

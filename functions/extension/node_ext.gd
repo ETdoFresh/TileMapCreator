@@ -19,6 +19,11 @@ static func full_rect_layout(node):
     node.rect_size = Util.project_resolution
     return node
 
+static func size_flag_fill_and_expand(node):
+    node.size_flags_horizontal = node.SIZE_EXPAND_FILL
+    node.size_flags_vertical = node.SIZE_EXPAND_FILL
+    return node
+
 static func delete_all_children(node):
     for i in range(node.get_child_count() - 1, -1, -1):
         delete(node.get_child(i))

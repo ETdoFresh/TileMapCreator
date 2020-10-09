@@ -2,11 +2,11 @@
 
 [ext_resource path="res://scenes/ai_collaborator/ai_collaborator.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/tileset/tileset_new.gd" type="Script" id=2]
-[ext_resource path="res://sprites/oskar/texture_atlas/01.tres" type="Texture" id=3]
 [ext_resource path="res://prefabs/rules/rules_new.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/rules/rule_viewer.gd" type="Script" id=5]
 [ext_resource path="res://prefabs/tile/tile_node.gd" type="Script" id=6]
 [ext_resource path="res://prefabs/map/map.gd" type="Script" id=7]
+[ext_resource path="res://prefabs/slot/slots.gd" type="Script" id=8]
 
 [node name="AICollaborator" type="Control"]
 anchor_right = 1.0
@@ -18,15 +18,13 @@ __meta__ = {
 }
 
 [node name="Tileset" type="GridContainer" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Rules" type="Control" parent="."]
-visible = false
-margin_right = 512.0
-margin_bottom = 512.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 4 )
@@ -35,8 +33,8 @@ __meta__ = {
 }
 
 [node name="RuleViewer" type="GridContainer" parent="Rules"]
-margin_right = 512.0
-margin_bottom = 515.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 2
@@ -48,15 +46,15 @@ __meta__ = {
 }
 
 [node name="Empty1" type="Control" parent="Rules/RuleViewer"]
-margin_right = 169.0
-margin_bottom = 170.0
+margin_right = 425.0
+margin_bottom = 238.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Top" type="GridContainer" parent="Rules/RuleViewer"]
-margin_left = 171.0
-margin_right = 340.0
-margin_bottom = 170.0
+margin_left = 427.0
+margin_right = 852.0
+margin_bottom = 238.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 1
@@ -66,16 +64,16 @@ __meta__ = {
 }
 
 [node name="Empty2" type="Control" parent="Rules/RuleViewer"]
-margin_left = 342.0
-margin_right = 511.0
-margin_bottom = 170.0
+margin_left = 854.0
+margin_right = 1279.0
+margin_bottom = 238.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Left" type="GridContainer" parent="Rules/RuleViewer"]
-margin_top = 172.0
-margin_right = 169.0
-margin_bottom = 342.0
+margin_top = 240.0
+margin_right = 425.0
+margin_bottom = 478.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 1
@@ -85,21 +83,20 @@ __meta__ = {
 }
 
 [node name="Main" type="TextureRect" parent="Rules/RuleViewer"]
-margin_left = 171.0
-margin_top = 172.0
-margin_right = 340.0
-margin_bottom = 342.0
+margin_left = 427.0
+margin_top = 240.0
+margin_right = 852.0
+margin_bottom = 478.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 3 )
 expand = true
 script = ExtResource( 6 )
 
 [node name="Right" type="GridContainer" parent="Rules/RuleViewer"]
-margin_left = 342.0
-margin_top = 172.0
-margin_right = 511.0
-margin_bottom = 342.0
+margin_left = 854.0
+margin_top = 240.0
+margin_right = 1279.0
+margin_bottom = 478.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 1
@@ -109,17 +106,17 @@ __meta__ = {
 }
 
 [node name="Empty3" type="Control" parent="Rules/RuleViewer"]
-margin_top = 344.0
-margin_right = 169.0
-margin_bottom = 514.0
+margin_top = 480.0
+margin_right = 425.0
+margin_bottom = 718.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Bottom" type="GridContainer" parent="Rules/RuleViewer"]
-margin_left = 171.0
-margin_top = 344.0
-margin_right = 340.0
-margin_bottom = 514.0
+margin_left = 427.0
+margin_top = 480.0
+margin_right = 852.0
+margin_bottom = 718.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 1
@@ -129,14 +126,24 @@ __meta__ = {
 }
 
 [node name="Empty4" type="Control" parent="Rules/RuleViewer"]
-margin_left = 342.0
-margin_top = 344.0
-margin_right = 511.0
-margin_bottom = 514.0
+margin_left = 854.0
+margin_top = 480.0
+margin_right = 1279.0
+margin_bottom = 718.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Map" type="GridContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
+
+[node name="Slots" type="GridContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
