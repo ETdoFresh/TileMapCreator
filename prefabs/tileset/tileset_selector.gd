@@ -6,6 +6,7 @@ var selection
 static func from_tileset(tileset_selector, tileset):
     tileset_selector = init(tileset_selector, tileset.size, tileset.tiles)
     tileset_selector.next_id = tileset.next_id
+    tileset_selector.visible = tileset.visible
     for tile in tileset.tiles:
         var tile_button_node = TileButtonNode.new()
         TileButtonNode.set_tile(tile_button_node, tile)
@@ -18,3 +19,4 @@ static func connect_tiles_to_rules(tileset_selector, rules):
         var tile = tile_node.tile
         tile_node.connect("pressed", rules, "show_rule", [rules, tileset_selector, tile])
         tile_node.connect("pressed", tileset_selector, "hide")
+    return tileset_selector

@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://functions/keyboard_shortcuts.gd"
 }, {
+"base": "GridContainer",
+"class": "Map",
+"language": "GDScript",
+"path": "res://prefabs/map/map.gd"
+}, {
+"base": "TextureRect",
+"class": "MapTile",
+"language": "GDScript",
+"path": "res://prefabs/tile/map_tile.gd"
+}, {
 "base": "Reference",
 "class": "NodeExt",
 "language": "GDScript",
@@ -141,6 +151,8 @@ _global_script_class_icons={
 "EdgeDetection": "",
 "GridContainerExt": "",
 "KeyboardShortcuts": "",
+"Map": "",
+"MapTile": "",
 "NodeExt": "",
 "NonBlockingBehavior": "",
 "RadioBehavior": "",

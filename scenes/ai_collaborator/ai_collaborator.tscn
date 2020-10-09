@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ai_collaborator/ai_collaborator.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/tileset/tileset_new.gd" type="Script" id=2]
@@ -6,13 +6,19 @@
 [ext_resource path="res://prefabs/rules/rules_new.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/rules/rule_viewer.gd" type="Script" id=5]
 [ext_resource path="res://prefabs/tile/tile_node.gd" type="Script" id=6]
+[ext_resource path="res://prefabs/map/map.gd" type="Script" id=7]
 
 [node name="AICollaborator" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
 [node name="Tileset" type="GridContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -129,3 +135,8 @@ margin_right = 511.0
 margin_bottom = 514.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Map" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
