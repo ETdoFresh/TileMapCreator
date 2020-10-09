@@ -29,19 +29,19 @@ static func set_tileset(tileset):
             TILE.set_texture(tile, tile_resource.texture)
             TILE.set_stretch_mode(tile, tile_resource.stretch_mode)
             TILESET.add_tile(tileset, tile)
-            #TILESET.set_behavior(tileset, TILESET.RADIO)
         TILESET.assign_ids(tileset)
     return tileset
 
 # warning-ignore:shadowed_variable
-static func set_rules(tileset, _rules):
-    #EdgeDetection.match_edges(rules, tileset_selector)
+# warning-ignore:shadowed_variable
+static func set_rules(tileset, rules):
+    EdgeDetection.match_edges(rules, tileset)
     var tileset_selector = TileSetSelector.new()
     NodeExt.full_rect_layout(tileset_selector)
     TileSetSelector.from_tileset(tileset_selector, tileset)
     NodeExt.replace(tileset, tileset_selector)
-    #TileSetSelector.connect_tiles_to_rules(tileset_selector, rules)
-    pass
+    NodeExt.delete(tileset)
+    TileSetSelector.connect_tiles_to_rules(tileset_selector, rules)
 
 static func set_user_map(_tileset, _map):
 #    var map = Map.new()
