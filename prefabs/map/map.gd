@@ -11,7 +11,7 @@ static func add_tile(map, x, y, tile):
     MapTile.set_tile(map_tile, tile)
     var original_tile = map.get_child(x + map.size.x * y)
     NodeExt.replace(original_tile, map_tile)
-    ArrayExt.append(map.tiles, tile)
+    ArrayExt.append(map.tiles, map_tile)
     return map
 
 static func get_tile(map, x, y):
@@ -28,7 +28,7 @@ static func set_map_size(map, x, y):
     for i in range(map.get_child_count(), x * y):
         NodeExt.add_child(map, create_empty_control())
     
-    for i in range(map.get_child_count(), x * y - 1, -1):
+    for i in range(map.get_child_count() - 1, x * y - 1, -1):
         NodeExt.remove_child(map, map.get_child(i))
     
     return map

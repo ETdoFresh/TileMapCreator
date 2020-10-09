@@ -16,7 +16,7 @@ func _ready():
     rules = set_rules(rules, tileset)
     tileset = display_rule_selector(tileset, rules)
     map = set_user_map(map, tileset)
-    #run_wfc(tileset, rules, map)
+    map = run_wfc(map, tileset, rules)
 
 # warning-ignore:shadowed_variable
 static func set_tileset(tileset):
@@ -57,8 +57,8 @@ static func set_user_map(map, tileset):
     map = Map.add_tile(map, 2, 1, tileset.tiles[42])
     return map
 
-static func run_wfc():
-#    var slots = WaveFunctionCollapse.map_to_slots(user_map, tileset.tiles)
-#    generated_map = WaveFunctionCollapse.solve(slots, tileset, rules)
-    pass
-
+static func run_wfc(map, tileset, rules):
+    var slots = WaveFunctionCollapse.map_to_slots(map, tileset.tiles)
+    var new_map = WaveFunctionCollapse.solve(slots, tileset, rules)
+    new_map = NodeExt.full_rect_layout(new_map)
+    return NodeExt.replace(map, new_map)

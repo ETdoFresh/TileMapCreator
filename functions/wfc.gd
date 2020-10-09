@@ -3,14 +3,16 @@ class_name WaveFunctionCollapse
 const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
+const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
 
 static func map_to_slots(map, tiles):
     var slots = []
     for y in range(map.size.y):
         for x in range(map.size.x):
             var slot
-            if map.exists_tile(x, y):
-                slot = create_slot(x, y, [map.get_tile(x, y)])
+            var tile = Map.get_tile(map, x, y)
+            if tile:
+                slot = create_slot(x, y, [tile.tile])
             else:
                 slot = create_slot(x, y, tiles)
             slots.append(slot)
@@ -64,14 +66,14 @@ static func append_rules(slots, tileset, rules):
     for i in range(slots.size()):
         if slots[i].tiles.size() == 1:
             var tile = slots[i].tiles[0]
-            var tile_index = tileset.get_tile_index(tile)
+            var tile_id = TILESET.get_id(tileset, tile)
             for direction in DIRECTIONS:
                 var neighbor = slots[i][direction]
                 if neighbor and neighbor.tiles.size() == 1:
                     var neighbor_tile = neighbor.tiles[0]
-                    var neighbor_tile_index = tileset.get_tile_index(neighbor_tile)
-                    if not rules.rules[direction].has([tile_index, neighbor_tile_index]):
-                        rules.rules[direction].append([tile_index, neighbor_tile_index])
+                    var neighbor_tile_id = TILESET.get_id(tileset, neighbor_tile)
+                    if not rules[direction].has([tile_id, neighbor_tile_id]):
+                        rules[direction].append([tile_id, neighbor_tile_id])
 
 static func collapse_starting_neighbors(slots, tileset, rules):
     for i in range(slots.size()):
@@ -108,8 +110,8 @@ static func collapse_neighbors(slot, tileset, rules):
             # TODO: Check that this is correct
             for i in range(neighbor_tiles.size() - 1, -1, -1):
                 var neighbor_tile = neighbor_tiles[i]
-                var neighbor_index = tileset.get_tile_index(neighbor_tile)
-                if not can_be_neighbors(slot, tileset, rules, direction, neighbor_index):
+                var neighbor_id = TILESET.get_id(tileset, neighbor_tile)
+                if not can_be_neighbors(slot, tileset, rules, direction, neighbor_id):
                     remove_tile(neighbor, neighbor_tile)
                     neighbor_needs_to_collapse_its_neighbors = true
         
@@ -117,10 +119,9 @@ static func collapse_neighbors(slot, tileset, rules):
             calculate_entropy(neighbor, tileset.tiles)
             collapse_neighbors(neighbor, tileset, rules)
 
-static func can_be_neighbors(slot, tileset, rules, direction, neighbor_index):
+static func can_be_neighbors(slot, tileset, rules, direction, neighbor_id):
     for tile in slot.tiles:
-        var tile_index = tileset.get_tile_index(tile)
-        if rules.can_be_neighbor(tile_index, direction, neighbor_index):
+        if RulesNew.can_be_neighbor(rules, tile.id, direction, neighbor_id):
             return true
     return false
 
@@ -146,10 +147,10 @@ static func select_lowest_entropy(slots):
     return lowest_entropy_slot
 
 static func slots_to_map(slots):
-    var map = LAYER_DATA.new()
-    map.size = Vector2(8,8)
+    var map = Map.new()
+    map = Map.set_map_size(map, 8, 8)
     for slot in slots:
-        map.add_tile(Vector2(slot.x, slot.y), slot.tiles[0].duplicate())
+        map = Map.add_tile(map, slot.x, slot.y, slot.tiles[0])
     return map
 
 static func calculate_entropy(slot, tileset_tiles):
