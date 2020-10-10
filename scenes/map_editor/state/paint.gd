@@ -9,6 +9,8 @@ onready var camera = get_parent().get_parent().get_node("Camera2D")
 onready var grid = get_parent().get_parent().get_node("GridBackground")
 onready var layer_viewer = get_parent().get_parent().get_node("LayerViewer")
 onready var tileset = get_parent().get_parent().get_node("UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel/Tileset")
+onready var my_map = get_parent().get_parent().get_node("UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer/Map")
+onready var ccc_map = get_parent().get_parent().get_node("UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2/Map")
 
 func _gui_input(event):
     if event is InputEventMouseButton:
@@ -23,6 +25,7 @@ func _gui_input(event):
             if selected_tile != null:
                 var tile_position = get_world_position(event.global_position) / 64
                 layer_viewer.selected.add_tile(tile_position, selected_tile.duplicate())
+                #Map.add_tile(my_map, tile_position.x, tile_position.y, selected_tile)
 
 func get_world_position(screen_position):
     var screen_center = screen_size / 2

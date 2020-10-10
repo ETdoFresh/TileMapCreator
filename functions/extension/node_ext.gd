@@ -32,3 +32,9 @@ static func delete_all_children(node):
 static func delete(node):
     node.free()
     return null
+
+static func mouse_filter_ignore_all(node):
+    node.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    for child in node.get_children():
+        child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    return node

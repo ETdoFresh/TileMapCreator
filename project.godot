@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "AICollaborator",
+"language": "GDScript",
+"path": "res://scenes/ai_collaborator/ai_collaborator.gd"
+}, {
 "base": "Reference",
 "class": "ArrayExt",
 "language": "GDScript",
@@ -145,6 +150,7 @@ _global_script_classes=[ {
 "path": "res://functions/wfc.gd"
 } ]
 _global_script_class_icons={
+"AICollaborator": "",
 "ArrayExt": "",
 "ButtonBehavior": "",
 "ControlCanvasLayer": "",
@@ -177,7 +183,7 @@ _global_script_class_icons={
 [application]
 
 config/name="TileMapCreator"
-run/main_scene="res://scenes/ai_collaborator/ai_collaborator.tscn"
+run/main_scene="res://scenes/map_editor/paint_grid.tscn"
 config/icon="res://sprites/iconscout/tile/tile.png"
 
 [autoload]

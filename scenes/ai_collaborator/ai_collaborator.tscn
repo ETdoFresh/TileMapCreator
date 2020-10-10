@@ -18,11 +18,13 @@ __meta__ = {
 }
 
 [node name="Tileset" type="GridContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Rules" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3

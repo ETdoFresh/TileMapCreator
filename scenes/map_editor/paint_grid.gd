@@ -13,6 +13,9 @@ onready var middle_click_state = $MiddleClickState
 onready var right_click_state = $RightClickState
 onready var background = $Camera2D/Background
 
+onready var tileset_new = $Tileset
+onready var rules = $Rules
+
 func _ready():
     #this dictionary links buttons with their corresponding popup
     var popup_dictionary = {
@@ -92,6 +95,11 @@ func preload_tileset():
             tile.stretch_mode = tile_resource.stretch_mode
             tileset.add_tile(tile)
             tile.set_radio_behavior()
+    
+    tileset_new = AICollaborator.load_tileset_from_file(tileset_new)
+    tileset_new = NodeExt.full_rect_layout(tileset_new)
+    tileset_new = NodeExt.mouse_filter_ignore_all(tileset_new)
+    
 
 func save_tileset():
     var tileset_resource = TilesetResource.new()

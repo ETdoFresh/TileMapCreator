@@ -24,14 +24,10 @@ static func set_map_size(map, x, y):
     map.size.x = x
     map.size.y = y
     map.columns = x
-    
-# warning-ignore:unused_variable
-    for i in range(map.get_child_count(), x * y):
+    for _i in range(map.get_child_count(), x * y):
         NodeExt.add_child(map, create_empty_control())
-    
     for i in range(map.get_child_count() - 1, x * y - 1, -1):
         NodeExt.remove_child(map, map.get_child(i))
-    
     return map
 
 static func create_empty_control():
