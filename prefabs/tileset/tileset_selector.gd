@@ -1,5 +1,5 @@
 class_name TileSetSelector
-extends "res://prefabs/tileset/tileset_new.gd"
+extends Tileset
 
 var selection
 

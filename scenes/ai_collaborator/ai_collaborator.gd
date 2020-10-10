@@ -2,7 +2,6 @@ class_name AICollaborator
 extends Control
 
 const TILE = preload("res://prefabs/tile/tile_new.gd")
-const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
 const EDGE_DETECTION = preload("res://scenes/wave_function_collapse_demo/rules_by_edge_detection.gd")
 
@@ -22,13 +21,13 @@ static func load_tileset_from_file(tileset):
     if tileset_resource:
         var tiles = tileset_resource.tiles
         var grid_cells = int(max(round(sqrt(tiles.size())), 1))
-        tileset = TILESET.init(tileset, Vector2(grid_cells, grid_cells))
+        tileset = Tileset.init(tileset, Vector2(grid_cells, grid_cells))
         for tile_resource in tiles:
             var tile = TILE.new()
             tile = TILE.set_texture(tile, tile_resource.texture)
             tile = TILE.set_stretch_mode(tile, tile_resource.stretch_mode)
-            tileset = TILESET.add_tile(tileset, tile)
-        tileset = TILESET.assign_ids(tileset)
+            tileset = Tileset.add_tile(tileset, tile)
+        tileset = Tileset.assign_ids(tileset)
     return tileset
 
 static func set_rules(rules, tileset):

@@ -31,7 +31,7 @@ func collapse():
         for i in range(tiles.size() - 1, -1, -1):
             var tile = tiles[i]
             if i != random_index:
-                remove_tile(tile)
+                remove_tile(self, tile)
         add_constant_override("hseparation", 0)
         add_constant_override("vseparation", 0)
         calculate_entropy()
@@ -61,17 +61,12 @@ func collapse_neighbors(rules):
 
 func can_be_neighbors(rules, direction, neighbor_index):
     for tile in tiles:
-        var tile_index = get_tile_index(tile)
+        var tile_index = get_id(self, tile)
         if rules.can_be_neighbor(tile_index, direction, neighbor_index):
             return true
     return false
 
 func reset():
-    for i in range(all_tiles.size()):
-        if i >= tiles.size():
-            tiles.append(all_tiles[i])
-            add_child(all_tiles[i])
-        elif not all_tiles[i] in tiles:
-            tiles.insert(i, all_tiles[i])
-            add_child(all_tiles[i])
-            move_child(all_tiles[i], i)
+    NodeExt.delete_all_children(self)
+    tiles = ArrayExt.clear(tiles)
+    nodes = ArrayExt.clear(nodes)

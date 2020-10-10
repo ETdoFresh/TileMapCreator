@@ -3,8 +3,6 @@ class_name EdgeDetection
 const PIXEL_PERCENTAGE_THRESHOLD = 0.75
 const COLOR_MATCH_THRESHOLD = 0.1
 
-const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
-
 static func get_image_data(tileset):
     var atlasTexture = tileset.tiles[0].texture
     var image = atlasTexture.atlas.get_data()
@@ -22,10 +20,10 @@ static func match_edges(rules, tileset):
     var image_data = get_image_data(tileset)
     for tile in tileset.tiles:
         var texture = tile.texture
-        var tile_id = TILESET.get_id(tileset, tile)
+        var tile_id = Tileset.get_id(tileset, tile)
         for other_tile in tileset.tiles:
             var other_texture = other_tile.texture
-            var other_tile_id = TILESET.get_id(tileset, other_tile)
+            var other_tile_id = Tileset.get_id(tileset, other_tile)
             if match_left_edge_to_right_edge(texture, other_texture, image_data):
                 rules.left.append([tile_id, other_tile_id])
             if match_right_edge_to_left_edge(texture, other_texture, image_data):

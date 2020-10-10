@@ -3,7 +3,6 @@ class_name WaveFunctionCollapse
 const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
-const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
 const SLOTS = preload("res://prefabs/slot/slots.gd")
 
 static func slots_from_map(slots, map, tiles):
@@ -55,12 +54,12 @@ static func append_rules(slots_node, tileset, rules):
     for i in range(slots.size()):
         if slots[i].tiles.size() == 1:
             var tile = slots[i].tiles[0]
-            var tile_id = TILESET.get_id(tileset, tile)
+            var tile_id = Tileset.get_id(tileset, tile)
             for direction in DIRECTIONS:
                 var neighbor = slots[i][direction]
                 if neighbor and neighbor.tiles.size() == 1:
                     var neighbor_tile = neighbor.tiles[0]
-                    var neighbor_tile_id = TILESET.get_id(tileset, neighbor_tile)
+                    var neighbor_tile_id = Tileset.get_id(tileset, neighbor_tile)
                     if not rules[direction].has([tile_id, neighbor_tile_id]):
                         rules[direction].append([tile_id, neighbor_tile_id])
     return slots_node
@@ -101,7 +100,7 @@ static func collapse_neighbors(slot, tileset, rules):
         if neighbor_tiles.size() > 1:
             for i in range(neighbor_tiles.size() - 1, -1, -1):
                 var neighbor_tile = neighbor_tiles[i]
-                var neighbor_id = TILESET.get_id(tileset, neighbor_tile)
+                var neighbor_id = Tileset.get_id(tileset, neighbor_tile)
                 if not can_be_neighbors(slot, tileset, rules, direction, neighbor_id):
                     SLOT.remove_tile(neighbor, neighbor_tile)
                     neighbor_needs_to_collapse_its_neighbors = true

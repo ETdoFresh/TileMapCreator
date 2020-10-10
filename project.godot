@@ -124,7 +124,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/tile_resource.gd"
 }, {
-"base": "GridContainer",
+"base": "Tileset",
 "class": "TileSetSelector",
 "language": "GDScript",
 "path": "res://prefabs/tileset/tileset_selector.gd"

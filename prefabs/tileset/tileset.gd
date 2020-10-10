@@ -1,58 +1,60 @@
 class_name Tileset
 extends GridContainer
 
-signal selection_changed(tile)
-
-var all_tiles = []
+var size = Vector2.ZERO
 var tiles = []
-var selected
+var nodes = []
+var next_id = 1
 
-func _ready():
-    for tile in get_children():
-        if tile.has_signal("selected"):
-            tile.connect("selected", self, "emit_selection_changed", [tile])
-    
-    for tile in get_children():
-        if not tiles.has(tile):
-            add_tile(tile)
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+static func init(tileset, size, tiles = [], nodes = []):
+    tileset.size = size
+    tileset.tiles = tiles
+    tileset.nodes = nodes
+    tileset.columns = size.x
+    return tileset
 
-func _process(_delta):
-    if not visible:
-        return
-    
-    columns = int(max(round(sqrt(tiles.size())), 1))
+static func add_tile(tileset, tile):
+    var node = TileNode.new()
+    TileNode.set_tile(node, tile)
+    NodeExt.add_child(tileset, node)
+    ArrayExt.append(tileset.tiles, tile)
+    ArrayExt.append(tileset.nodes, node)
+    return tileset
 
-func emit_selection_changed(tile):
-    selected = tile
-    emit_signal("selection_changed", tile)
+static func remove_tile(tileset, tile):
+    var node = get_node_by_tile(tileset, tile)
+    NodeExt.remove_child(tileset, node)
+    ArrayExt.erase(tileset.tiles, tile)
+    ArrayExt.erase(tileset.nodes, node)
+    return tileset
 
-func add_tile(tile : Tile):
-    if tile.get_parent() != null:
-        tile.get_parent().remove_child(tile)
-    
-    if tile.has_signal("selected"):
-        if not tile.is_connected("selected", self, "emit_selection_changed"):
-            var _1 = tile.connect("selected", self, "emit_selection_changed", [tile])
-    
-    add_child(tile)
-    tiles.append(tile)
-    all_tiles.append(tile)
+static func assign_ids(tileset):
+    for tile in tileset.tiles:
+        tile.id = tileset.next_id
+        tileset.next_id += 1
+    return tileset
 
-func remove_tile(tile : Tile):    
-    tiles.erase(tile)
-    if tile and tile.get_parent() == self:
-        remove_child(tile)
-
-func get_tile_index(tile):
-    for i in range(all_tiles.size()):
-        if all_tiles[i] == tile:
-            return i
+static func get_id(tileset, tile):
+    for tileset_tile in tileset.tiles:
+        if tileset_tile == tile:
+            return tile.id
     return -1
 
-func clear():
-    for i in range(tiles.size() - 1, -1, -1):
-        remove_tile(tiles[i])
-    for i in range(all_tiles.size() - 1, -1, -1):
-        all_tiles.remove(i)
-    for i in range(get_child_count() - 1, -1, -1):
-        get_child(i).free()
+static func get_tile_by_id(tileset, id):
+    for tile in tileset.tiles:
+        if tile.id == id:
+            return tile
+    return null
+
+static func get_texture_by_id(tileset, id):
+    var tile = get_tile_by_id(tileset, id)
+    return tile.texture if tile else null
+
+static func get_node_by_tile(tileset, tile):
+    for node in tileset.nodes:
+        if node.tile == tile:
+            return node
+    return null

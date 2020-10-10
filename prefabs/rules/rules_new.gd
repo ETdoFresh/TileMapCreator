@@ -1,8 +1,6 @@
 class_name RulesNew
 extends Node
 
-const TILESET = preload("res://prefabs/tileset/tileset_new.gd")
-
 var left = []
 var right = []
 var top = []
@@ -25,7 +23,7 @@ static func show_rule(rules, tileset, tile):
     for direction in ["left", "right", "top", "bottom"]:
         for rule in rules[direction]:
             if rule[0] == tile.id:
-                var other_tile = TILESET.get_tile_by_id(tileset, rule[1])
+                var other_tile = Tileset.get_tile_by_id(tileset, rule[1])
                 var rule_tile_node = TileNode.new()
                 TileNode.set_tile(rule_tile_node, other_tile)
                 NodeExt.add_child(rule_viewer[direction], rule_tile_node)

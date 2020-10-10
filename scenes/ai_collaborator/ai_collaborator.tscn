@@ -1,12 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ai_collaborator/ai_collaborator.gd" type="Script" id=1]
-[ext_resource path="res://prefabs/tileset/tileset_new.gd" type="Script" id=2]
+[ext_resource path="res://prefabs/tileset/tileset.gd" type="Script" id=2]
 [ext_resource path="res://prefabs/rules/rules_new.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/rules/rule_viewer.gd" type="Script" id=5]
 [ext_resource path="res://prefabs/tile/tile_node.gd" type="Script" id=6]
 [ext_resource path="res://prefabs/map/map.gd" type="Script" id=7]
 [ext_resource path="res://prefabs/slot/slots.gd" type="Script" id=8]
+
 
 [node name="AICollaborator" type="Control"]
 anchor_right = 1.0

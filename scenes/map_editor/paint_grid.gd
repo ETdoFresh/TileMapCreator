@@ -1,7 +1,7 @@
 extends Control
 
 onready var tools_panel = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/ToolsPanel
-onready var tileset = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel/Tileset
+onready var tileset_selector = $UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel/Tileset
 onready var tileset_button1 = $UI/CanvasLayer/Control/EmptyTilesetWarning/TilesetButton
 onready var tileset_button2 = tools_panel.tileset_button
 onready var top_toolbar = $UI/CanvasLayer/Control/VBoxContainer/TopToolbar/HBoxContainer
@@ -13,7 +13,7 @@ onready var middle_click_state = $MiddleClickState
 onready var right_click_state = $RightClickState
 onready var background = $Camera2D/Background
 
-onready var tileset_new = $Tileset
+onready var tileset = $Tileset
 onready var rules = $Rules
 
 func _ready():
@@ -87,19 +87,12 @@ func show_popup(popup):
     popup.show()
 
 func preload_tileset():
-    var tileset_resource = ResourceLoader.load("res://resources/tileset.tres")
-    if tileset_resource:
-        for tile_resource in tileset_resource.tiles:
-            var tile = Prefab.TILE.instance()
-            tile.texture = tile_resource.texture
-            tile.stretch_mode = tile_resource.stretch_mode
-            tileset.add_tile(tile)
-            tile.set_radio_behavior()
-    
-    tileset_new = AICollaborator.load_tileset_from_file(tileset_new)
-    tileset_new = NodeExt.full_rect_layout(tileset_new)
-    tileset_new = NodeExt.mouse_filter_ignore_all(tileset_new)
-    
+    tileset = AICollaborator.load_tileset_from_file(tileset)
+    tileset = NodeExt.full_rect_layout(tileset)
+    tileset = NodeExt.mouse_filter_ignore_all(tileset)
+    tileset_selector = TileSetSelector.from_tileset(tileset_selector, tileset)
+    tileset_selector = NodeExt.size_flag_fill_and_expand(tileset_selector)
+    tileset_selector.visible = true
 
 func save_tileset():
     var tileset_resource = TilesetResource.new()

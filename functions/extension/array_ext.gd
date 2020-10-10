@@ -7,3 +7,7 @@ static func append(array: Array, item):
 static func erase(array: Array, item):
     array.erase(item)
     return array
+
+static func clear(array: Array):
+    array.clear()
+    return array
