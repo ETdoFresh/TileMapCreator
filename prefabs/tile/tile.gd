@@ -1,28 +1,21 @@
 class_name Tile
-extends TextureRect
+extends Reference
 
-#warning-ignore: UNUSED_SIGNAL
-#warning-ignore: UNUSED_SIGNAL
-signal selected
-signal pressed
+var id = -1
+var texture: Texture
+var stretch_mode = TextureRect.STRETCH_KEEP
 
-export var url : String = ""
+# warning-ignore:shadowed_variable
+static func set_id(tile, id):
+    tile.id = id
+    return tile
 
-func clear_behavior():
-    for child in get_children():
-        child.queue_free()
+# warning-ignore:shadowed_variable
+static func set_texture(tile, texture):
+    tile.texture = texture
+    return tile
 
-func set_image_behavior():
-    clear_behavior()
-
-func set_button_behavior():
-    clear_behavior()
-    add_child(ButtonBehavior.new())
-
-func set_radio_behavior():
-    clear_behavior()
-    add_child(RadioBehavior.new())
-
-func set_non_blocking_behavior():
-    clear_behavior()
-    add_child(NonBlockingBehavior.new())
+# warning-ignore:shadowed_variable
+static func set_stretch_mode(tile, stretch_mode):
+    tile.stretch_mode = stretch_mode
+    return tile

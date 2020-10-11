@@ -21,10 +21,10 @@ func _gui_input(event):
     
     if event is InputEventMouse:
         if is_painting:
-            var selected_tile = tileset.selected
+            var selected_tile = tileset.selection
             if selected_tile != null:
                 var tile_position = get_world_position(event.global_position) / 64
-                layer_viewer.selected.add_tile(tile_position, selected_tile.duplicate())
+                layer_viewer.selected.add_tile(tile_position, selected_tile)
                 #Map.add_tile(my_map, tile_position.x, tile_position.y, selected_tile)
 
 func get_world_position(screen_position):

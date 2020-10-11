@@ -10,6 +10,7 @@ func add_tile(position, tile):
     if tile == null:
         return
     
+    tile = TileRadioNode.to_tile_node(tile)
     var x = int(floor(position.x))
     var y = int(floor(position.y))
     if exists_tile(x, y):
@@ -19,7 +20,6 @@ func add_tile(position, tile):
         x_positions.append(x)
         y_positions.append(y)
         tiles.append(tile)
-        tile.set_non_blocking_behavior()
         tile.rect_position = Vector2(x * grid_size, y * grid_size)
         tile.rect_size = Vector2(grid_size, grid_size)
 
@@ -36,13 +36,13 @@ func get_tile(x, y):
     return null
 
 func overwrite_tile(x, y, tile):
+    tile = TileRadioNode.to_tile_node(tile)
     for i in range(tiles.size()):
         if x == x_positions[i] and y == y_positions[i]:
             #if tiles[i].texture != tile.texture:
                 remove_child(tiles[i])
                 add_child(tile)
                 tiles[i] = tile
-                tile.set_non_blocking_behavior()
                 tile.rect_position = Vector2(x * grid_size, y * grid_size)
                 tile.rect_size = Vector2(grid_size, grid_size)
 
