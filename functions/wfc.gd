@@ -58,6 +58,12 @@ static func step(original_slots, tileset, rules):
 static func append_rules(slots_node, tileset, rules):
     var slots = slots_node.slots
     for i in range(slots.size()):
+        
+        # TODO: Add yield code here
+        # If start_time - current_time > 33:
+            #yield idle frame
+            #break if necessary
+        
         if slots[i].tiles.size() == 1:
             var tile = slots[i].tiles[0]
             var tile_id = Tileset.get_id(tileset, tile)
@@ -101,6 +107,8 @@ static func collapse_neighbors(slot, tileset, rules):
         var neighbor = slot[direction]
         if not neighbor: continue
         
+        # TODO: Add yield code here
+        
         var neighbor_needs_to_collapse_its_neighbors = false
         var neighbor_tiles = neighbor.tiles
         if neighbor_tiles.size() > 1:
@@ -114,6 +122,9 @@ static func collapse_neighbors(slot, tileset, rules):
         if neighbor_needs_to_collapse_its_neighbors:
             SLOT.calculate_entropy(neighbor, tileset.tiles)
             collapse_neighbors(neighbor, tileset, rules)
+            
+            # TODO: Add yield code / return code here
+            
     return slot
 
 # warning-ignore:unused_argument

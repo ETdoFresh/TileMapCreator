@@ -4,15 +4,21 @@ extends Control
 func _ready():
     load_tileset_from_file($Tileset)
     load_sample_map($Map, $Tileset)
-    generate_slots($Slots, $Tileset, $Rules, $Map)
+    generate_map($Map, $Slots, $Tileset, $Rules)
 
 static func generate_slots(slots, tileset, rules, map):
     rules = set_rules(rules, tileset)
+    if rules is GDScriptFunctionState:
+        rules = yield(rules, "completed")
     slots = run_wfc(slots, map, tileset, rules)
+    if slots is GDScriptFunctionState:
+        slots = yield(slots, "completed")
     return slots
 
 static func generate_map(map, slots, tileset, rules):
     slots = generate_slots(slots, tileset, rules, map)
+    if slots is GDScriptFunctionState:
+        slots = yield(slots, "completed")
     return create_map_from_slots(map, slots)
 
 static func load_tileset_from_file(tileset):
@@ -31,6 +37,8 @@ static func load_tileset_from_file(tileset):
 
 static func set_rules(rules, tileset):
     rules = EdgeDetection.match_edges(rules, tileset)
+    if rules is GDScriptFunctionState:
+        rules = yield(rules, "completed")
     return rules
 
 static func display_rule_viewer(tileset, rules):
@@ -60,4 +68,6 @@ static func create_map_from_slots(map, slots):
 static func run_wfc(slots, map, tileset, rules):
     slots = WaveFunctionCollapse.slots_from_map(slots, map, tileset.tiles)
     slots = WaveFunctionCollapse.solve(slots, tileset, rules)
+    if slots is GDScriptFunctionState:
+        slots = yield(slots, "completed")
     return slots

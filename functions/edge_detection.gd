@@ -22,6 +22,9 @@ static func match_edges(rules, tileset):
         var texture = tile.texture
         var tile_id = Tileset.get_id(tileset, tile)
         for other_tile in tileset.tiles:
+            
+            # TODO: Add yield code here
+            
             var other_texture = other_tile.texture
             var other_tile_id = Tileset.get_id(tileset, other_tile)
             if match_left_edge_to_right_edge(texture, other_texture, image_data):
