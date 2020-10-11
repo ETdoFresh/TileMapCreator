@@ -4,6 +4,9 @@ extends GridContainer
 var size = Vector2.ZERO
 var tiles = []
 
+func _ready():
+    set_map_size(self, 10, 10)
+
 static func add_tile(map, x, y, tile):
     var map_tile = MapTile.new()
     map_tile.x = x

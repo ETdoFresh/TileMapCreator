@@ -90,7 +90,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 
 [node name="Control" type="Control" parent="UI/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -488,6 +487,8 @@ margin_right = 152.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 script = ExtResource( 20 )
 
 [node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer"]
@@ -509,10 +510,14 @@ __meta__ = {
 }
 
 [node name="Map" type="GridContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
+anchor_left = -0.00657895
+anchor_right = -0.00657895
 margin_right = 152.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 script = ExtResource( 20 )
 
 [node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
@@ -774,6 +779,8 @@ size_flags_vertical = 3
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 script = ExtResource( 20 )
 
 [node name="Slots" type="GridContainer" parent="."]

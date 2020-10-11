@@ -25,7 +25,10 @@ func _gui_input(event):
             if selected_tile != null:
                 var tile_position = get_world_position(event.global_position) / 64
                 layer_viewer.selected.add_tile(tile_position, selected_tile)
-                #Map.add_tile(my_map, tile_position.x, tile_position.y, selected_tile)
+                
+                var x = int(floor(tile_position.x))
+                var y = int(floor(tile_position.y))
+                Map.add_tile(my_map, x, y, selected_tile)
 
 func get_world_position(screen_position):
     var screen_center = screen_size / 2
