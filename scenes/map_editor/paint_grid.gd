@@ -90,7 +90,7 @@ func preload_tileset():
     tileset = AICollaborator.load_tileset_from_file(tileset)
     tileset = NodeExt.full_rect_layout(tileset)
     tileset = NodeExt.mouse_filter_ignore_all(tileset)
-    tileset_selector = TileSetSelector.from_tileset(tileset_selector, tileset)
+    tileset_selector = TilesetSelector.from_tileset(tileset_selector, tileset)
     tileset_selector = NodeExt.size_flag_fill_and_expand(tileset_selector)
     tileset_selector.visible = true
 

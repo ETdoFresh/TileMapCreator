@@ -34,14 +34,14 @@ static func set_rules(rules, tileset):
     rules = EdgeDetection.match_edges(rules, tileset)
     return rules
 
-static func display_rule_selector(tileset, rules):
-    var tileset_selector = TileSetSelector.new()
-    tileset_selector = NodeExt.full_rect_layout(tileset_selector)
-    tileset_selector = TileSetSelector.from_tileset(tileset_selector, tileset)
-    tileset_selector = NodeExt.replace(tileset, tileset_selector)
+static func display_rule_viewer(tileset, rules):
+    var tileset_buttons = TilesetButtons.new()
+    tileset_buttons = NodeExt.full_rect_layout(tileset_buttons)
+    tileset_buttons = TilesetButtons.from_tileset(tileset_buttons, tileset)
+    tileset_buttons = NodeExt.replace(tileset, tileset_buttons)
     NodeExt.delete(tileset)
-    tileset_selector = TileSetSelector.connect_tiles_to_rules(tileset_selector, rules)
-    return tileset_selector
+    tileset_buttons = TilesetButtons.connect_tiles_to_rules(tileset_buttons, rules)
+    return tileset_buttons
 
 static func load_sample_map(map, tileset):
     map = Map.set_map_size(map, 8, 8)

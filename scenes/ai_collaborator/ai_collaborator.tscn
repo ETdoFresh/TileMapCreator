@@ -8,7 +8,6 @@
 [ext_resource path="res://prefabs/map/map.gd" type="Script" id=7]
 [ext_resource path="res://prefabs/slot/slots.gd" type="Script" id=8]
 
-
 [node name="AICollaborator" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
