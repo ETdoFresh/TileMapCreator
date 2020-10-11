@@ -53,6 +53,9 @@ func select_tool(selection):
     elif selection.name == "Eraser":
         left_click_state.set_state_by_name("EraseGrid")
         right_click_state.set_state_by_name("EraseGrid")
+    elif selection.name == "Fill":
+        left_click_state.set_state_by_name("FillGrid")
+        left_click_state.set_state_by_name("FillGrid")
     else:
         left_click_state.set_state_by_name("SelectionRectangle")
         right_click_state.set_state_by_name("Unselect")

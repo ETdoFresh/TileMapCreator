@@ -8,9 +8,12 @@ func _ready():
 
 static func generate_slots(slots, tileset, rules, map):
     rules = set_rules(rules, tileset)
-    slots = create_slots_from_map(slots, map, tileset)
     slots = run_wfc(slots, map, tileset, rules)
     return slots
+
+static func generate_map(map, slots, tileset, rules):
+    slots = generate_slots(slots, tileset, rules, map)
+    return create_map_from_slots(map, slots)
 
 static func load_tileset_from_file(tileset):
     var tileset_resource = ResourceLoader.load("res://resources/tileset.tres")
@@ -51,10 +54,10 @@ static func load_sample_map(map, tileset):
 static func create_slots_from_map(slots, map, tileset):
     return WaveFunctionCollapse.slots_from_map(slots, map, tileset.tiles)
 
+static func create_map_from_slots(map, slots):
+    return WaveFunctionCollapse.map_from_slots(map, slots)
+
 static func run_wfc(slots, map, tileset, rules):
-    var original_slots = slots
     slots = WaveFunctionCollapse.slots_from_map(slots, map, tileset.tiles)
     slots = WaveFunctionCollapse.solve(slots, tileset, rules)
-    slots = NodeExt.replace(original_slots, slots)
-    slots = NodeExt.full_rect_layout(slots)
     return slots

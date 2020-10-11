@@ -19,6 +19,12 @@ static func slots_from_map(slots, map, tiles):
             slot = SLOT.calculate_entropy(slot, tiles)
     return slots
 
+static func map_from_slots(map, slots):
+    map = Map.clear(map)
+    for slot in slots.slots:
+        Map.add_tile(map, slot.x, slot.y, slot.tiles[0])
+    return map
+
 static func solve(original_slots, tileset, rules):
     append_rules(original_slots, tileset, rules)
     collapse_starting_neighbors(original_slots, tileset, rules)
