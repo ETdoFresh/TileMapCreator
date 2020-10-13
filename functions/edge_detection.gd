@@ -17,14 +17,17 @@ static func get_image_data(tileset):
     return image_data
 
 static func match_edges(rules, tileset):
+    var start_time = OS.get_ticks_msec()
     var image_data = get_image_data(tileset)
     for tile in tileset.tiles:
         var texture = tile.texture
         var tile_id = Tileset.get_id(tileset, tile)
         for other_tile in tileset.tiles:
-            
-            # TODO: Add yield code here
-            
+            var current_time = OS.get_ticks_msec()
+            if current_time - start_time > WaveFunctionCollapse.YIELD_TIME:
+                if not yield():
+                    return rules
+                start_time = OS.get_ticks_msec()
             var other_texture = other_tile.texture
             var other_tile_id = Tileset.get_id(tileset, other_tile)
             if match_left_edge_to_right_edge(texture, other_texture, image_data):

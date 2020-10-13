@@ -8,17 +8,17 @@ func _ready():
 
 static func generate_slots(slots, tileset, rules, map):
     rules = set_rules(rules, tileset)
-    if rules is GDScriptFunctionState:
-        rules = yield(rules, "completed")
+    while rules is GDScriptFunctionState:
+        rules = rules.resume(yield())
     slots = run_wfc(slots, map, tileset, rules)
-    if slots is GDScriptFunctionState:
-        slots = yield(slots, "completed")
+    while slots is GDScriptFunctionState:
+        slots = slots.resume(yield())
     return slots
 
 static func generate_map(map, slots, tileset, rules):
     slots = generate_slots(slots, tileset, rules, map)
-    if slots is GDScriptFunctionState:
-        slots = yield(slots, "completed")
+    while slots is GDScriptFunctionState:
+        slots = slots.resume(yield())
     return create_map_from_slots(map, slots)
 
 static func load_tileset_from_file(tileset):
@@ -37,8 +37,8 @@ static func load_tileset_from_file(tileset):
 
 static func set_rules(rules, tileset):
     rules = EdgeDetection.match_edges(rules, tileset)
-    if rules is GDScriptFunctionState:
-        rules = yield(rules, "completed")
+    while rules is GDScriptFunctionState:
+        rules = rules.resume(yield())
     return rules
 
 static func display_rule_viewer(tileset, rules):
@@ -67,7 +67,7 @@ static func create_map_from_slots(map, slots):
 
 static func run_wfc(slots, map, tileset, rules):
     slots = WaveFunctionCollapse.slots_from_map(slots, map, tileset.tiles)
-    slots = WaveFunctionCollapse.solve(slots, tileset, rules)
-    if slots is GDScriptFunctionState:
-        slots = yield(slots, "completed")
+    slots = WaveFunctionCollapse.solve_coroutine(slots, tileset, rules)
+    while slots is GDScriptFunctionState:
+        slots = slots.resume(yield())
     return slots

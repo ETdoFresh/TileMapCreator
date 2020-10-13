@@ -59,9 +59,9 @@ script = ExtResource( 3 )
 [node name="Background" type="Control" parent="Camera2D"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -20480.0
+margin_left = -20480.9
 margin_top = -11521.3
-margin_right = 20480.0
+margin_right = 20479.1
 margin_bottom = 11518.7
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,7 +105,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 
 [node name="Control" type="Control" parent="UI/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
