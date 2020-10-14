@@ -4,19 +4,29 @@ extends Control
 func _ready():
     load_tileset_from_file($Tileset)
     load_sample_map($Map, $Tileset)
+    #generate_slots($Slots, $Tileset, $Rules, $Map)
     generate_map($Map, $Slots, $Tileset, $Rules)
 
 static func generate_slots(slots, tileset, rules, map):
     rules = set_rules(rules, tileset)
+    slots = run_wfc(slots, map, tileset, rules)
+    return slots
+    
+static func generate_slots_coroutine(slots, tileset, rules, map):
+    rules = set_rules_coroutine(rules, tileset)
     while rules is GDScriptFunctionState:
         rules = rules.resume(yield())
-    slots = run_wfc(slots, map, tileset, rules)
+    slots = run_wfc_coroutine(slots, map, tileset, rules)
     while slots is GDScriptFunctionState:
         slots = slots.resume(yield())
     return slots
 
 static func generate_map(map, slots, tileset, rules):
     slots = generate_slots(slots, tileset, rules, map)
+    return create_map_from_slots(map, slots)
+
+static func generate_map_coroutine(map, slots, tileset, rules):
+    slots = generate_slots_coroutine(slots, tileset, rules, map)
     while slots is GDScriptFunctionState:
         slots = slots.resume(yield())
     return create_map_from_slots(map, slots)
@@ -37,6 +47,10 @@ static func load_tileset_from_file(tileset):
 
 static func set_rules(rules, tileset):
     rules = EdgeDetection.match_edges(rules, tileset)
+    return rules
+
+static func set_rules_coroutine(rules, tileset):
+    rules = EdgeDetection.match_edges_coroutine(rules, tileset)
     while rules is GDScriptFunctionState:
         rules = rules.resume(yield())
     return rules
@@ -66,6 +80,11 @@ static func create_map_from_slots(map, slots):
     return WaveFunctionCollapse.map_from_slots(map, slots)
 
 static func run_wfc(slots, map, tileset, rules):
+    slots = WaveFunctionCollapse.slots_from_map(slots, map, tileset.tiles)
+    slots = WaveFunctionCollapse.solve(slots, tileset, rules)
+    return slots
+
+static func run_wfc_coroutine(slots, map, tileset, rules):
     slots = WaveFunctionCollapse.slots_from_map(slots, map, tileset.tiles)
     slots = WaveFunctionCollapse.solve_coroutine(slots, tileset, rules)
     while slots is GDScriptFunctionState:

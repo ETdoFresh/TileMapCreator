@@ -4,7 +4,7 @@ const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
 const SLOTS = preload("res://prefabs/slot/slots.gd")
-const YIELD_TIME = 10000
+const YIELD_TIME = 30
 
 static func slots_from_map(slots, map, tiles):
     slots = SLOTS.clear(slots)
@@ -168,29 +168,37 @@ static func collapse_neighbors(slot, tileset, rules):
 
 static func collapse_neighbors_coroutine(slot, tileset, rules):
     var start_time = OS.get_ticks_msec()
-    var directions = ["top", "bottom", "left", "right"]
     var queue = [slot]
     while queue.size() > 0:
         var current_slot = queue.pop_front()
+        var directions = ["top", "bottom", "left", "right"]
         for direction in directions:
             var neighbor = current_slot[direction]
             if not neighbor: continue
+            
             var current_time = OS.get_ticks_msec()
             if current_time - start_time > YIELD_TIME:
                 if not yield():
                     return slot
                 start_time = OS.get_ticks_msec()
+            
+            var neighbor_needs_to_collapse_its_neighbors = false
             var neighbor_tiles = neighbor.tiles
             if neighbor_tiles.size() > 1:
                 for i in range(neighbor_tiles.size() - 1, -1, -1):
                     var neighbor_tile = neighbor_tiles[i]
                     var neighbor_id = Tileset.get_id(tileset, neighbor_tile)
-                    if not can_be_neighbors(slot, tileset, rules, direction, neighbor_id):
+                    if not can_be_neighbors(current_slot, tileset, rules, direction, neighbor_id):
                         SLOT.remove_tile(neighbor, neighbor_tile)
-                        if slot.top and not queue.has(slot.top): queue.append(slot.top)
-                        if slot.bottom and not queue.has(slot.bottom): queue.append(slot.bottom)
-                        if slot.left and not queue.has(slot.left): queue.append(slot.left)
-                        if slot.right and not queue.has(slot.right): queue.append(slot.right)
+                        neighbor_needs_to_collapse_its_neighbors = true
+            
+            if neighbor_needs_to_collapse_its_neighbors:
+                SLOT.calculate_entropy(neighbor, tileset.tiles)
+                if current_slot.top: queue.push_back(current_slot.top)
+                if current_slot.bottom: queue.push_back(current_slot.bottom)
+                if current_slot.left: queue.push_back(current_slot.left)
+                if current_slot.right: queue.push_back(current_slot.right)
+    
     return slot
 
 # warning-ignore:unused_argument

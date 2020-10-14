@@ -44,7 +44,7 @@ func update_ai_collaborator():
     if coroutine: 
         coroutine = null
     ccc_map = Map.copy(ccc_map, my_map)
-    coroutine = AICollaborator.generate_map(ccc_map, slots, tileset, rules)
+    coroutine = AICollaborator.generate_map_coroutine(ccc_map, slots, tileset, rules)
     if not coroutine is GDScriptFunctionState:
         map = Map.copy(map, coroutine)
         coroutine = null

@@ -17,6 +17,24 @@ static func get_image_data(tileset):
     return image_data
 
 static func match_edges(rules, tileset):
+    var image_data = get_image_data(tileset)
+    for tile in tileset.tiles:
+        var texture = tile.texture
+        var tile_id = Tileset.get_id(tileset, tile)
+        for other_tile in tileset.tiles:
+            var other_texture = other_tile.texture
+            var other_tile_id = Tileset.get_id(tileset, other_tile)
+            if match_left_edge_to_right_edge(texture, other_texture, image_data):
+                rules.left.append([tile_id, other_tile_id])
+            if match_right_edge_to_left_edge(texture, other_texture, image_data):
+                rules.right.append([tile_id, other_tile_id])
+            if match_top_edge_to_bottom_edge(texture, other_texture, image_data):
+                rules.top.append([tile_id, other_tile_id])
+            if match_bottm_edge_to_top_edge(texture, other_texture, image_data):
+                rules.bottom.append([tile_id, other_tile_id])
+    return rules
+
+static func match_edges_coroutine(rules, tileset):
     var start_time = OS.get_ticks_msec()
     var image_data = get_image_data(tileset)
     for tile in tileset.tiles:
