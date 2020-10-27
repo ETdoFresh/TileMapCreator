@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/iconscout/load/load.svg" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+func _ready():
+    $AnimationPlayer.play(\"spin\")
+"
+
+[sub_resource type="Animation" id=1]
+resource_name = "spin"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0, 180.0, 270.0, 360.0 ]
+}
+
+[node name="LoadImage" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+rect_rotation = 360.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -15.0
+margin_right = 15.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/spin = SubResource( 1 )

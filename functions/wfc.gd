@@ -4,7 +4,7 @@ const DIRECTIONS = ["top", "bottom", "left", "right"]
 const SLOT = preload("res://prefabs/slot/slot.gd")
 const LAYER_DATA = preload("res://scenes/map_editor/layer_data.gd")
 const SLOTS = preload("res://prefabs/slot/slots.gd")
-const YIELD_TIME = 30
+const YIELD_TIME = 10
 
 static func slots_from_map(slots, map, tiles):
     slots = SLOTS.clear(slots)

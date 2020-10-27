@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://prefabs/tileset/tileset_selector.gd" type="Script" id=1]
 [ext_resource path="res://scenes/map_editor/grid_background.gd" type="Script" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://prefabs/slot/slots.gd" type="Script" id=24]
 [ext_resource path="res://prefabs/rules/rule_viewer.gd" type="Script" id=25]
 [ext_resource path="res://scenes/map_editor/state/fill.gd" type="Script" id=26]
+[ext_resource path="res://prefabs/loading/loading.tscn" type="PackedScene" id=27]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -525,14 +526,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Map" type="GridContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
+[node name="LoadContainer" type="Control" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
 margin_right = 91.0
+margin_bottom = 77.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Map" type="GridContainer" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2/LoadContainer"]
+margin_right = 90.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadImage" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2/LoadContainer" instance=ExtResource( 27 )]
+visible = false
 
 [node name="Label" type="Label" parent="UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2"]
 margin_top = 81.0

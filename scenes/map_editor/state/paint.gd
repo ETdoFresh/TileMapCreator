@@ -2,6 +2,7 @@ extends Node
 
 const TEMP_TEXTURE = preload("res://sprites/et/no_texture/no_texture.svg")
 
+var has_changed = false
 var is_painting = false
 var coroutine = null
 
@@ -11,9 +12,10 @@ onready var layer_viewer = get_parent().get_parent().get_node("LayerViewer")
 onready var tileset = get_parent().get_parent().get_node("UI/CanvasLayer/Control/VBoxContainer/ContentUI/LayersPanel/Tileset")
 onready var map = get_parent().get_parent().get_node("Map")
 onready var my_map = get_parent().get_parent().get_node("UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer/Map")
-onready var ccc_map = get_parent().get_parent().get_node("UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2/Map")
+onready var ccc_map = get_parent().get_parent().get_node("UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2/LoadContainer/Map")
 onready var slots = get_parent().get_parent().get_node("Slots")
 onready var rules = get_parent().get_parent().get_node("Rules")
+onready var loading = get_parent().get_parent().get_node("UI/CanvasLayer/Control/BottomPanel/HBoxContainer/VBoxContainer2/LoadContainer/LoadImage")
 
 func _gui_input(event):
     if event is InputEventMouseButton:
@@ -21,6 +23,9 @@ func _gui_input(event):
             is_painting = true
         else:
             is_painting = false
+            if has_changed:
+                has_changed = false
+                update_ai_collaborator()
     
     if event is InputEventMouse:
         if is_painting:
@@ -33,21 +38,23 @@ func _gui_input(event):
                 var map_tile = Map.get_tile(my_map, x, y)
                 if map_tile:
                     if map_tile.tile != selected_tile.tile:
+                        has_changed = true
                         my_map = Map.remove_tile(my_map, map_tile)
                         my_map = Map.add_tile(my_map, x, y, selected_tile.tile)
-                        update_ai_collaborator()
                 else:
+                    has_changed = true
                     my_map = Map.add_tile(my_map, x, y, selected_tile.tile)
-                    update_ai_collaborator()
 
 func update_ai_collaborator():
     if coroutine: 
         coroutine = null
     ccc_map = Map.copy(ccc_map, my_map)
     coroutine = AICollaborator.generate_map_coroutine(ccc_map, slots, tileset, rules)
+    loading.visible = true
     if not coroutine is GDScriptFunctionState:
         map = Map.copy(map, coroutine)
         coroutine = null
+        loading.visible = false
 
 func _process(_delta):
     if coroutine:
@@ -55,6 +62,7 @@ func _process(_delta):
         if not coroutine is GDScriptFunctionState:
             map = Map.copy(map, coroutine)
             coroutine = null
+            loading.visible = false
 
 func get_world_position(screen_position):
     var screen_center = Util.project_resolution / 2
