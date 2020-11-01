@@ -122,6 +122,7 @@ __meta__ = {
 }
 
 [node name="TopToolbar" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer"]
+visible = false
 margin_right = 1280.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 0, 34 )
@@ -254,6 +255,43 @@ margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
+
+[node name="TempToolbar" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 34 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/CanvasLayer/Control/VBoxContainer/TempToolbar"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="Control" parent="UI/CanvasLayer/Control/VBoxContainer/TempToolbar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResetButton" type="Button" parent="UI/CanvasLayer/Control/VBoxContainer/TempToolbar/HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -17.0
+margin_right = 100.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "Reset"
 
 [node name="ContentUI" type="HBoxContainer" parent="UI/CanvasLayer/Control/VBoxContainer"]
 margin_top = 38.0
